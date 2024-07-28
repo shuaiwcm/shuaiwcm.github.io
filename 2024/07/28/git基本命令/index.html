@@ -19,23 +19,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="LuRen&#39; Blong">
-<meta property="og:url" content="http://example.com/index.html">
+    <meta name="description" content="git仓库基础操作仓库基本管理初始化一个git仓库git init#初始化当前文件夹为一个git仓库 将文件添加到git的暂存区git add &quot;readme.txi&quot;注：使用git add -A或git add .，可以提交当前仓库的所有改动 查看仓库当前文件提交状态git status -s   从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息git comm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git基本命令">
+<meta property="og:url" content="http://example.com/2024/07/28/git%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="LuRen&#39; Blong">
+<meta property="og:description" content="git仓库基础操作仓库基本管理初始化一个git仓库git init#初始化当前文件夹为一个git仓库 将文件添加到git的暂存区git add &quot;readme.txi&quot;注：使用git add -A或git add .，可以提交当前仓库的所有改动 查看仓库当前文件提交状态git status -s   从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息git comm">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-28T07:13:40.000Z">
+<meta property="article:modified_time" content="2024-07-28T07:21:29.742Z">
 <meta property="article:author" content="LuRen">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="windows">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2024/07/28/git%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/07/28/git%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/","path":"2024/07/28/git基本命令/","title":"git基本命令"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>LuRen' Blong</title>
+<title>git基本命令 | LuRen' Blong</title>
   
 
 
@@ -68,7 +74,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">LuRen' Blong</h1>
+      <p class="site-title">LuRen' Blong</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -121,7 +127,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -134,6 +140,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#git%E4%BB%93%E5%BA%93%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">git仓库基础操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%93%E5%BA%93%E5%9F%BA%E6%9C%AC%E7%AE%A1%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">仓库基本管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E5%88%B0git%E7%9A%84%E6%9A%82%E5%AD%98%E5%8C%BA"><span class="nav-number">1.2.</span> <span class="nav-text">将文件添加到git的暂存区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%BB%93%E5%BA%93%E5%BD%93%E5%89%8D%E6%96%87%E4%BB%B6%E6%8F%90%E4%BA%A4%E7%8A%B6%E6%80%81"><span class="nav-number">1.3.</span> <span class="nav-text">查看仓库当前文件提交状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8Egit%E7%9A%84%E6%9A%82%E5%AD%98%E5%8C%BA%E6%8F%90%E4%BA%A4%E7%89%88%E6%9C%AC%E5%88%B0%E4%BB%93%E5%BA%93%EF%BC%8C%E5%8F%82%E6%95%B0-m%E5%90%8E%E4%B8%BA%E5%BD%93%E6%AC%A1%E6%8F%90%E4%BA%A4%E7%9A%84%E5%A4%87%E6%B3%A8%E4%BF%A1%E6%81%AF"><span class="nav-number">1.4.</span> <span class="nav-text">从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E4%BF%A1%E6%81%AF%E6%8E%A8%E9%80%81%E4%B8%8A%E4%BC%A0%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.5.</span> <span class="nav-text">将本地仓库信息推送上传到服务器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">远程仓库管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E4%BB%93%E5%BA%93%E5%90%8D"><span class="nav-number">2.1.</span> <span class="nav-text">修改仓库名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E4%BB%93%E5%BA%93"><span class="nav-number">2.2.</span> <span class="nav-text">添加一个仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E4%BB%93%E5%BA%93%E5%AF%B9%E5%BA%94%E7%9A%84%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80"><span class="nav-number">2.3.</span> <span class="nav-text">查看当前仓库对应的远程仓库地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E4%BB%93%E5%BA%93%E5%AF%B9%E5%BA%94%E7%9A%84%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80"><span class="nav-number">2.4.</span> <span class="nav-text">修改仓库对应的远程仓库地址</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -171,97 +178,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/28/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="LuRen">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LuRen' Blong">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | LuRen' Blong">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/07/28/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-07-28 13:09:02" itemprop="dateCreated datePublished" datetime="2024-07-28T13:09:02+00:00">2024-07-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/28/git%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -275,13 +202,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | LuRen' Blong">
+      <meta itemprop="name" content="git基本命令 | LuRen' Blong">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/07/28/git%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">git基本命令</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          git基本命令
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -317,8 +244,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="git仓库基础操作"><a href="#git仓库基础操作" class="headerlink" title="git仓库基础操作"></a>git仓库基础操作</h1><h2 id="仓库基本管理"><a href="#仓库基本管理" class="headerlink" title="仓库基本管理"></a>仓库基本管理</h2><p>初始化一个git仓库<br><code>git init</code><br>#初始化当前文件夹为一个git仓库</p>
+    <div class="post-body" itemprop="articleBody"><h1 id="git仓库基础操作"><a href="#git仓库基础操作" class="headerlink" title="git仓库基础操作"></a>git仓库基础操作</h1><h2 id="仓库基本管理"><a href="#仓库基本管理" class="headerlink" title="仓库基本管理"></a>仓库基本管理</h2><p>初始化一个git仓库<br><code>git init</code><br>#初始化当前文件夹为一个git仓库</p>
 <h2 id="将文件添加到git的暂存区"><a href="#将文件添加到git的暂存区" class="headerlink" title="将文件添加到git的暂存区"></a>将文件添加到git的暂存区</h2><p><code>git add &quot;readme.txi&quot;</code><br>注：使用<code>git add -A</code>或<code>git add .</code>，可以提交当前仓库的所有改动</p>
 <h2 id="查看仓库当前文件提交状态"><a href="#查看仓库当前文件提交状态" class="headerlink" title="查看仓库当前文件提交状态"></a>查看仓库当前文件提交状态</h2><p><code>git status -s</code>  </p>
 <h2 id="从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息"><a href="#从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息" class="headerlink" title="从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息"></a>从git的暂存区提交版本到仓库，参数<code>-m</code>后为当次提交的备注信息</h2><p><code>git commit -m &quot;1.0.0&quot;</code>  </p>
@@ -329,7 +255,6 @@
 <h2 id="查看当前仓库对应的远程仓库地址"><a href="#查看当前仓库对应的远程仓库地址" class="headerlink" title="查看当前仓库对应的远程仓库地址"></a>查看当前仓库对应的远程仓库地址</h2><p><code>git remote -v</code><br>这条命令能显示你当前仓库中已经添加了的倒库名和对应的仓库地址，通常来讲，会有两条一模一样的记录，分别是fetch和push，其中fetch是用来从远程同步，push是用来推送到远程。</p>
 <h2 id="修改仓库对应的远程仓库地址"><a href="#修改仓库对应的远程仓库地址" class="headerlink" title="修改仓库对应的远程仓库地址"></a>修改仓库对应的远程仓库地址</h2><p><code>git remote set-url origin &quot;https://</code></p>
 
-      
     </div>
 
     
@@ -337,11 +262,26 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/windows/" rel="tag"># windows</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/07/28/hello-world/" rel="next" title="Hello World">
+                  Hello World <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
   </article>
 </div>
+
 
 
 

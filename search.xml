@@ -18,4 +18,27 @@
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>git基本命令</title>
+    <url>/2024/07/28/git%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="git仓库基础操作"><a href="#git仓库基础操作" class="headerlink" title="git仓库基础操作"></a>git仓库基础操作</h1><h2 id="仓库基本管理"><a href="#仓库基本管理" class="headerlink" title="仓库基本管理"></a>仓库基本管理</h2><p>初始化一个git仓库<br><code>git init</code><br>#初始化当前文件夹为一个git仓库</p>
+<h2 id="将文件添加到git的暂存区"><a href="#将文件添加到git的暂存区" class="headerlink" title="将文件添加到git的暂存区"></a>将文件添加到git的暂存区</h2><p><code>git add &quot;readme.txi&quot;</code><br>注：使用<code>git add -A</code>或<code>git add .</code>，可以提交当前仓库的所有改动</p>
+<h2 id="查看仓库当前文件提交状态"><a href="#查看仓库当前文件提交状态" class="headerlink" title="查看仓库当前文件提交状态"></a>查看仓库当前文件提交状态</h2><p><code>git status -s</code>  </p>
+<h2 id="从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息"><a href="#从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息" class="headerlink" title="从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息"></a>从git的暂存区提交版本到仓库，参数<code>-m</code>后为当次提交的备注信息</h2><p><code>git commit -m &quot;1.0.0&quot;</code>  </p>
+<h2 id="将本地仓库信息推送上传到服务器"><a href="#将本地仓库信息推送上传到服务器" class="headerlink" title="将本地仓库信息推送上传到服务器"></a>将本地仓库信息推送上传到服务器</h2><p><code>git push https://giteee.com/***/test.git</code><br>如果是克隆下来的仓库，可以省去链接<br>直接<code>git push</code>会提示输入用户名密码，可以配置TOKEN后，能过SSH克隆，再上传时不用输入密码。</p>
+<h1 id="远程仓库管理"><a href="#远程仓库管理" class="headerlink" title="远程仓库管理"></a>远程仓库管理</h1><h2 id="修改仓库名"><a href="#修改仓库名" class="headerlink" title="修改仓库名"></a>修改仓库名</h2><p>一般来讲，默认情况下，在执行克隆操作时，仓库名者是origin如果说多们想给它改名为wang，可以使用以下命令  </p>
+<p><code>git remote rename origin wang</code>  </p>
+<h2 id="添加一个仓库"><a href="#添加一个仓库" class="headerlink" title="添加一个仓库"></a>添加一个仓库</h2><p>在不执行克隆操作时，如果想将一个远程仓库添加到本地仓库中，可以执行<br><code>git remote add origin &quot;https://&quot;</code><br>注意：<code>origin</code>是你仓库的别名，可以随便改，但请务必不要与已有的仓库别名冲突，仓库地址一般来讲支持<code>http/https/ssh/git</code>等协议，其他协议地址请勿添加</p>
+<h2 id="查看当前仓库对应的远程仓库地址"><a href="#查看当前仓库对应的远程仓库地址" class="headerlink" title="查看当前仓库对应的远程仓库地址"></a>查看当前仓库对应的远程仓库地址</h2><p><code>git remote -v</code><br>这条命令能显示你当前仓库中已经添加了的倒库名和对应的仓库地址，通常来讲，会有两条一模一样的记录，分别是fetch和push，其中fetch是用来从远程同步，push是用来推送到远程。</p>
+<h2 id="修改仓库对应的远程仓库地址"><a href="#修改仓库对应的远程仓库地址" class="headerlink" title="修改仓库对应的远程仓库地址"></a>修改仓库对应的远程仓库地址</h2><p><code>git remote set-url origin &quot;https://</code></p>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+        <category>备忘</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>windows</tag>
+      </tags>
+  </entry>
 </search>
