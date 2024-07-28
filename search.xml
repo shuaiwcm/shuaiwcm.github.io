@@ -273,6 +273,36 @@
       </tags>
   </entry>
   <entry>
+    <title>openwrt中设置MosDNS</title>
+    <url>/2024/07/25/openwrt%E4%B8%AD%E8%AE%BE%E7%BD%AEMosDNS/</url>
+    <content><![CDATA[<h3 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h3><ul>
+<li><p>勾选启用——设置监听端口（这里可以自定义）——勾选自定义国内DNS——选择对应的DNS（建议选择加密DNS）——远程DNS根据自己实际情况选择（一般保持默认即可）——<code>Bootstrap DNS</code> 服务器保持默认或者可以自行测试一下</p>
+<span id="more"></span>
+</li>
+<li><p>设置监听端口：5335</p>
+</li>
+<li><p>勾选自定义国内DNS，选择对应的DNS（建议选择加密DNS）</p>
+</li>
+<li><p>远程DNS根据自己实际情况选择（一般保持默认即可）</p>
+</li>
+<li><p><code>Bootstrap DNS</code> 服务器保持默认或者可以自行测试一下</p>
+</li>
+</ul>
+<h3 id="高级设置"><a href="#高级设置" class="headerlink" title="高级设置"></a><strong>高级设置</strong></h3><ul>
+<li>DNS服务器并发数输入2</li>
+<li>勾选防止DNS泄露</li>
+<li>勾选启用DNS广告过滤（可选可不选）</li>
+<li>规则选择<code>anti-AD</code></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>openwrt</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>openwrt中设置openclash</title>
     <url>/2024/07/25/openwrt%E4%B8%AD%E8%AE%BE%E7%BD%AEopenclash/</url>
     <content><![CDATA[<h3 id="1、插件设置"><a href="#1、插件设置" class="headerlink" title="1、插件设置"></a>1、插件设置</h3><ul>
@@ -332,36 +362,6 @@
 <li>FallBack：全部取消</li>
 </ul>
 </li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>openwrt</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>openwrt中设置MosDNS</title>
-    <url>/2024/07/25/openwrt%E4%B8%AD%E8%AE%BE%E7%BD%AEMosDNS/</url>
-    <content><![CDATA[<h3 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h3><ul>
-<li><p>勾选启用——设置监听端口（这里可以自定义）——勾选自定义国内DNS——选择对应的DNS（建议选择加密DNS）——远程DNS根据自己实际情况选择（一般保持默认即可）——<code>Bootstrap DNS</code> 服务器保持默认或者可以自行测试一下</p>
-<span id="more"></span>
-</li>
-<li><p>设置监听端口：5335</p>
-</li>
-<li><p>勾选自定义国内DNS，选择对应的DNS（建议选择加密DNS）</p>
-</li>
-<li><p>远程DNS根据自己实际情况选择（一般保持默认即可）</p>
-</li>
-<li><p><code>Bootstrap DNS</code> 服务器保持默认或者可以自行测试一下</p>
-</li>
-</ul>
-<h3 id="高级设置"><a href="#高级设置" class="headerlink" title="高级设置"></a><strong>高级设置</strong></h3><ul>
-<li>DNS服务器并发数输入2</li>
-<li>勾选防止DNS泄露</li>
-<li>勾选启用DNS广告过滤（可选可不选）</li>
-<li>规则选择<code>anti-AD</code></li>
 </ul>
 ]]></content>
       <categories>
