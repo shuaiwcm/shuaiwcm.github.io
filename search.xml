@@ -1,30 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>git基本命令</title>
-    <url>/git%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4.html</url>
-    <content><![CDATA[<h1 id="git仓库基础操作"><a href="#git仓库基础操作" class="headerlink" title="git仓库基础操作"></a>git仓库基础操作</h1><h2 id="仓库基本管理"><a href="#仓库基本管理" class="headerlink" title="仓库基本管理"></a>仓库基本管理</h2><p>初始化一个git仓库<br><code>git init</code>    </p>
-<span id="more"></span>
-<p>#初始化当前文件夹为一个git仓库</p>
-<h2 id="将文件添加到git的暂存区"><a href="#将文件添加到git的暂存区" class="headerlink" title="将文件添加到git的暂存区"></a>将文件添加到git的暂存区</h2><p><code>git add &quot;readme.txi&quot;</code><br>注：使用<code>git add -A</code>或<code>git add .</code>，可以提交当前仓库的所有改动</p>
-<h2 id="查看仓库当前文件提交状态"><a href="#查看仓库当前文件提交状态" class="headerlink" title="查看仓库当前文件提交状态"></a>查看仓库当前文件提交状态</h2><p><code>git status -s</code>  </p>
-<h2 id="从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息"><a href="#从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息" class="headerlink" title="从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息"></a>从git的暂存区提交版本到仓库，参数<code>-m</code>后为当次提交的备注信息</h2><p><code>git commit -m &quot;1.0.0&quot;</code>  </p>
-<h2 id="将本地仓库信息推送上传到服务器"><a href="#将本地仓库信息推送上传到服务器" class="headerlink" title="将本地仓库信息推送上传到服务器"></a>将本地仓库信息推送上传到服务器</h2><p><code>git push https://giteee.com/***/test.git</code><br>如果是克隆下来的仓库，可以省去链接<br>直接<code>git push</code>会提示输入用户名密码，可以配置TOKEN后，能过SSH克隆，再上传时不用输入密码。</p>
-<h1 id="远程仓库管理"><a href="#远程仓库管理" class="headerlink" title="远程仓库管理"></a>远程仓库管理</h1><h2 id="修改仓库名"><a href="#修改仓库名" class="headerlink" title="修改仓库名"></a>修改仓库名</h2><p>一般来讲，默认情况下，在执行克隆操作时，仓库名者是origin如果说多们想给它改名为wang，可以使用以下命令  </p>
-<p><code>git remote rename origin wang</code>  </p>
-<h2 id="添加一个仓库"><a href="#添加一个仓库" class="headerlink" title="添加一个仓库"></a>添加一个仓库</h2><p>在不执行克隆操作时，如果想将一个远程仓库添加到本地仓库中，可以执行<br><code>git remote add origin &quot;https://&quot;</code><br>注意：<code>origin</code>是你仓库的别名，可以随便改，但请务必不要与已有的仓库别名冲突，仓库地址一般来讲支持<code>http/https/ssh/git</code>等协议，其他协议地址请勿添加</p>
-<h2 id="查看当前仓库对应的远程仓库地址"><a href="#查看当前仓库对应的远程仓库地址" class="headerlink" title="查看当前仓库对应的远程仓库地址"></a>查看当前仓库对应的远程仓库地址</h2><p><code>git remote -v</code><br>这条命令能显示你当前仓库中已经添加了的倒库名和对应的仓库地址，通常来讲，会有两条一模一样的记录，分别是fetch和push，其中fetch是用来从远程同步，push是用来推送到远程。</p>
-<h2 id="修改仓库对应的远程仓库地址"><a href="#修改仓库对应的远程仓库地址" class="headerlink" title="修改仓库对应的远程仓库地址"></a>修改仓库对应的远程仓库地址</h2><p><code>git remote set-url origin &quot;https://</code></p>
-]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>windows</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux安装frps</title>
     <url>/linux%E5%AE%89%E8%A3%85frps.html</url>
     <content><![CDATA[<h3 id="下载并解压缩"><a href="#下载并解压缩" class="headerlink" title="下载并解压缩"></a>下载并解压缩</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 下载</span><br><span class="line">wget &lt;https://github.com/fatedier/frp/releases/download/v0.33.0/frp_0.42.0_linux_amd64.tar.gz&gt;</span><br><span class="line"># 解压缩</span><br><span class="line">tar xf frp_0.42.0_linux_amd64.tar.gz</span><br><span class="line"># 重命名</span><br><span class="line">mv frp_0.42.0_linux_amd64 /usr/local/frps/</span><br><span class="line">cd /usr/local/frps</span><br><span class="line"># 删除客户端frpc相关的文件</span><br><span class="line">rm -f frpc*</span><br></pre></td></tr></table></figure>
@@ -402,6 +378,41 @@
       </categories>
       <tags>
         <tag>openwrt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git基本命令</title>
+    <url>/tpclash%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95.html</url>
+    <content><![CDATA[<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><blockquote>
+<p><a href="https://www.youtube.com/watch?v=KrjCBS8vgFY">抛弃openwrt，用linux部署代理全家科学上网。最稳的纯翻墙方案，电视盒子也能部署 - YouTube</a></p>
+</blockquote>
+<h2 id="部署过程"><a href="#部署过程" class="headerlink" title="部署过程"></a>部署过程</h2><ul>
+<li><p>通过博主的指引，下载了github仓库里的几个文件</p>
+<ul>
+<li><p>首先是下载了这个版本tpclash-mihomo-linux-amd64-v3，经过尝试启动不起来</p>
+</li>
+<li><p>然后下载了tpclash-mihomo-linux-amd64版本，顺利启动</p>
+</li>
+<li><p>经过博主的指引修改的配置文件中少了一行命令，导致web页面没启动。代码如下下  </p>
+<p><code>external-controller: 0.0.0.0:9090</code></p>
+</li>
+<li><p>最终顺利启动，也测试成功，代理时出现的问题是，我发现自己的ipv6在没有禁用的情况下，会通过ipv6泄漏dns，我个人无法解决，又不想禁用ipv6，决定暂时弃用，待找到方案后再使用，这是一坑</p>
+</li>
+<li><p>等我根据使用文档，关闭开机自启，并关闭软件后，又有新问题出现了，就是我的ubuntu不能连网了，因为我自己是菜鸟，不会排查问题，所以解决问题的方法就是重装了系统，折腾了几个小时，幸好没有太多数据，这也是教训，测试不要在正在使用的服务器的进行，另建一个虚拟机最好。</p>
+</li>
+<li><p>下面记录下代码头部的完整部分，以备下次折腾</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 请指定自己实际的接口名称(ip a 获取)</span><br><span class="line">interface-name: ens18</span><br><span class="line"></span><br><span class="line">external-controller: 0.0.0.0:9090</span><br><span class="line"></span><br><span class="line">tun:</span><br><span class="line">  enable: true</span><br><span class="line">  stack: system</span><br><span class="line">  dns-hijack:</span><br><span class="line">    - any:53</span><br><span class="line">  #   - 8.8.8.8:53</span><br><span class="line">  #   - tcp://8.8.8.8:53</span><br><span class="line">  # auto-route 与 ebpf 冲突, 不能同时使用</span><br><span class="line">  #auto-route: true</span><br><span class="line">  #auto-redir: true</span><br><span class="line">  #auto-detect-interface: true</span><br><span class="line"></span><br><span class="line"># ebpf 需要指定物理网卡</span><br><span class="line">ebpf:</span><br><span class="line">  redirect-to-tun:</span><br><span class="line">    - ens18</span><br><span class="line"></span><br><span class="line"># ebpf 需要配置 mark</span><br><span class="line">routing-mark: 666</span><br><span class="line"></span><br><span class="line"># 开启 DNS 配置, 且使用 fake-ip 模式</span><br><span class="line">dns:</span><br><span class="line">  enable: true</span><br><span class="line">  listen: 0.0.0.0:1053</span><br><span class="line">  enhanced-mode: fake-ip</span><br><span class="line">  fake-ip-range: 198.18.0.1/16</span><br><span class="line">  default-nameserver:</span><br><span class="line">    - 223.5.5.5</span><br><span class="line">    - 119.29.29.29</span><br><span class="line">  nameserver:</span><br><span class="line">    - 223.5.5.5</span><br><span class="line">    - 119.29.29.29</span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+        <category>备忘</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>windows</tag>
       </tags>
   </entry>
   <entry>
@@ -974,41 +985,6 @@
       </categories>
       <tags>
         <tag>openwrt</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git基本命令</title>
-    <url>/tpclash%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95.html</url>
-    <content><![CDATA[<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><blockquote>
-<p><a href="https://www.youtube.com/watch?v=KrjCBS8vgFY">抛弃openwrt，用linux部署代理全家科学上网。最稳的纯翻墙方案，电视盒子也能部署 - YouTube</a></p>
-</blockquote>
-<h2 id="部署过程"><a href="#部署过程" class="headerlink" title="部署过程"></a>部署过程</h2><ul>
-<li><p>通过博主的指引，下载了github仓库里的几个文件</p>
-<ul>
-<li><p>首先是下载了这个版本tpclash-mihomo-linux-amd64-v3，经过尝试启动不起来</p>
-</li>
-<li><p>然后下载了tpclash-mihomo-linux-amd64版本，顺利启动</p>
-</li>
-<li><p>经过博主的指引修改的配置文件中少了一行命令，导致web页面没启动。代码如下下  </p>
-<p><code>external-controller: 0.0.0.0:9090</code></p>
-</li>
-<li><p>最终顺利启动，也测试成功，代理时出现的问题是，我发现自己的ipv6在没有禁用的情况下，会通过ipv6泄漏dns，我个人无法解决，又不想禁用ipv6，决定暂时弃用，待找到方案后再使用，这是一坑</p>
-</li>
-<li><p>等我根据使用文档，关闭开机自启，并关闭软件后，又有新问题出现了，就是我的ubuntu不能连网了，因为我自己是菜鸟，不会排查问题，所以解决问题的方法就是重装了系统，折腾了几个小时，幸好没有太多数据，这也是教训，测试不要在正在使用的服务器的进行，另建一个虚拟机最好。</p>
-</li>
-<li><p>下面记录下代码头部的完整部分，以备下次折腾</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 请指定自己实际的接口名称(ip a 获取)</span><br><span class="line">interface-name: ens18</span><br><span class="line"></span><br><span class="line">external-controller: 0.0.0.0:9090</span><br><span class="line"></span><br><span class="line">tun:</span><br><span class="line">  enable: true</span><br><span class="line">  stack: system</span><br><span class="line">  dns-hijack:</span><br><span class="line">    - any:53</span><br><span class="line">  #   - 8.8.8.8:53</span><br><span class="line">  #   - tcp://8.8.8.8:53</span><br><span class="line">  # auto-route 与 ebpf 冲突, 不能同时使用</span><br><span class="line">  #auto-route: true</span><br><span class="line">  #auto-redir: true</span><br><span class="line">  #auto-detect-interface: true</span><br><span class="line"></span><br><span class="line"># ebpf 需要指定物理网卡</span><br><span class="line">ebpf:</span><br><span class="line">  redirect-to-tun:</span><br><span class="line">    - ens18</span><br><span class="line"></span><br><span class="line"># ebpf 需要配置 mark</span><br><span class="line">routing-mark: 666</span><br><span class="line"></span><br><span class="line"># 开启 DNS 配置, 且使用 fake-ip 模式</span><br><span class="line">dns:</span><br><span class="line">  enable: true</span><br><span class="line">  listen: 0.0.0.0:1053</span><br><span class="line">  enhanced-mode: fake-ip</span><br><span class="line">  fake-ip-range: 198.18.0.1/16</span><br><span class="line">  default-nameserver:</span><br><span class="line">    - 223.5.5.5</span><br><span class="line">    - 119.29.29.29</span><br><span class="line">  nameserver:</span><br><span class="line">    - 223.5.5.5</span><br><span class="line">    - 119.29.29.29</span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术分享</category>
-        <category>备忘</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>windows</tag>
       </tags>
   </entry>
 </search>
