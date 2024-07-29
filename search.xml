@@ -118,7 +118,7 @@
 <li>安装brrew（非root用户安装）<span id="more"></span>
 <ul>
 <li>安装必要依赖<br><code>sudo apt-get install build-essential procps curl filegit</code></li>
-<li>安装brew<br><code>/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</code></li>
+<li>安装brew   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</span><br></pre></td></tr></table></figure></li>
 <li>运行它建议的二条命令</li>
 <li>验证安装 <code>brew doctor</code></li>
 </ul>
