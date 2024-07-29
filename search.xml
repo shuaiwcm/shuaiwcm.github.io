@@ -21,8 +21,7 @@
         <category>备忘</category>
       </categories>
       <tags>
-        <tag>linux</tag>
-        <tag>windows</tag>
+        <tag>linux,windows</tag>
       </tags>
   </entry>
   <entry>
@@ -685,8 +684,8 @@
         <category>技术分享</category>
       </categories>
       <tags>
-        <tag>windows</tag>
         <tag>web</tag>
+        <tag>windows</tag>
       </tags>
   </entry>
   <entry>
