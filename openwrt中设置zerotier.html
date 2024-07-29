@@ -19,25 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"shuaiwcm.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="生命在于折腾">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LuRen&#39; Blong">
-<meta property="og:url" content="https://shuaiwcm.github.io/archives/2024/page/2/index.html">
+    <meta name="description" content="1、VPN&gt;zerotier&gt;ZeroTier Network ID中填入ID">
+<meta property="og:type" content="article">
+<meta property="og:title" content="openwrt中设置zerotier">
+<meta property="og:url" content="https://shuaiwcm.github.io/openwrt%E4%B8%AD%E8%AE%BE%E7%BD%AEzerotier.html">
 <meta property="og:site_name" content="LuRen&#39; Blong">
-<meta property="og:description" content="生命在于折腾">
+<meta property="og:description" content="1、VPN&gt;zerotier&gt;ZeroTier Network ID中填入ID">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-25T13:10:38.000Z">
+<meta property="article:modified_time" content="2024-07-28T07:21:29.811Z">
 <meta property="article:author" content="LuRen">
+<meta property="article:tag" content="openwrt">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://shuaiwcm.github.io/archives/2024/page/2/">
+<link rel="canonical" href="https://shuaiwcm.github.io/openwrt%E4%B8%AD%E8%AE%BE%E7%BD%AEzerotier.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/2024/page/2/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://shuaiwcm.github.io/openwrt%E4%B8%AD%E8%AE%BE%E7%BD%AEzerotier.html","path":"openwrt中设置zerotier.html","title":"openwrt中设置zerotier"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | LuRen' Blong</title>
+<title>openwrt中设置zerotier | LuRen' Blong</title>
   
 
 
@@ -70,7 +73,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">LuRen' Blong</h1>
+      <p class="site-title">LuRen' Blong</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -123,7 +126,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -136,6 +139,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81VPN-zerotier-ZeroTier-Network-ID%E4%B8%AD%E5%A1%AB%E5%85%A5ID"><span class="nav-number">1.</span> <span class="nav-text">1、VPN&gt;zerotier&gt;ZeroTier Network ID中填入ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C-%E6%8E%A5%E5%8F%A3-%E6%B7%BB%E5%8A%A0%E6%96%B0%E6%8E%A5%E5%8F%A3"><span class="nav-number">2.</span> <span class="nav-text">2、管理界面设置网络&gt;接口&gt;添加新接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C-%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%8C%E7%BC%96%E8%BE%91zerotier"><span class="nav-number">3.</span> <span class="nav-text">3、管理界面设置网络&gt;防火墙，编辑zerotier</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E9%80%9A%E4%BF%A1%E8%A7%84%E5%88%99-%E6%B7%BB%E5%8A%A0%E8%A7%84%E5%88%99%E5%B9%B6%E7%BC%96%E8%BE%91"><span class="nav-number">4.</span> <span class="nav-text">4、通信规则&gt;添加规则并编辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81zerotier%E5%AE%98%E7%BD%91%E4%B8%8A%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">5、zerotier官网上设置</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -181,132 +185,136 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 15 篇日志。 继续努力。</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2024<span class="collection-year-count">15</span></span>
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://shuaiwcm.github.io/openwrt%E4%B8%AD%E8%AE%BE%E7%BD%AEzerotier.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/bxh.png">
+      <meta itemprop="name" content="LuRen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LuRen' Blong">
+      <meta itemprop="description" content="生命在于折腾">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="openwrt中设置zerotier | LuRen' Blong">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          openwrt中设置zerotier
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-07-25 13:10:38" itemprop="dateCreated datePublished" datetime="2024-07-25T13:10:38+00:00">2024-07-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-07-28 07:21:29" itemprop="dateModified" datetime="2024-07-28T07:21:29+00:00">2024-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" itemprop="url" rel="index"><span itemprop="name">技术分享</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="1、VPN-zerotier-ZeroTier-Network-ID中填入ID"><a href="#1、VPN-zerotier-ZeroTier-Network-ID中填入ID" class="headerlink" title="1、VPN&gt;zerotier&gt;ZeroTier Network ID中填入ID"></a>1、VPN&gt;zerotier&gt;ZeroTier Network ID中填入ID</h3><span id="more"></span>
+
+<h3 id="2、管理界面设置网络-接口-添加新接口"><a href="#2、管理界面设置网络-接口-添加新接口" class="headerlink" title="2、管理界面设置网络&gt;接口&gt;添加新接口"></a>2、管理界面设置网络&gt;接口&gt;添加新接口</h3><ul>
+<li>接口名称随意</li>
+<li>协议：不配置协议</li>
+<li>接口：选zti开头的</li>
+<li>提交后配置防火墙</li>
+<li>自定义一个新防火墙<code>zerotier</code></li>
+<li>保存并应用</li>
+</ul>
+<h3 id="3、管理界面设置网络-防火墙，编辑zerotier"><a href="#3、管理界面设置网络-防火墙，编辑zerotier" class="headerlink" title="3、管理界面设置网络&gt;防火墙，编辑zerotier"></a>3、管理界面设置网络&gt;防火墙，编辑zerotier</h3><ul>
+<li>全选接受</li>
+<li>IP动态伪装选中</li>
+<li>允许转发及转发到都选LAN</li>
+</ul>
+<h3 id="4、通信规则-添加规则并编辑"><a href="#4、通信规则-添加规则并编辑" class="headerlink" title="4、通信规则&gt;添加规则并编辑"></a>4、通信规则&gt;添加规则并编辑</h3><ul>
+<li>协议：<code>UDP</code></li>
+<li>源区域：任意区域</li>
+<li>目标区域：设备</li>
+<li>端口：9993</li>
+<li>保存并应用</li>
+</ul>
+<h3 id="5、zerotier官网上设置"><a href="#5、zerotier官网上设置" class="headerlink" title="5、zerotier官网上设置"></a>5、zerotier官网上设置</h3><ul>
+<li><code>Advanced&gt;Add Routes</code></li>
+<li><code>Destination</code>：填写局域网网段</li>
+<li><code>Via</code>：填写路由的虚拟网址</li>
+<li>添加</li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-07-25T12:54:44+00:00"
-              content="2024-07-25">
-          07-25
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/%E6%9C%AC%E5%9C%B0%E7%BC%96%E8%AF%91openwrt%E5%9B%BA%E4%BB%B6.html" itemprop="url">
-            <span itemprop="name">本地编译openwrt固件</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/openwrt/" rel="tag"># openwrt</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/openwrt%E4%B8%AD%E8%AE%BE%E7%BD%AEopenclash.html" rel="prev" title="openwrt中设置openclash">
+                  <i class="fa fa-angle-left"></i> openwrt中设置openclash
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E4%B8%80%E4%BA%9B%E7%89%B9%E6%AE%8A%E7%AB%AF%E5%8F%A3.html" rel="next" title="一些特殊端口">
+                  一些特殊端口 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-07-25T12:38:38+00:00"
-              content="2024-07-25">
-          07-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/linux%E9%85%8D%E7%BD%AEsamba.html" itemprop="url">
-            <span itemprop="name">linux配置samba</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-07-25T12:34:05+00:00"
-              content="2024-07-25">
-          07-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/linux%E5%AE%89%E8%A3%85frps.html" itemprop="url">
-            <span itemprop="name">linux安装frps</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-07-25T10:33:19+00:00"
-              content="2024-07-25">
-          07-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/linux%E5%AE%89%E8%A3%85zerotier.html" itemprop="url">
-            <span itemprop="name">linux安装zerotier</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-07-25T09:58:28+00:00"
-              content="2024-07-25">
-          07-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/linux%E5%AE%89%E8%A3%85%E8%8A%B1%E7%94%9F%E5%A3%B3.html" itemprop="url">
-            <span itemprop="name">linux安装花生壳</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/archives/2024/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2024/">1</a><span class="page-number current">2</span>
-  </nav>
+
+
+
 
 </div>
   </main>
