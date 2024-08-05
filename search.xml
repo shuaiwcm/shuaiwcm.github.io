@@ -469,7 +469,7 @@
 <li><p>然后下载了tpclash-mihomo-linux-amd64版本，顺利启动</p>
 </li>
 <li><p>经过博主的指引修改的配置文件中少了一行命令，导致web页面没启动。代码如下下  </p>
-<p><code>external-controller: 0.0.0.0:9090</code>  配置文件需要生命名为<code>clash.yaml</code></p>
+<p><code>external-controller: 0.0.0.0:9090</code>  配置文件需要重命名为<code>clash.yaml</code></p>
 </li>
 <li><p>还有一份开机自启配置文件<code>tpclash.service</code>，说是提供的有，但我没找到，根据屏幕信息手写了一份  </p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=TPClash</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">User=root</span><br><span class="line">Restart=on-failure</span><br><span class="line">ExecStart=/usr/local/bin/tpclash</span><br><span class="line"> </span><br><span class="line">RestartSec=10s</span><br><span class="line">TimeoutStopSec=30s</span><br><span class="line"> </span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure></li>
