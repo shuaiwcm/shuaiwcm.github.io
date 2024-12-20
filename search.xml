@@ -234,6 +234,12 @@
 <li>next配置文件中修改<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Local search</span><br><span class="line"># Dependencies: https://github.com/next-theme/hexo-generator-searchdb</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">  # Show top n results per article, show all results by setting to -1</span><br><span class="line">  top_n_per_article: 1</span><br><span class="line">  # Unescape html strings to the readable one.</span><br><span class="line">  unescape: false</span><br><span class="line">  # Preload the search data when the page loads.</span><br><span class="line">  preload: false</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
+<li><p>配置阅读进度</p>
+<ul>
+<li>修改主题配置文件</li>
+<li>搜索<code>back2top</code><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">back2top:</span><br><span class="line">  enable: true # 开启 back to top 按钮</span><br><span class="line">  # Back to top in sidebar.</span><br><span class="line">  sidebar: true # true 表示在侧边栏显示，false则在侧下角</span><br><span class="line">  # Scroll percent label in b2t button.</span><br><span class="line">  scrollpercent: true # 开启进度百分比</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
 <li><p>相关链接</p>
 <ul>
 <li><a href="https://github.com/hexojs/hexo">hexo</a></li>
