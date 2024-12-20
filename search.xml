@@ -323,34 +323,6 @@
       </tags>
   </entry>
   <entry>
-    <title>linux配置samba</title>
-    <url>/linux%E9%85%8D%E7%BD%AEsamba.html</url>
-    <content><![CDATA[<h3 id="本文是在ubuntu下设置smba"><a href="#本文是在ubuntu下设置smba" class="headerlink" title="本文是在ubuntu下设置smba"></a>本文是在ubuntu下设置smba</h3><span id="more"></span>
-
-<ul>
-<li><code>sudo apt update</code> 更新下apt</li>
-<li><code>apt install samba -y</code> 安装smba</li>
-<li><code>mkdir -p Share</code> 创建共享文件夹</li>
-<li><code>chmod 0777 Share</code> 设置共享文件夹权限</li>
-<li><code>vim /etc/samba/smb.conf</code> 修改配置文件</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#在文件[global]中修改以下内容</span><br><span class="line">[global]</span><br><span class="line"> security = user                  #密码访问的选项</span><br><span class="line">#在文件最后增加以下内容</span><br><span class="line">[Ubuntu_22.04]                      #共享名称</span><br><span class="line">    comment = Samba                  #描述</span><br><span class="line">    path = /home/wang/Share        #共享路径</span><br><span class="line">    public = no                      #是否允许匿名访问</span><br><span class="line">    writable = yes                  #是否允许编辑、删除文件</span><br><span class="line">    available = yes                  #共享是否可用</span><br><span class="line">    browseable = yes              #共享是否可以在网络上浏览</span><br><span class="line">    valid users = wang            #用户名</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>smbpasswd -a wang</code> 设置共享用户密码</li>
-<li><code>systemctl restart smbd.service</code> 重启smba</li>
-<li><code>systemctl enable smbd.service</code> 设置开机自启动</li>
-<li><code>systemctl status smbd.service</code> 查看smba状态</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>openwrt中设置MosDNS</title>
     <url>/openwrt%E4%B8%AD%E8%AE%BE%E7%BD%AEMosDNS.html</url>
     <content><![CDATA[<h3 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h3><ul>
@@ -378,6 +350,34 @@
       </categories>
       <tags>
         <tag>openwrt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux配置samba</title>
+    <url>/linux%E9%85%8D%E7%BD%AEsamba.html</url>
+    <content><![CDATA[<h3 id="本文是在ubuntu下设置smba"><a href="#本文是在ubuntu下设置smba" class="headerlink" title="本文是在ubuntu下设置smba"></a>本文是在ubuntu下设置smba</h3><span id="more"></span>
+
+<ul>
+<li><code>sudo apt update</code> 更新下apt</li>
+<li><code>apt install samba -y</code> 安装smba</li>
+<li><code>mkdir -p Share</code> 创建共享文件夹</li>
+<li><code>chmod 0777 Share</code> 设置共享文件夹权限</li>
+<li><code>vim /etc/samba/smb.conf</code> 修改配置文件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#在文件[global]中修改以下内容</span><br><span class="line">[global]</span><br><span class="line"> security = user                  #密码访问的选项</span><br><span class="line">#在文件最后增加以下内容</span><br><span class="line">[Ubuntu_22.04]                      #共享名称</span><br><span class="line">    comment = Samba                  #描述</span><br><span class="line">    path = /home/wang/Share        #共享路径</span><br><span class="line">    public = no                      #是否允许匿名访问</span><br><span class="line">    writable = yes                  #是否允许编辑、删除文件</span><br><span class="line">    available = yes                  #共享是否可用</span><br><span class="line">    browseable = yes              #共享是否可以在网络上浏览</span><br><span class="line">    valid users = wang            #用户名</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>smbpasswd -a wang</code> 设置共享用户密码</li>
+<li><code>systemctl restart smbd.service</code> 重启smba</li>
+<li><code>systemctl enable smbd.service</code> 设置开机自启动</li>
+<li><code>systemctl status smbd.service</code> 查看smba状态</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
