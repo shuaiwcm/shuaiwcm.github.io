@@ -6,7 +6,8 @@
     <content><![CDATA[<h3 id="安装Aria2"><a href="#安装Aria2" class="headerlink" title="安装Aria2"></a>安装Aria2</h3><ul>
 <li>官方下载地址：<code>https://github.com/aria2/aria2/releases</code></li>
 <li>下载后解压至程序目录</li>
-<li>在目录下新建四个文件<ul>
+<li>在目录下新建四个文件<span id="more"></span>
+<ul>
 <li>Aria2.log   （日志，空文件就行）</li>
 <li>aria2.session  （下载历史，空文件就行）</li>
 <li>aria2.conf  （配置文件）</li>
