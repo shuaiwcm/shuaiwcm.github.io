@@ -1,0 +1,1110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>git基本命令</title>
+    <url>/git%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4.html</url>
+    <content><![CDATA[<h1 id="git仓库基础操作"><a href="#git仓库基础操作" class="headerlink" title="git仓库基础操作"></a>git仓库基础操作</h1><h2 id="仓库基本管理"><a href="#仓库基本管理" class="headerlink" title="仓库基本管理"></a>仓库基本管理</h2><p>初始化一个git仓库<br><code>git init</code>    </p>
+<span id="more"></span>
+
+<p>#初始化当前文件夹为一个git仓库</p>
+<h2 id="将文件添加到git的暂存区"><a href="#将文件添加到git的暂存区" class="headerlink" title="将文件添加到git的暂存区"></a>将文件添加到git的暂存区</h2><p><code>git add &quot;readme.txi&quot;</code><br>注：使用<code>git add -A</code>或<code>git add .</code>，可以提交当前仓库的所有改动</p>
+<h2 id="查看仓库当前文件提交状态"><a href="#查看仓库当前文件提交状态" class="headerlink" title="查看仓库当前文件提交状态"></a>查看仓库当前文件提交状态</h2><p><code>git status -s</code>  </p>
+<h2 id="从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息"><a href="#从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息" class="headerlink" title="从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息"></a>从git的暂存区提交版本到仓库，参数<code>-m</code>后为当次提交的备注信息</h2><p><code>git commit -m &quot;1.0.0&quot;</code>  </p>
+<h2 id="将本地仓库信息推送上传到服务器"><a href="#将本地仓库信息推送上传到服务器" class="headerlink" title="将本地仓库信息推送上传到服务器"></a>将本地仓库信息推送上传到服务器</h2><p><code>git push https://giteee.com/***/test.git</code><br>如果是克隆下来的仓库，可以省去链接<br>直接<code>git push</code>会提示输入用户名密码，可以配置TOKEN后，能过SSH克隆，再上传时不用输入密码。</p>
+<h1 id="远程仓库管理"><a href="#远程仓库管理" class="headerlink" title="远程仓库管理"></a>远程仓库管理</h1><h2 id="修改仓库名"><a href="#修改仓库名" class="headerlink" title="修改仓库名"></a>修改仓库名</h2><p>一般来讲，默认情况下，在执行克隆操作时，仓库名者是origin如果说多们想给它改名为wang，可以使用以下命令  </p>
+<p><code>git remote rename origin wang</code>  </p>
+<h2 id="添加一个仓库"><a href="#添加一个仓库" class="headerlink" title="添加一个仓库"></a>添加一个仓库</h2><p>在不执行克隆操作时，如果想将一个远程仓库添加到本地仓库中，可以执行<br><code>git remote add origin &quot;https://&quot;</code><br>注意：<code>origin</code>是你仓库的别名，可以随便改，但请务必不要与已有的仓库别名冲突，仓库地址一般来讲支持<code>http/https/ssh/git</code>等协议，其他协议地址请勿添加</p>
+<h2 id="查看当前仓库对应的远程仓库地址"><a href="#查看当前仓库对应的远程仓库地址" class="headerlink" title="查看当前仓库对应的远程仓库地址"></a>查看当前仓库对应的远程仓库地址</h2><p><code>git remote -v</code><br>这条命令能显示你当前仓库中已经添加了的倒库名和对应的仓库地址，通常来讲，会有两条一模一样的记录，分别是fetch和push，其中fetch是用来从远程同步，push是用来推送到远程。</p>
+<h2 id="修改仓库对应的远程仓库地址"><a href="#修改仓库对应的远程仓库地址" class="headerlink" title="修改仓库对应的远程仓库地址"></a>修改仓库对应的远程仓库地址</h2><p><code>git remote set-url origin &quot;https://</code></p>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux安装docker</title>
+    <url>/linux%E5%AE%89%E8%A3%85docker.html</url>
+    <content><![CDATA[<h1 id="使用官方安装脚本自动安装"><a href="#使用官方安装脚本自动安装" class="headerlink" title="使用官方安装脚本自动安装"></a>使用官方安装脚本自动安装</h1><p><code>curl -fsSL https://test.docker.com -o test-docker.shdocker.sh</code></p>
+<p><code>sudo sh test-docker.sh</code></p>
+<span id="more"></span>
+
+<h1 id="允许非Root用户执行docker-命令"><a href="#允许非Root用户执行docker-命令" class="headerlink" title="允许非Root用户执行docker 命令"></a>允许非Root用户执行docker 命令</h1><p><code>sudo groupadd docker</code> #添加docker用户组</p>
+<p><code>sudo usermod -aG docker $USER</code> #将当前用户添加到用户组</p>
+<p><code>newgrp docker</code> #使权限生效</p>
+<p><code>docker ps -a</code> #测试一下</p>
+<h1 id="最后一步-更新-bashrc文件"><a href="#最后一步-更新-bashrc文件" class="headerlink" title="最后一步 更新.bashrc文件"></a>最后一步 更新.bashrc文件</h1><p>我们需要编辑 <code>~/.bashrc</code>文件，并在文件末尾增加如下一行，如果没有此行命令，你会发现，当你每次打开新的终端，你都必须先执行一次<code>newgrp docker</code>命令，否则当前用户还是不可以执行docker命令。</p>
+<p><code>groupadd -f docker</code></p>
+<h2 id="docker安装青龙面板"><a href="#docker安装青龙面板" class="headerlink" title="docker安装青龙面板"></a>docker安装青龙面板</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -dit \\</span><br><span class="line">  -v <span class="variable">$PWD</span>/ql/data:/ql/data \\</span><br><span class="line">  -p 5700:5700 \\</span><br><span class="line">  --name qinglong \\</span><br><span class="line">  --hostname qinglong \\</span><br><span class="line">  --restart unless-stopped \\</span><br><span class="line">  whyour/qinglong:latest</span><br></pre></td></tr></table></figure>
+
+<p>青龙面板通用依赖</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#NodeJs</span></span><br><span class="line">request</span><br><span class="line">crypto-js</span><br><span class="line">prettytable</span><br><span class="line">dotenv</span><br><span class="line">jsdom</span><br><span class="line">date-fns</span><br><span class="line">tough-cookie</span><br><span class="line">tslib</span><br><span class="line">ws@7.4.3</span><br><span class="line">ts-md5</span><br><span class="line">jsdom -g</span><br><span class="line">jieba</span><br><span class="line">fs</span><br><span class="line">form-data</span><br><span class="line">json5</span><br><span class="line">global-agent</span><br><span class="line">png-js</span><br><span class="line">@types/node</span><br><span class="line">require</span><br><span class="line">typescript</span><br><span class="line">js-base64</span><br><span class="line">axios</span><br><span class="line">moment</span><br><span class="line"></span><br><span class="line"><span class="comment">#Python3</span></span><br><span class="line">requests</span><br><span class="line">canvas</span><br><span class="line">ping3</span><br><span class="line">jieba</span><br><span class="line">PyExecJS</span><br><span class="line">aiohttp</span><br><span class="line"></span><br><span class="line"><span class="comment">#Linux</span></span><br><span class="line">bizCode</span><br><span class="line">bizMsg</span><br><span class="line">lxm</span><br></pre></td></tr></table></figure>
+
+<h3 id="青龙面板安装脚本"><a href="#青龙面板安装脚本" class="headerlink" title="青龙面板安装脚本"></a>青龙面板安装脚本</h3><ul>
+<li>GlaDOS</li>
+</ul>
+<p><a href="https://github.com/hennessey-v/GlaDOS_Checkin_ql">hennessey-v&#x2F;GlaDOS_Checkin_ql: 基于Python实现的GLaDOS自动签到项目。可部署在青龙面板，支持多账号。 (github.com)</a></p>
+<ul>
+<li>JD</li>
+</ul>
+<p><a href="https://github.com/6dylan6/jdpro">6dylan6&#x2F;jdpro (github.com)</a></p>
+<p><a href="https://blog.csdn.net/m0_64632940/article/details/124115228">获取京东cookie（青龙面板，含各种库）_jd cookie-CSDN博客</a></p>
+<ul>
+<li><a href="https://sitoi.github.io/dailycheckin/"><strong>DailyCheckin</strong></a></li>
+</ul>
+<p><a href="https://sitoi.github.io/dailycheckin/settings/notify/turbo/">Server 酱 TURBO – DailyCheckIn (sitoi.github.io)</a></p>
+<h2 id="Docker安装Aria2-pro"><a href="#Docker安装Aria2-pro" class="headerlink" title="Docker安装Aria2 pro"></a>Docker安装Aria2 pro</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">--name aria2 \</span><br><span class="line">--restart unless-stopped \</span><br><span class="line">--log-opt max-size=1m \</span><br><span class="line">-e PUID=<span class="variable">$UID</span> \</span><br><span class="line">-e PGID=<span class="variable">$GID</span> \</span><br><span class="line">-e UMASK_SET=022 \</span><br><span class="line">-e RPC_SECRET=prc_password \</span><br><span class="line">-e RPC_PORT=6800 \</span><br><span class="line">-e LISTEN_PORT=6888 \</span><br><span class="line">-p 6800:6800 \</span><br><span class="line">-p 6888:6888 \</span><br><span class="line">-p 6888:6888/udp \</span><br><span class="line">-v /root/aria2/config:/config \</span><br><span class="line">-v /root/aria2/downloads:/downloads \</span><br><span class="line">p3terx/aria2-pro</span><br></pre></td></tr></table></figure>
+
+<p><strong>启动容器命令参数详解</strong></p>
+<ul>
+<li>用户和组设定： <code>PUID=$UID、PGID=$GID</code>这2个定义用户和用户组的环境变量，限定了aria2以什么用户和用户组运行，不指定则默认使用<code>nobady</code>用户和<code>nogroup</code>用户组。</li>
+<li>几个环境变量: <code>-e UMASK_SET=022</code> ，设置<code>umask</code>，默认值022； <code>-e RPC_SECRET=</code>，设置RPC密钥，用于AriaNg与Aria2的通讯验证使用； <code>-e RPC_PORT=6800</code>，设置PRC通讯端口（与宿主主机的端口映射一致）； <code>-e LISTEN_PORT=6888</code>，BT 监听端口（TCP）、DHT 监听端口（UDP）设置，即 Aria2 配置中<code>listen-port</code>与<code>dht-listen-port</code>选项定义的端口。如果没有设置，配置文件中的默认值为6888。</li>
+<li>容器目录挂载，将<code>/downloads</code>挂载到宿主主机的<code>/root/aria2/downloads:/downloads</code>目录，即FileRun的数据目录中，方便下载完成直接在网盘中查看；配置文件挂载到指定的宿主主机目录<code>/root/aria2/config</code>中，宿主主机的目录根据实际情况自行修改；</li>
+<li>3个端口映射： <code>-p 6800:6800</code>，为RPC 通讯端口映射； <code>-p 6888:6888</code>，为BT 监听端口（TCP）映射，即 Aria2 配置中listen-port选项定义的端口； -p 6888:6888&#x2F;udp，为DHT 监听端口（UDP）映射，即 Aria2 配置中dht-listen-port选项定义的端口。</li>
+<li>[Aria2 Pro - 更好用的 Aria2 Docker 容器镜像 - P3TERX ZONE</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux安装frps</title>
+    <url>/linux%E5%AE%89%E8%A3%85frps.html</url>
+    <content><![CDATA[<h3 id="下载并解压缩"><a href="#下载并解压缩" class="headerlink" title="下载并解压缩"></a>下载并解压缩</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 下载</span><br><span class="line">wget &lt;https://github.com/fatedier/frp/releases/download/v0.33.0/frp_0.42.0_linux_amd64.tar.gz&gt;</span><br><span class="line"># 解压缩</span><br><span class="line">tar xf frp_0.42.0_linux_amd64.tar.gz</span><br><span class="line"># 重命名</span><br><span class="line">mv frp_0.42.0_linux_amd64 /usr/local/frps/</span><br><span class="line">cd /usr/local/frps</span><br><span class="line"># 删除客户端frpc相关的文件</span><br><span class="line">rm -f frpc*</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h3 id="修改服务端配置文件frps-toml文件"><a href="#修改服务端配置文件frps-toml文件" class="headerlink" title="修改服务端配置文件frps.toml文件"></a>修改服务端配置文件frps.toml文件</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim frps.ini     #打开配置文件，添加以下代码</span><br><span class="line"></span><br><span class="line">[common]</span><br><span class="line">bind_port =8100</span><br><span class="line">vhost_http_port = 6100</span><br><span class="line">subdomain_host = a.b.com</span><br><span class="line">dashboard_port = 7100</span><br><span class="line">dashboard_user = username自定义</span><br><span class="line">dashboard_pwd = password自定义</span><br><span class="line">log_file = ./logs/frps.log</span><br><span class="line">log_level = error</span><br><span class="line">log_max_days = 3</span><br><span class="line">token = token自定义</span><br><span class="line">max_pool_count = 50</span><br><span class="line">tcp_mux = true</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bind_port</td>
+<td>客户端与服务端交互接口</td>
+</tr>
+<tr>
+<td>vhost_http_port</td>
+<td>http端口</td>
+</tr>
+<tr>
+<td>subdomain_host</td>
+<td>自定义域名</td>
+</tr>
+<tr>
+<td>dashboard_port</td>
+<td>服务器后台web访问端口</td>
+</tr>
+<tr>
+<td>dashboard_user</td>
+<td>服务器后台web访问用户名</td>
+</tr>
+<tr>
+<td>dashboard_pwd</td>
+<td>服务器后台web访问密码</td>
+</tr>
+<tr>
+<td>log_file</td>
+<td>定义log文件名称及存放位置</td>
+</tr>
+<tr>
+<td>log_level</td>
+<td>log文件记录的最低级别</td>
+</tr>
+<tr>
+<td>log_max_days</td>
+<td>log记录的最大天数</td>
+</tr>
+<tr>
+<td>token</td>
+<td>定义log文件名称及存放位置</td>
+</tr>
+<tr>
+<td>max_pool_count</td>
+<td>最大连接池大小</td>
+</tr>
+</tbody></table>
+<h3 id="配置frp启动服务"><a href="#配置frp启动服务" class="headerlink" title="配置frp启动服务"></a>配置frp启动服务</h3><ul>
+<li>使用以下命令启动服务器：<code>./frps -c ./frps.toml</code></li>
+<li>使用以下命令启动客户端：<code>./frpc -c ./frpc.toml</code></li>
+<li>如果需要在后台长期运行，建议结合其他工具，如 systemd 和 <code>supervisor</code></li>
+<li>systemd<ul>
+<li>使用文本编辑器 (如 vim) 在 <code>/etc/systemd/system</code> 目录下创建一个 <code>frps.service</code> 文件，用于配置 frps 服务。</li>
+<li><code>vim /etc/systemd/system/frps.service</code></li>
+<li>写入内容</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Unit]</span><br><span class="line"># 服务名称，可自定义</span><br><span class="line">Description = frp server</span><br><span class="line">After = network.target syslog.target</span><br><span class="line">Wants = network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type = simple</span><br><span class="line"># 启动frps的命令，需修改为您的frps的安装路径</span><br><span class="line">ExecStart = /path/to/frps -c /path/to/frps.toml</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy = multi-user.target</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用-systemd-命令管理-frps-服务"><a href="#使用-systemd-命令管理-frps-服务" class="headerlink" title="使用 systemd 命令管理 frps 服务"></a>使用 systemd 命令管理 frps 服务</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 启动frp</span><br><span class="line">sudo systemctl start frps</span><br><span class="line"># 停止frp</span><br><span class="line">sudo systemctl stop frps</span><br><span class="line"># 重启frp</span><br><span class="line">sudo systemctl restart frps</span><br><span class="line"># 查看frp状态</span><br><span class="line">sudo systemctl status frps</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置-frps-开机自启动"><a href="#设置-frps-开机自启动" class="headerlink" title="设置 frps 开机自启动"></a>设置 frps 开机自启动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl enable frps</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux安装hexo</title>
+    <url>/linux%E5%AE%89%E8%A3%85hexo.html</url>
+    <content><![CDATA[<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><ul>
+<li>安装git</li>
+<li>安装nodejs</li>
+<li>安装brrew（非root用户安装）<span id="more"></span>
+<ul>
+<li>安装必要依赖<br><code>sudo apt-get install build-essential procps curl filegit</code></li>
+<li>安装brew   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</span><br></pre></td></tr></table></figure></li>
+<li>运行它建议的二条命令</li>
+<li>验证安装 <code>brew doctor</code></li>
+</ul>
+</li>
+<li>用brew安装hexo <code>brew install hexo</code></li>
+<li>初始化博客 <code>hexo init myblong</code></li>
+<li>安装next主题 <code>npm install hexo-theme-next@latest</code></li>
+<li>安装一键部署插件 <code>npm install hexo-deployer-git --save</code></li>
+</ul>
+<h3 id="配置hexo"><a href="#配置hexo" class="headerlink" title="配置hexo"></a>配置hexo</h3><ul>
+<li><p>拷贝主题配置文件至博客要目录 <code>cp node_modules/hexo-theme-next/_config.yml _config.next.yml</code></p>
+</li>
+<li><p>配置github用户名和邮箱</p>
+<ul>
+<li><code>  git config --global user.email &quot;you@example.com&quot;</code></li>
+<li><code>  git config --global user.name &quot;Your Name&quot;</code></li>
+</ul>
+</li>
+<li><p>配置hexo配置文件中的github连接</p>
+</li>
+<li><p>新建标签页面 <code>hexo new page tags</code> 并配置内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: tags</span><br><span class="line">date: 2024-07-23 19:10:43</span><br><span class="line">type: &quot;tags&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>新建分类页面 <code>hexo new categories</code> 并配置内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: categories</span><br><span class="line">date: 2024-07-23 19:10:43</span><br><span class="line">type: &quot;categories&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>配置搜索</p>
+<ul>
+<li>安装插件 <code>npm install hexo-generator-searchdb</code></li>
+<li>hexo配置文件中添加以下内容<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: true</span><br><span class="line">  format: html</span><br></pre></td></tr></table></figure></li>
+<li>next配置文件中修改<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Local search</span><br><span class="line"># Dependencies: https://github.com/next-theme/hexo-generator-searchdb</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">  # Show top n results per article, show all results by setting to -1</span><br><span class="line">  top_n_per_article: 1</span><br><span class="line">  # Unescape html strings to the readable one.</span><br><span class="line">  unescape: false</span><br><span class="line">  # Preload the search data when the page loads.</span><br><span class="line">  preload: false</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>相关链接</p>
+<ul>
+<li><a href="https://github.com/hexojs/hexo">hexo</a></li>
+<li><a href="https://hexo.io/docs/configuration.html#Using-an-Alternate-Config">hexo文档</a></li>
+<li><a href="https://github.com/next-theme/hexo-theme-next">hexo-theme-next</a></li>
+<li><a href="https://theme-next.js.org/">next文档</a></li>
+<li><a href="https://dayuzy.com/2024%E4%BF%9D%E5%A7%86%E7%BA%A7Hexo.html">hexo+next文档</a> </li>
+<li><a href="https://linux.cn/article-14065-1.html">homebrew安装</a></li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux安装zerotier</title>
+    <url>/linux%E5%AE%89%E8%A3%85zerotier.html</url>
+    <content><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><code>curl -s [&lt;https://install.zerotier.com&gt;](&lt;https://install.zerotier.com/&gt;) | sudo bash</code></p>
+<p>安装成功后会提示：<code>Success! You are Zerotier address [XXXXXXX]</code></p>
+<span id="more"></span>
+
+<p>安装进度和网络情况相关。</p>
+<p>最终安装成功，可以在<code>/usr/sbin/</code>目录下看到<code>zerotier-one</code>和<code>zerotier-cli</code>工具。</p>
+<p>可以通过以下指令更新：</p>
+<p><code>sudo apt-get update zerotier-one</code></p>
+<h3 id="相关操作指令"><a href="#相关操作指令" class="headerlink" title="相关操作指令"></a>相关操作指令</h3><ul>
+<li><p>启动&#x2F;停止服务 <code>sudo systemctl start zerotier-one.service</code></p>
+<p><code>sudo systemctl stop zerotier-one.service</code></p>
+</li>
+<li><p>加入网络</p>
+<p><code>sudo zerotier-cli join your-networkid</code></p>
+</li>
+<li><p>查看网络列表</p>
+<p><code>sudo zerotier-cli listnetworks</code></p>
+</li>
+<li><p>查看当前网络状态</p>
+<p><code>sudo zerotier-cli status</code></p>
+</li>
+<li><p>离开网络</p>
+<p><code>sudo zerotier-cli leave your-networkid</code></p>
+</li>
+<li><p>设置开启自启动</p>
+<p><code>sudo systemctl enable zerotier-one.service</code></p>
+</li>
+<li><p>卸载</p>
+<p><code>sudo apt-get remove zerotier-one</code> <code>sudo dpkg -P zerotier-one</code></p>
+</li>
+<li><p>删除配置信息</p>
+<p><code>sudo rm -rf /var/lib/zerotier-one</code></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux安装花生壳</title>
+    <url>/linux%E5%AE%89%E8%A3%85%E8%8A%B1%E7%94%9F%E5%A3%B3.html</url>
+    <content><![CDATA[<ul>
+<li><a href="https://hsk.oray.com/download">花生壳客户端官方下载</a> 下载客户端</li>
+<li>以管理员身份运行 <code>dpkg -i phddns-*.*.*-amd64.deb</code><span id="more"></span></li>
+<li>启动：<code>phddns start</code></li>
+<li>状态：<code>phddns status</code></li>
+<li>停止：<code>phddns stop</code></li>
+<li>重启：<code>phddns restart</code></li>
+<li>重置：<code>phddns reset</code></li>
+<li>开机自启动：<code>phddns enable</code></li>
+<li>关闭开机自启动：<code>phddns disable</code></li>
+<li>查看版本号：<code>phddns version</code></li>
+<li>卸载：<code>dpkg -r phddns</code></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux配置samba</title>
+    <url>/linux%E9%85%8D%E7%BD%AEsamba.html</url>
+    <content><![CDATA[<h3 id="本文是在ubuntu下设置smba"><a href="#本文是在ubuntu下设置smba" class="headerlink" title="本文是在ubuntu下设置smba"></a>本文是在ubuntu下设置smba</h3><span id="more"></span>
+
+<ul>
+<li><code>sudo apt update</code> 更新下apt</li>
+<li><code>apt install samba -y</code> 安装smba</li>
+<li><code>mkdir -p Share</code> 创建共享文件夹</li>
+<li><code>chmod 0777 Share</code> 设置共享文件夹权限</li>
+<li><code>vim /etc/samba/smb.conf</code> 修改配置文件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#在文件[global]中修改以下内容</span><br><span class="line">[global]</span><br><span class="line"> security = user                  #密码访问的选项</span><br><span class="line">#在文件最后增加以下内容</span><br><span class="line">[Ubuntu_22.04]                      #共享名称</span><br><span class="line">    comment = Samba                  #描述</span><br><span class="line">    path = /home/wang/Share        #共享路径</span><br><span class="line">    public = no                      #是否允许匿名访问</span><br><span class="line">    writable = yes                  #是否允许编辑、删除文件</span><br><span class="line">    available = yes                  #共享是否可用</span><br><span class="line">    browseable = yes              #共享是否可以在网络上浏览</span><br><span class="line">    valid users = wang            #用户名</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>smbpasswd -a wang</code> 设置共享用户密码</li>
+<li><code>systemctl restart smbd.service</code> 重启smba</li>
+<li><code>systemctl enable smbd.service</code> 设置开机自启动</li>
+<li><code>systemctl status smbd.service</code> 查看smba状态</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>openwrt中设置MosDNS</title>
+    <url>/openwrt%E4%B8%AD%E8%AE%BE%E7%BD%AEMosDNS.html</url>
+    <content><![CDATA[<h3 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h3><ul>
+<li><p>勾选启用——设置监听端口（这里可以自定义）——勾选自定义国内DNS——选择对应的DNS（建议选择加密DNS）——远程DNS根据自己实际情况选择（一般保持默认即可）——<code>Bootstrap DNS</code> 服务器保持默认或者可以自行测试一下</p>
+<span id="more"></span>
+</li>
+<li><p>设置监听端口：5335</p>
+</li>
+<li><p>勾选自定义国内DNS，选择对应的DNS（建议选择加密DNS）</p>
+</li>
+<li><p>远程DNS根据自己实际情况选择（一般保持默认即可）</p>
+</li>
+<li><p><code>Bootstrap DNS</code> 服务器保持默认或者可以自行测试一下</p>
+</li>
+</ul>
+<h3 id="高级设置"><a href="#高级设置" class="headerlink" title="高级设置"></a><strong>高级设置</strong></h3><ul>
+<li>DNS服务器并发数输入2</li>
+<li>勾选防止DNS泄露</li>
+<li>勾选启用DNS广告过滤（可选可不选）</li>
+<li>规则选择<code>anti-AD</code></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>openwrt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>openwrt中设置openclash</title>
+    <url>/openwrt%E4%B8%AD%E8%AE%BE%E7%BD%AEopenclash.html</url>
+    <content><![CDATA[<h3 id="1、插件设置"><a href="#1、插件设置" class="headerlink" title="1、插件设置"></a>1、插件设置</h3><ul>
+<li><p>覆写设置：</p>
+<ul>
+<li><p>Github 地址修改：<a href="https://cdn.jsdelivr.net/">https://cdn.jsdelivr.net</a></p>
+<span id="more"></span></li>
+</ul>
+</li>
+<li><p>模式设置：</p>
+<ul>
+<li>勾选：使用 <code>Meta</code> 内核（支持的协议比较多，而且还支持一些新的协议）</li>
+<li>运行模式选择<code>Fake-IP</code>模式（加快响应速度、缩短网页加载时间）</li>
+<li>代理模式选择：<code>Rule</code>（策略代理），这里根据自己的实际需要来选择</li>
+<li>其他的默认选择即可</li>
+</ul>
+</li>
+<li><p>流量控制：</p>
+<ul>
+<li>勾选：路由本机代理</li>
+<li>勾选：禁用 <code>QUIC</code></li>
+</ul>
+</li>
+<li><p>DNS设置：</p>
+<ul>
+<li>本地 DNS 劫持选择：使用 <code>Dnsmasq</code> 转发</li>
+<li>启用禁止 <code>Dnsmasq</code> 缓存 DNS</li>
+</ul>
+</li>
+<li><p>GEO数据库订阅（有助于确定特定IP地址的地理位置信息）：</p>
+<ul>
+<li>勾选自动更新 <code>GeoIP MMDB</code> 数据库</li>
+<li>勾选自动更新 <code>GeoSite</code> 数据库</li>
+</ul>
+</li>
+</ul>
+<h3 id="2、覆写设置"><a href="#2、覆写设置" class="headerlink" title="2、覆写设置"></a>2、覆写设置</h3><ul>
+<li>DNS设置<ul>
+<li>勾选：自定义上游 DNS 服务器</li>
+<li>勾选：<code>Fake-IP </code>持久化</li>
+</ul>
+</li>
+<li>Mate设置<ul>
+<li>勾选：启用 TCP 并发</li>
+<li>勾选：启用流量（域名）探测</li>
+</ul>
+</li>
+</ul>
+<h3 id="3、配合MosDNS时设置"><a href="#3、配合MosDNS时设置" class="headerlink" title="3、配合MosDNS时设置"></a>3、配合MosDNS时设置</h3><ul>
+<li>插件：<ul>
+<li>DNS：停用</li>
+</ul>
+</li>
+<li>覆写：<ul>
+<li>DNS：勾选自定义上游DNS</li>
+<li>NameSerever：全部取消，新建一个<code>127.0.0.1:5335</code>，并启用</li>
+<li>FallBack：全部取消</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>openwrt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>openwrt中设置zerotier</title>
+    <url>/openwrt%E4%B8%AD%E8%AE%BE%E7%BD%AEzerotier.html</url>
+    <content><![CDATA[<h3 id="1、VPN-zerotier-ZeroTier-Network-ID中填入ID"><a href="#1、VPN-zerotier-ZeroTier-Network-ID中填入ID" class="headerlink" title="1、VPN&gt;zerotier&gt;ZeroTier Network ID中填入ID"></a>1、VPN&gt;zerotier&gt;ZeroTier Network ID中填入ID</h3><span id="more"></span>
+
+<h3 id="2、管理界面设置网络-接口-添加新接口"><a href="#2、管理界面设置网络-接口-添加新接口" class="headerlink" title="2、管理界面设置网络&gt;接口&gt;添加新接口"></a>2、管理界面设置网络&gt;接口&gt;添加新接口</h3><ul>
+<li>接口名称随意</li>
+<li>协议：不配置协议</li>
+<li>接口：选zti开头的</li>
+<li>提交后配置防火墙</li>
+<li>自定义一个新防火墙<code>zerotier</code></li>
+<li>保存并应用</li>
+</ul>
+<h3 id="3、管理界面设置网络-防火墙，编辑zerotier"><a href="#3、管理界面设置网络-防火墙，编辑zerotier" class="headerlink" title="3、管理界面设置网络&gt;防火墙，编辑zerotier"></a>3、管理界面设置网络&gt;防火墙，编辑zerotier</h3><ul>
+<li>全选接受</li>
+<li>IP动态伪装选中</li>
+<li>允许转发及转发到都选LAN</li>
+</ul>
+<h3 id="4、通信规则-添加规则并编辑"><a href="#4、通信规则-添加规则并编辑" class="headerlink" title="4、通信规则&gt;添加规则并编辑"></a>4、通信规则&gt;添加规则并编辑</h3><ul>
+<li>协议：<code>UDP</code></li>
+<li>源区域：任意区域</li>
+<li>目标区域：设备</li>
+<li>端口：9993</li>
+<li>保存并应用</li>
+</ul>
+<h3 id="5、zerotier官网上设置"><a href="#5、zerotier官网上设置" class="headerlink" title="5、zerotier官网上设置"></a>5、zerotier官网上设置</h3><ul>
+<li><code>Advanced&gt;Add Routes</code></li>
+<li><code>Destination</code>：填写局域网网段</li>
+<li><code>Via</code>：填写路由的虚拟网址</li>
+<li>添加</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>openwrt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>openwrt通过dhcp自定义分配网关</title>
+    <url>/openwrt%E9%80%9A%E8%BF%87dhcp%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E9%85%8D%E7%BD%91%E5%85%B3.html</url>
+    <content><![CDATA[<h2 id="首先你需要给设备绑定静态IP"><a href="#首先你需要给设备绑定静态IP" class="headerlink" title="首先你需要给设备绑定静态IP"></a>首先你需要给设备绑定静态IP</h2><h2 id="在openwrt中依次选择：网络-接口-LAN-DHCP-高级设置，在DHCP选项中设置"><a href="#在openwrt中依次选择：网络-接口-LAN-DHCP-高级设置，在DHCP选项中设置" class="headerlink" title="在openwrt中依次选择：网络-&gt;接口-&gt;LAN-&gt;DHCP-&gt;高级设置，在DHCP选项中设置"></a>在openwrt中依次选择：网络-&gt;接口-&gt;LAN-&gt;DHCP-&gt;高级设置，在DHCP选项中设置</h2><ul>
+<li><code>tag:name,3,192.168.50.2</code><span id="more"></span></li>
+<li>参数说明，每个<code>,</code>为一项<ul>
+<li><code>tag:</code>标签设置，后面的名字可以自定义</li>
+<li>第二项<code>3</code>代表设置网关，常用可选项有：<ul>
+<li><code>1</code>代表设置子网掩码</li>
+<li><code>3</code>代表设置网关</li>
+<li><code>6</code>代表设置DNS</li>
+</ul>
+</li>
+<li>第三项为你要设置的静态IP地址</li>
+</ul>
+</li>
+</ul>
+<h2 id="通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置"><a href="#通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置" class="headerlink" title="通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置"></a>通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置</h2>]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>openwrt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>tpclash尝试记录</title>
+    <url>/tpclash%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95.html</url>
+    <content><![CDATA[<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><blockquote>
+<p><a href="https://www.youtube.com/watch?v=KrjCBS8vgFY">抛弃openwrt，用linux部署代理全家科学上网。最稳的纯翻墙方案，电视盒子也能部署 - YouTube</a></p>
+</blockquote>
+<span id="more"></span>
+<h2 id="部署过程"><a href="#部署过程" class="headerlink" title="部署过程"></a>部署过程</h2><ul>
+<li><p>通过博主的指引，下载了github仓库里的几个文件</p>
+<ul>
+<li><p>首先是下载了这个版本tpclash-mihomo-linux-amd64-v3，经过尝试启动不起来</p>
+</li>
+<li><p>然后下载了tpclash-mihomo-linux-amd64版本，顺利启动</p>
+</li>
+<li><p>经过博主的指引修改的配置文件中少了一行命令，导致web页面没启动。代码如下下  </p>
+<p><code>external-controller: 0.0.0.0:9090</code></p>
+</li>
+<li><p>最终顺利启动，也测试成功，代理时出现的问题是，我发现自己的ipv6在没有禁用的情况下，会通过ipv6泄漏dns，我个人无法解决，又不想禁用ipv6，决定暂时弃用，待找到方案后再使用，这是一坑</p>
+</li>
+<li><p>等我根据使用文档，关闭开机自启，并关闭软件后，又有新问题出现了，就是我的ubuntu不能连网了，因为我自己是菜鸟，不会排查问题，所以解决问题的方法就是重装了系统，折腾了几个小时，幸好没有太多数据，这也是教训，测试不要在正在使用的服务器的进行，另建一个虚拟机最好。</p>
+</li>
+<li><p>下面记录下代码头部的完整部分，以备下次折腾</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 请指定自己实际的接口名称(ip a 获取)</span><br><span class="line">interface-name: ens18</span><br><span class="line"></span><br><span class="line">external-controller: 0.0.0.0:9090</span><br><span class="line"></span><br><span class="line">tun:</span><br><span class="line">  enable: true</span><br><span class="line">  stack: system</span><br><span class="line">  dns-hijack:</span><br><span class="line">    - any:53</span><br><span class="line">  #   - 8.8.8.8:53</span><br><span class="line">  #   - tcp://8.8.8.8:53</span><br><span class="line">  # auto-route 与 ebpf 冲突, 不能同时使用</span><br><span class="line">  #auto-route: true</span><br><span class="line">  #auto-redir: true</span><br><span class="line">  #auto-detect-interface: true</span><br><span class="line"></span><br><span class="line"># ebpf 需要指定物理网卡</span><br><span class="line">ebpf:</span><br><span class="line">  redirect-to-tun:</span><br><span class="line">    - ens18</span><br><span class="line"></span><br><span class="line"># ebpf 需要配置 mark</span><br><span class="line">routing-mark: 666</span><br><span class="line"></span><br><span class="line"># 开启 DNS 配置, 且使用 fake-ip 模式</span><br><span class="line">dns:</span><br><span class="line">  enable: true</span><br><span class="line">  listen: 0.0.0.0:1053</span><br><span class="line">  enhanced-mode: fake-ip</span><br><span class="line">  fake-ip-range: 198.18.0.1/16</span><br><span class="line">  default-nameserver:</span><br><span class="line">    - 223.5.5.5</span><br><span class="line">    - 119.29.29.29</span><br><span class="line">  nameserver:</span><br><span class="line">    - 223.5.5.5</span><br><span class="line">    - 119.29.29.29</span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一些特殊端口</title>
+    <url>/%E4%B8%80%E4%BA%9B%E7%89%B9%E6%AE%8A%E7%AB%AF%E5%8F%A3.html</url>
+    <content><![CDATA[<h2 id="建站时，网页无法连接时可能的端口原因"><a href="#建站时，网页无法连接时可能的端口原因" class="headerlink" title="建站时，网页无法连接时可能的端口原因"></a>建站时，网页无法连接时可能的端口原因</h2><h3 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h3><p>提示信息为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">无法访问此网站</span><br><span class="line">网址为 http://localhost:6666/的网页可能暂时无法连接，或者它已永久性地移动到了新网址。</span><br><span class="line">ERR_UNSAFE_PORT</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>本地服务已启动，使用Postman可以访问，使用浏览器无法访问。</p>
+<h3 id="报错原因："><a href="#报错原因：" class="headerlink" title="报错原因："></a>报错原因：</h3><p>这是由于浏览器默认的非安全端口所导致的，所谓非安全端口，就是浏览器出于安全问题，会禁止一些网络浏览向外的端口。Google Chrome 默认非安全端口列表，搭建网站要建议尽量避免以下端口：</p>
+<table>
+<thead>
+<tr>
+<th>端口号</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>tcpmux</td>
+</tr>
+<tr>
+<td>7</td>
+<td>echo</td>
+</tr>
+<tr>
+<td>9</td>
+<td>discard</td>
+</tr>
+<tr>
+<td>11</td>
+<td>systat</td>
+</tr>
+<tr>
+<td>13</td>
+<td>daytime</td>
+</tr>
+<tr>
+<td>15</td>
+<td>netstat</td>
+</tr>
+<tr>
+<td>17</td>
+<td>qotd</td>
+</tr>
+<tr>
+<td>19</td>
+<td>chargen</td>
+</tr>
+<tr>
+<td>21</td>
+<td>ftp data</td>
+</tr>
+<tr>
+<td>22</td>
+<td>ftp access</td>
+</tr>
+<tr>
+<td>23</td>
+<td>telnet</td>
+</tr>
+<tr>
+<td>25</td>
+<td>smtp</td>
+</tr>
+<tr>
+<td>37</td>
+<td>time</td>
+</tr>
+<tr>
+<td>42</td>
+<td>name</td>
+</tr>
+<tr>
+<td>43</td>
+<td>nicname</td>
+</tr>
+<tr>
+<td>53</td>
+<td>domain</td>
+</tr>
+<tr>
+<td>77</td>
+<td>priv-rjs</td>
+</tr>
+<tr>
+<td>79</td>
+<td>finger</td>
+</tr>
+<tr>
+<td>87</td>
+<td>ttylink</td>
+</tr>
+<tr>
+<td>95</td>
+<td>supdup</td>
+</tr>
+<tr>
+<td>101</td>
+<td>hostriame</td>
+</tr>
+<tr>
+<td>102</td>
+<td>iso-tsap</td>
+</tr>
+<tr>
+<td>103</td>
+<td>gppitnp</td>
+</tr>
+<tr>
+<td>104</td>
+<td>acr-nema</td>
+</tr>
+<tr>
+<td>109</td>
+<td>pop2</td>
+</tr>
+<tr>
+<td>110</td>
+<td>pop3</td>
+</tr>
+<tr>
+<td>111</td>
+<td>sunrpc</td>
+</tr>
+<tr>
+<td>113</td>
+<td>auth</td>
+</tr>
+<tr>
+<td>115</td>
+<td>sftp</td>
+</tr>
+<tr>
+<td>117</td>
+<td>uucp-path</td>
+</tr>
+<tr>
+<td>119</td>
+<td>nntp</td>
+</tr>
+<tr>
+<td>123</td>
+<td>NTP</td>
+</tr>
+<tr>
+<td>135</td>
+<td>loc-srv &#x2F;epmap</td>
+</tr>
+<tr>
+<td>139</td>
+<td>netbios</td>
+</tr>
+<tr>
+<td>143</td>
+<td>imap2</td>
+</tr>
+<tr>
+<td>179</td>
+<td>BGP</td>
+</tr>
+<tr>
+<td>389</td>
+<td>ldap</td>
+</tr>
+<tr>
+<td>465</td>
+<td>smtp+ssl</td>
+</tr>
+<tr>
+<td>512</td>
+<td>print &#x2F; exec</td>
+</tr>
+<tr>
+<td>513</td>
+<td>login</td>
+</tr>
+<tr>
+<td>514</td>
+<td>shell</td>
+</tr>
+<tr>
+<td>515</td>
+<td>printer</td>
+</tr>
+<tr>
+<td>526</td>
+<td>tempo</td>
+</tr>
+<tr>
+<td>530</td>
+<td>courier</td>
+</tr>
+<tr>
+<td>531</td>
+<td>chat</td>
+</tr>
+<tr>
+<td>532</td>
+<td>netnews</td>
+</tr>
+<tr>
+<td>540</td>
+<td>uucp</td>
+</tr>
+<tr>
+<td>556</td>
+<td>remotefs</td>
+</tr>
+<tr>
+<td>563</td>
+<td>nntp+ssl</td>
+</tr>
+<tr>
+<td>587</td>
+<td>stmp?</td>
+</tr>
+<tr>
+<td>601</td>
+<td>??</td>
+</tr>
+<tr>
+<td>636</td>
+<td>ldap+ssl</td>
+</tr>
+<tr>
+<td>993</td>
+<td>ldap+ssl</td>
+</tr>
+<tr>
+<td>995</td>
+<td>pop3+ssl</td>
+</tr>
+<tr>
+<td>2049</td>
+<td>nfs</td>
+</tr>
+<tr>
+<td>3659</td>
+<td>apple-sasl &#x2F; PasswordServer</td>
+</tr>
+<tr>
+<td>4045</td>
+<td>lockd</td>
+</tr>
+<tr>
+<td>6000</td>
+<td>X11</td>
+</tr>
+<tr>
+<td>6665</td>
+<td>Alternate IRC [Apple addition]</td>
+</tr>
+<tr>
+<td>6666</td>
+<td>Alternate IRC [Apple addition]</td>
+</tr>
+<tr>
+<td>6667</td>
+<td>Standard IRC [Apple addition]</td>
+</tr>
+<tr>
+<td>6668</td>
+<td>Alternate IRC [Apple addition]</td>
+</tr>
+<tr>
+<td>6669</td>
+<td>Alternate IRC [Apple addition]</td>
+</tr>
+</tbody></table>
+<h3 id="如何解决："><a href="#如何解决：" class="headerlink" title="如何解决："></a>如何解决：</h3><ul>
+<li><strong>更换服务启动端口</strong>:推荐使用这种，免去了配置的麻烦。</li>
+<li><strong>Chrome</strong>:找到chrome快捷方式，右键查看属性，在【目标】输入框后面追加一个参数<code>–explicitly-allowed-ports=6666</code>，关闭浏览器，从此快捷方式打开，成功访问。如果需要设置多个端口则写为<code>–explicitly-allowed-ports=6666,6667</code>的格式。</li>
+<li><strong>Firefox</strong>:打开新标签页，地址栏输入 <code>about:config</code> 打开浏览器配置页面，搜索首选项<code>network.security.ports.banned.override</code>，如果没有则添加（首选项类型为字符串），将其值设为6666。再次尝试访问受限站点成功。如果需要设置多个端口，则把首选项值设为6666,6667的格式即可。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>云编译openwrt固件</title>
+    <url>/%E4%BA%91%E7%BC%96%E8%AF%91openwrt%E5%9B%BA%E4%BB%B6.html</url>
+    <content><![CDATA[<h3 id="P3TERX-Actions-OpenWrt"><a href="#P3TERX-Actions-OpenWrt" class="headerlink" title="P3TERX&#x2F;Actions-OpenWrt"></a>P3TERX&#x2F;Actions-OpenWrt</h3><span id="more"></span>
+
+<h3 id="编译步骤总结"><a href="#编译步骤总结" class="headerlink" title="编译步骤总结"></a>编译步骤总结</h3><ul>
+<li><p>拉取仓库</p>
+</li>
+<li><p>仓库要目录创建<code>.config</code>文件</p>
+</li>
+<li><p>在<code>github/workflows/openwrt-builder.yml</code>里自定义环境变量与功能</p>
+<ul>
+<li><p>在20行对码源进行配置</p>
+</li>
+<li><p>在21行对版本进行配置</p>
+</li>
+</ul>
+</li>
+<li><p>在<code>diy-part1.sh</code>中对插件源进行定制</p>
+</li>
+<li><p>在<code>diy-part2.sh</code>中对IP及主题进行定制</p>
+</li>
+<li><p>将本地配置的<code>.config</code>内容复制到仓库的<code>.config</code>中</p>
+</li>
+<li><p>进行编译</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>openwrt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>凡科网站ssl证书制作及上传</title>
+    <url>/%E5%87%A1%E7%A7%91%E7%BD%91%E7%AB%99ssl%E8%AF%81%E4%B9%A6%E5%88%B6%E4%BD%9C%E5%8F%8A%E4%B8%8A%E4%BC%A0.html</url>
+    <content><![CDATA[<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><ul>
+<li>在<code>https://certcloud.cn/</code>上注册并登陆</li>
+<li>下载<code>CMLite</code>软件并安装</li>
+<li>在软件中申请证书<span id="more"></span></li>
+<li>申请证书后需要在网站域名管理里面域名解析中添加解析记录</li>
+<li>然后如果申请成功，添加时如果提示证书链不全时需要进行下列操作<ul>
+<li>打开网站<code>https://myssl.com/chain_download.html</code></li>
+<li>上传证书并获取证书链接</li>
+<li>然后下载证书链接</li>
+<li>在新跳转的证书链接页面右键另存为<code>.crt</code>后缀的文件</li>
+<li>然后再次上传应该就没问题了</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>网站建设</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>本地编译openwrt固件</title>
+    <url>/%E6%9C%AC%E5%9C%B0%E7%BC%96%E8%AF%91openwrt%E5%9B%BA%E4%BB%B6.html</url>
+    <content><![CDATA[<h3 id="首先是注意事项"><a href="#首先是注意事项" class="headerlink" title="首先是注意事项"></a>首先是注意事项</h3><ul>
+<li><p>首先装好 Ubuntu 64bit，推荐 Ubuntu 18 LTS x64</p>
+</li>
+<li><p>不要用 root 用户 git 和编译！！！</p>
+ <span id="more"></span> </li>
+<li><p>国内用户编译前最好准备好软件源下载加速</p>
+</li>
+<li><p>默认登陆IP 192.168.1.1, 密码 password（后面文章中对 IP 有修改）</p>
+</li>
+</ul>
+<h3 id="编译前准备"><a href="#编译前准备" class="headerlink" title="编译前准备"></a>编译前准备</h3><ul>
+<li><p>命令行输入 <code>sudo apt-get update -y</code> 对系统进行更新</p>
+</li>
+<li><p>输入 <code>sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3.5 python2.7 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget swig</code> 安装编译固件需要的依赖</p>
+</li>
+<li><p>使用 <code>git clone https://github.com/coolsnowwolf/lede</code> 下载源码，然后 <code>cd lede</code> 进入源码目录，<strong>下面的所有操作都是基于源码目录内的操作</strong></p>
+</li>
+</ul>
+<h3 id="个性化配置需要的功能"><a href="#个性化配置需要的功能" class="headerlink" title="个性化配置需要的功能"></a>个性化配置需要的功能</h3><ul>
+<li>启用必要的软件源：<br>使用 vim 编辑器来编辑 <code>./feeds.conf.default</code> 文件<br><code>$ vim ./feeds.conf.default</code><br>或者使用命令（去冲突）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sed -i &#x27;1i src-git kenzo https://github.com/kenzok8/openwrt-packages&#x27; feeds.conf.default</span><br><span class="line">sed -i &#x27;2i src-git small https://github.com/kenzok8/small&#x27; feeds.conf.default</span><br><span class="line">./scripts/feeds update -a &amp;&amp; rm -rf feeds/luci/applications/luci-app-mosdns</span><br><span class="line">rm -rf feeds/packages/net/&#123;alist,adguardhome,mosdns,xray*,v2ray*,v2ray*,sing*,smartdns&#125;</span><br><span class="line">rm -rf feeds/packages/utils/v2dat</span><br><span class="line">rm -rf feeds/packages/lang/golang</span><br><span class="line">git clone https://github.com/kenzok8/golang feeds/packages/lang/golang</span><br><span class="line">./scripts/feeds install -a </span><br><span class="line">make menuconfig</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改路由器固件的初始网络配置"><a href="#修改路由器固件的初始网络配置" class="headerlink" title="修改路由器固件的初始网络配置"></a>修改路由器固件的初始网络配置</h3><p>修改 zzz-default-settings 文件，在 exit 0 这一行上方添加自定义配置。具体操作如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ vim ./package/lean/default-settings/files/zzz-default-settings    # 打开要编辑的文件</span><br><span class="line"></span><br><span class="line">uci set network.lan.ipaddr=&#x27;192.168.1.254&#x27;   # 默认 IP 地址</span><br><span class="line">uci set network.lan.proto=&#x27;static&#x27;   # 静态 IP</span><br><span class="line">uci set network.lan.type=&#x27;bridge&#x27;   # 接口类型：桥接</span><br><span class="line">uci set network.lan.ifname=&#x27;eth0&#x27;   # 网络端口：默认 eth0，第一个接口</span><br><span class="line">uci set network.lan.netmask=&#x27;255.255.255.0&#x27; # 子网掩码</span><br><span class="line">uci set network.lan.gateway=&#x27;192.168.1.1&#x27;   # 默认网关地址（主路由 IP）</span><br><span class="line">uci set network.lan.dns=&#x27;192.168.1.1&#x27;  # 默认上游 DNS 地址</span><br><span class="line">uci commit network</span><br></pre></td></tr></table></figure>
+
+<h3 id="接着进行下一步编译"><a href="#接着进行下一步编译" class="headerlink" title="接着进行下一步编译"></a>接着进行下一步编译</h3><p>输入如下命令，更新编译源，并进入配置页面：</p>
+<p><code>$ make menuconfig</code> # 进入配置界面</p>
+<p>配置页面如下图所示：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/22426072/1711088973338-60a2c7ba-ede9-4262-8d5e-b512d41c91d3.png"></p>
+<h3 id="自定义需要的路由器固件"><a href="#自定义需要的路由器固件" class="headerlink" title="自定义需要的路由器固件"></a>自定义需要的路由器固件</h3><ul>
+<li><p>首先，根据路由器的平台和架构，在 <code>Target System、Subtarget、Target Profile</code> 中选择相应的选项。</p>
+</li>
+<li><p><code>Target Images ---&gt;</code></p>
+</li>
+<li><p><code>Kernel partition size (in MiB) </code>内核分区大小，正常16够用，可以大点</p>
+</li>
+<li><p><code>Root filesystem partition size (in MiB)</code> 软件安装分区大小，不超过1024</p>
+</li>
+<li><p>如果不需要在路由上实现 USB 文件共享<code>/Samba </code>多媒体共享，需要在 <code>Extra-packages</code> 菜单中取消选择 :</p>
+<ul>
+<li><p><code> automount</code></p>
+</li>
+<li><p><code>autosamba</code></p>
+</li>
+</ul>
+</li>
+<li><p><code>Kernel modules</code> 菜单是网卡驱动选择</p>
+</li>
+<li><p><code>Network Devices</code> 有线网卡</p>
+</li>
+<li><p><code>Wireless Drivers ---&gt;</code> 无线网卡</p>
+</li>
+</ul>
+<p>进入 <code>Luci - Applications</code> 选择需要的插件，这里我列出部分常见的插件：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">luci-app-clash    # clash科学上网（基本上没用的了，已经给luci-app-openclash代替）</span><br><span class="line">luci-app-accesscontrol    # 访问时间控制</span><br><span class="line">luci-app-adblock    # ADB 广告过滤</span><br><span class="line">luci-app-adbyby-plus    # 广告屏蔽大师Plus +</span><br><span class="line">luci-app-adguardhome    # adguardhome广告过滤</span><br><span class="line">luci-app-advanced    # 高级设置（内置luci-app-fileassistant文件助手）</span><br><span class="line">luci-app-advanced-reboot    # 高级重启</span><br><span class="line">luci-app-aliyundrive-webdav    # 阿里云盘</span><br><span class="line">luci-app-ahcp    # 支持 AHCPd</span><br><span class="line">luci-app-airplay2    # Apple AirPlay2 无损音频接收服务器</span><br><span class="line">luci-app-aliddns    # 阿里 DDNS</span><br><span class="line">luci-app-amule    # aMule 下载工具</span><br><span class="line">luci-app-argon-config    # argon主题设置,要配合argon主题使用</span><br><span class="line">luci-app-aria2    # Aria2 下载工具</span><br><span class="line">luci-app-arpbind    # IP/MAC 绑定</span><br><span class="line">luci-app-asterisk    # 支持 Asterisk 电话服务器</span><br><span class="line">luci-app-attendedsysupgrade    # 固件更新升级相关</span><br><span class="line">luci-app-autoreboot    # 支持计划重启</span><br><span class="line">luci-app-autoupdate    # 定时更新固件插件</span><br><span class="line">luci-app-baidupcs-web    # 百度网盘管理</span><br><span class="line">luci-app-bcp38    # BCP38 网络入口过滤（不确定）</span><br><span class="line">luci-app-bird1-ipv4    # 对Bird1-ipv4的支持</span><br><span class="line">luci-app-bird1-ipv6    # 对Bird1-ipv6的支持</span><br><span class="line">luci-app-bmx6    # BMX6路由协议</span><br><span class="line">luci-app-cifs-mount    # CIFS/SMB挂载设置</span><br><span class="line">luci-app-cifsd    # CIFS/SMB网络共享</span><br><span class="line">luci-app-cjdns    # 加密IPV6网络相关</span><br><span class="line">luci-app-clamav    # ClamAV杀毒软件</span><br><span class="line">luci-app-commands    # Shell命令模块</span><br><span class="line">luci-app-control-timewol    # 定时网络设备唤醒</span><br><span class="line">luci-app-control-webrestriction    # 访问限制</span><br><span class="line">luci-app-control-weburl    # 网址过滤</span><br><span class="line">luci-app-cpulimit    # CPU性能调整</span><br><span class="line">luci-app-cshark    # CloudShark捕获工具</span><br><span class="line">luci-app-cupsd    # CUPS 打印服务器</span><br><span class="line">luci-app-ddns    # 动态域名 DNS（集成阿里DDNS客户端）</span><br><span class="line">luci-app-ddnsto    # 内网穿透</span><br><span class="line">luci-app-diag-core    # core诊断工具</span><br><span class="line">luci-app-diskman    # 磁盘管理工具</span><br><span class="line">luci-app-dnscrypt-proxy    # DNSCrypt解决DNS污染</span><br><span class="line">luci-app-dnsforwarder    # DNSForwarder防DNS污染</span><br><span class="line">luci-app-docker    # 不带控制面板的docker</span><br><span class="line">luci-app-dockerman    # 带控制面板的docker</span><br><span class="line">luci-app-dump1090    # 民航无线频率（不确定）</span><br><span class="line">luci-app-dynapoint    # DynaPoint（未知）</span><br><span class="line">luci-app-e2guardian    # Web内容过滤器</span><br><span class="line">luci-app-easymesh    # 简单MESH(可有线+无线回程)</span><br><span class="line">luci-app-eqos    # 内网IP地址限速</span><br><span class="line">luci-app-familycloud    # 家庭云盘</span><br><span class="line">luci-app-fileassistant    # 文件助手</span><br><span class="line">luci-app-filebrowser    # 文件管理器</span><br><span class="line">luci-app-filetransfer    # 文件传输（可web安装ipk包）</span><br><span class="line">luci-app-firewall    # 添加防火墙</span><br><span class="line">luci-app-frpc    # 内网穿透Frp客户端</span><br><span class="line">luci-app-frps    # 内网穿透Frp服务端</span><br><span class="line">luci-app-fwknopd    # Firewall Knock Operator服务器</span><br><span class="line">luci-app-godproxy    # 广告拦截</span><br><span class="line">luci-app-gost    # GO语言实现的安全隧道（隐蔽的https代理）</span><br><span class="line">luci-app-gowebdav    # GoWebDav 是一个轻巧、简单、快速的 WebDav 服务端程序</span><br><span class="line">luci-app-guest-wifi    # WiFi访客网络</span><br><span class="line">luci-app-haproxy-tcp    # HAProxy负载均衡-TCP</span><br><span class="line">luci-app-hd-idle    # 硬盘休眠</span><br><span class="line">luci-app-hnet    # Homenet Status家庭网络控制协议</span><br><span class="line">luci-app-https-dns-proxy    # 通过HTTPS代理为DNS提供Web UI</span><br><span class="line">luci-app-ipsec-vpnserver-manyusers    # ipsec-vpn（VPN服务器）</span><br><span class="line">luci-app-iptvhelper    # iptvhelper,帮助你轻松配置IPTV</span><br><span class="line">luci-app-jd-dailybonus    # 京东签到服务</span><br><span class="line">luci-app-kodexplorer    # KOD可道云私人网盘</span><br><span class="line">luci-app-koolddns    # 支持阿里DDNS、DnsPod动态域名解析</span><br><span class="line">luci-app-linkease    # 易有云文件管理器</span><br><span class="line">luci-app-lxc    # LXC容器管理</span><br><span class="line">luci-app-mentohust    # 锐捷验证</span><br><span class="line">luci-app-minidlna    # 完全兼容DLNA / UPnP-AV客户端的服务器软件</span><br><span class="line">luci-app-mjpg-streamer    # 兼容Linux-UVC的摄像头程序</span><br><span class="line">luci-app-music-remote-center    #PCHiFi 数字转盘遥控</span><br><span class="line">luci-app-mwan3    # MWAN3负载均衡</span><br><span class="line">luci-app-mwan3helper    # MWAN3分流助手</span><br><span class="line">luci-app-n2n_v2    # N2N内网穿透 N2N v2 VPN服务</span><br><span class="line">luci-app-netdata    # 实时监控中文版</span><br><span class="line">luci-app-nfs    # NFS网络共享</span><br><span class="line">luci-app-nft-qos    # QOS流量控制 Nftables版</span><br><span class="line">luci-app-nlbwmon    # 网络带宽监视器</span><br><span class="line">luci-app-noddos    # NodDOS Clients 阻止DDoS攻击（丢弃）</span><br><span class="line">luci-app-nps    # 内网穿透nps</span><br><span class="line">luci-app-ntpc    # NTP时间同步服务器</span><br><span class="line">luci-app-oaf    # 应用过滤</span><br><span class="line">luci-app-ocserv    # OpenConnect VPN服务</span><br><span class="line">luci-app-olsr    # OLSR配置和状态模块</span><br><span class="line">luci-app-olsr-services    # OLSR服务器</span><br><span class="line">luci-app-olsr-viz    # OLSR可视化</span><br><span class="line">luci-app-oled    # 为1306 0.91 oled专用，如果oled不显示，请看这里</span><br><span class="line">luci-app-onliner    # 流量监控</span><br><span class="line">luci-app-openclash    # openclash</span><br><span class="line">luci-app-openvpn    # OpenVPN客户端</span><br><span class="line">luci-app-openvpn-server    # 易于使用的OpenVPN服务器 Web-UI</span><br><span class="line">luci-app-oscam    # OSCAM服务器</span><br><span class="line">luci-app-p910nd    #打印服务</span><br><span class="line">luci-app-pagekitec    # Pagekitec内网穿透客户端</span><br><span class="line">luci-app-passwall    # 科学上网</span><br><span class="line">luci-app-polipo    # Polipo代理(是一个小型且快速的网页缓存代理)</span><br><span class="line">luci-app-poweroff    # 关机</span><br><span class="line">luci-app-pppoe-relay    # PPPoE NAT穿透 点对点协议（PPP）</span><br><span class="line">luci-app-pppoe-server    # 宽带接入认证服务器</span><br><span class="line">luci-app-pptp-server    # VPN服务器 PPTP</span><br><span class="line">luci-app-privoxy    # Privoxy网络代理(带过滤无缓存)</span><br><span class="line">luci-app-ps3netsrv    # PS3 NET服务器（用于加载蓝光/游戏ISO/PKG）</span><br><span class="line">luci-app-pushbot    # 钉钉推送（微信推送修改版）</span><br><span class="line">luci-app-qbittorrent    # BT下载工具（完整版）</span><br><span class="line">luci-app-qbittorrent_static    # BT下载工具</span><br><span class="line">luci-app-qos    # 流量服务质量(QoS)流控</span><br><span class="line">luci-app-radicale    # CalDAV/CardDAV同步工具</span><br><span class="line">luci-app-ramfree    # 释放内存</span><br><span class="line">luci-app-rclone    # 命令行云端同步工具</span><br><span class="line">luci-app-rebootschedule    # 多功能定时任务（重启网络、重启系统、重启WIFI、重新拨号...）</span><br><span class="line">luci-app-rp-pppoe-server    # Roaring Penguin PPPoE Server 服务器</span><br><span class="line">luci-app-samba    # 网络共享</span><br><span class="line">luci-app-samba4    # 网络共享（Samba4）</span><br><span class="line">luci-app-serverchan    # 微信推送</span><br><span class="line">luci-app-shadowsocks-libev    # SS-libev服务端</span><br><span class="line">luci-app-shairplay    # 支持AirPlay功能</span><br><span class="line">luci-app-siitwizard    # SIIT配置向导 SIIT-Wizzard</span><br><span class="line">luci-app-simple-adblock    # 简单的广告拦截</span><br><span class="line">luci-app-smartdns    # SmartDNS</span><br><span class="line">luci-app-smartinfo    # 穿越蓝天磁盘监控</span><br><span class="line">luci-app-socat    # 多功能的网络工具</span><br><span class="line">luci-app-softethervpn    # SoftEther VPN服务器 NAT穿透</span><br><span class="line">luci-app-splash    # Client-Splash是无线MESH网络的一个热点认证系统</span><br><span class="line">luci-app-store    # 在线商店</span><br><span class="line">luci-app-supervisord    # 一款golang开发的进程管理</span><br><span class="line">luci-app-sqm    # 流量智能队列管理（QOS）</span><br><span class="line">luci-app-squid    # Squid代理服务器</span><br><span class="line">luci-app-ssr-plus    #SSR Plus+ 科学上网</span><br><span class="line">luci-app-ssrserver-python    #ShadowsocksR Python服务器</span><br><span class="line">luci-app-statistics    # 流量监控工具</span><br><span class="line">luci-app-switch-lan-play    # 虚拟局域网联机工具</span><br><span class="line">luci-app-syncdial    # 多拨虚拟网卡（原macvlan）</span><br><span class="line">luci-app-syncthing    # syncthing同步工具</span><br><span class="line">luci-app-tencentddns    # 腾讯DDNS</span><br><span class="line">luci-app-timecontrol    # 时间控制跟（luci-app-accesscontrol）差不多，不同的是这个可以配合高级设置一起使用</span><br><span class="line">luci-app-tinyproxy    # Tinyproxy是 HTTP(S)代理服务器</span><br><span class="line">luci-app-transmission    # BT下载工具</span><br><span class="line">luci-app-travelmate    # 旅行路由器</span><br><span class="line">luci-app-ttnode    # 甜糖星愿自动采集插件</span><br><span class="line">luci-app-ttyd    # 网页终端命令窗</span><br><span class="line">luci-app-turboacc    # Turbo ACC 网络加速</span><br><span class="line">luci-app-udpxy    # udpxy做组播服务器</span><br><span class="line">luci-app-udp2raw    # udp2raw-tunnel管理界面-隧道服务器管理</span><br><span class="line">luci-app-uhttpd    # uHTTPd Web服务器</span><br><span class="line">luci-app-unblockmusic    #解锁网易云灰色歌曲</span><br><span class="line">luci-app-unblockneteasemusic    #新版本解除网易云音乐播放限制</span><br><span class="line">luci-app-unbound    # Unbound DNS解析器</span><br><span class="line">luci-app-upnp    # 通用即插即用UPnP（端口自动转发）</span><br><span class="line">luci-app-usb-printer    # USB 打印服务器</span><br><span class="line">luci-app-uugamebooster    # UU网游加速器</span><br><span class="line">luci-app-v2ray-server    # V2Ray 服务器</span><br><span class="line">luci-app-verysync    # 微力同步</span><br><span class="line">luci-app-vlmcsd    # KMS激活服务器</span><br><span class="line">luci-app-vnstat    # vnStat网络监控（图表）</span><br><span class="line">luci-app-vpnbypass    # VPN BypassWebUI 绕过VPN设置</span><br><span class="line">luci-app-vsftpd    # FTP服务器</span><br><span class="line">luci-app-vssr    # VSSR科学上网</span><br><span class="line">luci-app-watchcat    # 断网检测功能与定时重启</span><br><span class="line">luci-app-webadmin    # Web管理页面设置</span><br><span class="line">luci-app-wifischedule    # WiFi 计划</span><br><span class="line">luci-app-wireguard    # VPN服务器 WireGuard状态</span><br><span class="line">wifidog-wiwiz    # 拼拼WiFi(luci-app-eqos必选，然后在Network ---&gt; Captive Portals ---&gt; wifidog-wiwiz 勾选上)</span><br><span class="line">luci-app-wolplus    # 新版网络唤醒，替换luci-app-wol</span><br><span class="line">luci-app-wrtbwmon    # 实时流量监测</span><br><span class="line">luci-app-webd    # Webd 是一款轻量级的 (self-hosted) 自建网盘</span><br><span class="line">luci-app-xlnetacc    # 迅雷快鸟</span><br><span class="line">luci-app-zerotier    # ZeroTier内网穿透</span><br><span class="line">luci-theme-Light    # Light 主题</span><br><span class="line">luci-theme-argon    # argon 主题</span><br><span class="line">luci-theme-atmaterial    # atmaterial 主题</span><br><span class="line">luci-theme-bootstrap    # bootstrap 主题</span><br><span class="line">luci-theme-darkmatter    # 黑色 主题</span><br><span class="line">luci-theme-infinityfreedom    # 透明效果 主题</span><br><span class="line">luci-theme-material    # material 主题</span><br><span class="line">luci-theme-netgear    # 网件 主题</span><br><span class="line">luci-theme-neobird    # neobird 主题</span><br><span class="line">luci-theme-opentomcat    # opentomcat 主题</span><br><span class="line">luci-theme-rosy    # rosy 主题</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#luci-app-dockerman 和 luci-app-docker 只能二选一</span><br><span class="line">#想要编译luci-app-dockerman或者luci-app-docker</span><br><span class="line">#首先要在Global build settings ---&gt; Enable IPv6 support in packages (NEW)（选上）</span><br><span class="line">#选择dockerman或docker建议选上luci-app-diskman方便挂盘所用 </span><br><span class="line">#插件会根据情况而变动的，以后此列表就不更新了，以当时编译时候为准，如果您有什么插件想增加，而那个插件又确实可以在源码内使用的，可以告诉我，我增加上</span><br></pre></td></tr></table></figure>
+
+<p>配置完成后光标移动到 <code>Save</code> ，回车保存。</p>
+<h3 id="继续编译命令"><a href="#继续编译命令" class="headerlink" title="继续编译命令"></a>继续编译命令</h3><ol>
+<li><code>make -j8 download V=s</code> 下载dl库（国内请尽量做好软件源加速）</li>
+<li>输入 <code>make -j1 V=s</code> （-j1 后面数字1是线程数。第一次编译推荐用单线程）进行编译你要的固件。</li>
+</ol>
+<p><strong>编译完成后固件保存在</strong> <code>./bin/targets/</code>文件夹内。</p>
+<h3 id="二次编译"><a href="#二次编译" class="headerlink" title="二次编译"></a>二次编译</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd lede</span><br><span class="line">make clean            #  (清除bin下面的以前编译的成果)</span><br><span class="line">git pull</span><br><span class="line">./scripts/feeds update -a &amp;&amp; rm -rf feeds/luci/applications/luci-app-mosdns</span><br><span class="line">rm -rf feeds/packages/net/&#123;alist,adguardhome,mosdns,xray*,v2ray*,v2ray*,sing*,smartdns&#125;</span><br><span class="line">rm -rf feeds/packages/utils/v2dat</span><br><span class="line">rm -rf feeds/packages/lang/golang</span><br><span class="line">git clone https://github.com/kenzok8/golang feeds/packages/lang/golang</span><br><span class="line">./scripts/feeds install -a </span><br><span class="line">make menuconfig</span><br><span class="line">make -j2 V=s</span><br></pre></td></tr></table></figure>
+
+<h3 id="拉取仓库的特定插件"><a href="#拉取仓库的特定插件" class="headerlink" title="拉取仓库的特定插件"></a>拉取仓库的特定插件</h3><ul>
+<li>单独拉取特定的插件，比如单独拉取我插件包的luci-app-clash</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">svn co https://github.com/281677160/openwrt-package/trunk/luci-app-clash package/luci-app-clash</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这个关系就跟上面差不多了，也是要地址，路径的，重点要说的是这个链接是有改变的，怎么改变法呢？整个链接真正的链接看下面的，这个原始链接怎么来呢?比如你在别人的仓库看到某个插件，再点开那个插件的文件夹，然后在浏览器复制完整链接就是了。如果有分支的，你想要分支的插件，就先选择了分支再打开插件文件夹然后在复制链接就可以了。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://github.com/281677160/openwrt-package/tree/master/luci-app-clash  &lt;--- 在浏览器上复制出来的真正链接</span><br><span class="line"></span><br><span class="line">https://github.com/281677160/openwrt-package/trunk/luci-app-clash        &lt;--- 用的时候修改过的链接，认真对比一下就懂了</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>大家看清楚没有？链接里面是带有分支名称的，还有一个tree，就是这个了 tree&#x2F;master 把这里替换成 trunk 就可以了，主仓库就这样拉取，如果要拉取分支的呢？也简单的，把tree改成branches就行，比如</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://github.com/281677160/openwrt-package/tree/19.07/luci-app-eqos   &lt;--- 在浏览器上复制出来的真正链接</span><br><span class="line"></span><br><span class="line">https://github.com/281677160/openwrt-package/branches/19.07/luci-app-eqos   &lt;--- 把链接修改好，把tree/19.07改成branches/19.07，然后前面加svn co 后面加路径</span><br><span class="line"></span><br><span class="line">svn co https://github.com/281677160/openwrt-package/branches/19.07/luci-app-eqos package/luci-app-eqos  &lt;--- 然后就变成这个完整拉取链接</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>openwrt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>皋翰液位计参数表</title>
+    <url>/%E7%9A%8B%E7%BF%B0%E6%B6%B2%E4%BD%8D%E8%AE%A1%E5%8F%82%E6%95%B0%E8%A1%A8.html</url>
+    <content><![CDATA[<ul>
+<li>正常需要的设定参数  <ul>
+<li>传感器量程，长按上键设置</li>
+<li>水池深度，也就是光柱显示，长按下键设置    <span id="more"></span>    </li>
+<li>数值校正，也就是实际液位与显示液位的校正，一般是少显示，输入的数值是增加的数值。长按移位  <table>
+<thead>
+<tr>
+<th>参数</th>
+<th>功能定义</th>
+<th>出厂参数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AH</td>
+<td>上限蜂鸣器绝对值报警，并输出直流电压</td>
+<td>30.00</td>
+</tr>
+<tr>
+<td>AL</td>
+<td>下限蜂鸣器绝对值报警，并输出直流电压</td>
+<td>-1.00</td>
+</tr>
+<tr>
+<td>BS</td>
+<td>开始补水值</td>
+<td>-1.00</td>
+</tr>
+<tr>
+<td>Bt</td>
+<td>补水停止值</td>
+<td>30.00</td>
+</tr>
+<tr>
+<td>PS</td>
+<td>排水开始值</td>
+<td>30.00</td>
+</tr>
+<tr>
+<td>Pt</td>
+<td>排水停止值</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td>LOCK</td>
+<td>LOCK&#x3D;0003进入二级菜单，LOCK&#x3D;111长按保存还原出厂参数</td>
+<td></td>
+</tr>
+<tr>
+<td>dot</td>
+<td>小数点</td>
+<td></td>
+</tr>
+<tr>
+<td>PUL</td>
+<td>量程下限</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td>PUH</td>
+<td>量程上限</td>
+<td>5.00</td>
+</tr>
+<tr>
+<td>SC</td>
+<td>误差修正数</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td>K1</td>
+<td>介质密度，直接输入，无需换算</td>
+<td>1.00</td>
+</tr>
+<tr>
+<td>H2</td>
+<td>光柱比例</td>
+<td>5.00</td>
+</tr>
+<tr>
+<td>PH</td>
+<td>1&#x3D;排水，2&#x3D;补水</td>
+<td>1</td>
+</tr>
+<tr>
+<td>BH</td>
+<td>1&#x3D;排水，2&#x3D;补水</td>
+<td>2</td>
+</tr>
+<tr>
+<td>bAUd</td>
+<td>1200 2400 4800 9600</td>
+<td>9600</td>
+</tr>
+<tr>
+<td>ADDR</td>
+<td>通讯地址</td>
+<td>1</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>work</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解厄鉴</title>
+    <url>/%E8%A7%A3%E5%8E%84%E9%89%B4.html</url>
+    <content><![CDATA[<h3 id="作者：晏殊"><a href="#作者：晏殊" class="headerlink" title=" 作者：晏殊"></a><center> 作者：晏殊</h3><h2 id="藏锋卷-第一"><a href="#藏锋卷-第一" class="headerlink" title="藏锋卷 第一"></a>藏锋卷 第一</h2><p>  厄者，人之本也。锋者，厄之厉也。厄欲减，才莫显。<br>  上求贤，毕其功而志易。下求荣，成其事而意满。不知戒惕，上下难容也。<br>  仁者不逐其名，仁贵焉。明者不恋其位，明弃焉。勇者不争其锋，勇敛焉。<br>  生之惟艰，何足道哉？</p>
+<span id="more"></span>
+<h2 id="隐智卷-第二"><a href="#隐智卷-第二" class="headerlink" title="隐智卷 第二"></a>隐智卷 第二</h2><p>  用智者利，弄智者弊。暗用无敌，彰显无功。<br>  不为已谋，君子之智也。莫使已亏，小人之奸也。不怨智寡，忠义换焉。<br>  上惟忠，能次之。下惟实，术次之。不明其心，厄之难止。<br>  愚者言智，愚也。智者言智，祸也。</p>
+<h2 id="戒欲卷-第三"><a href="#戒欲卷-第三" class="headerlink" title="戒欲卷 第三"></a>戒欲卷 第三</h2><p>  欲大无根，心宽无恨。好之莫极，强之有咎。<br>  君子修身，避祸也。小人无忌，授首也。一念之失，死生之别也。<br>  治贪以严，莫以宽。惩淫以辱，莫以隐。伐恶以尽，莫以慈。<br>  制欲求于德，勿求于诫。悟者畅达，迷者困矣。</p>
+<h2 id="省身卷-第四"><a href="#省身卷-第四" class="headerlink" title="省身卷 第四"></a>省身卷 第四</h2><p>  自知者弗窘也。识世者无求也。<br>  人有异，命不同焉。物有别，衰相近焉。待已如人，大计不失。<br>  智不及事，非察莫中。人心多易，非思难度。俗不堪亲，非礼无存。<br>  忧身者无邪，正而九焉。忧心者无疚，宁而吉焉。</p>
+<h2 id="求实卷-第五"><a href="#求实卷-第五" class="headerlink" title="求实卷 第五"></a>求实卷 第五</h2><p>  致远者实，近利者虚。众趋者慎，已悦者进。<br>  不拘于书，则不失于本。不求于全，则不损于实。人无贱者，惟自弃也。<br>  大智无诈，顺乎天也。小智无德，背乎情也。识察勿忧，忧弗学也。<br>  苦劳而少获，非实之过也。闲逸而多得，乃实之旨焉。</p>
+<h2 id="慎言卷-第六"><a href="#慎言卷-第六" class="headerlink" title="慎言卷 第六"></a>慎言卷 第六</h2><p>  言之祸，无论忧劣也。语之弊，由人取舍也。<br>  君子不道虚言，实则逆耳。小人不表真心，伪则障目。见言见志，其行亦断也。<br>  贵者宜谦不宜傲。卑者亦恭不宜放。人无信，则言勿听。<br>  不知机而无泄，大安也。不避亲而密疏，大患也。</p>
+<h2 id="节情卷-第七"><a href="#节情卷-第七" class="headerlink" title="节情卷 第七"></a>节情卷 第七</h2><p>  知书而后忘情焉。抑性而后正身焉。<br>  纵亲见私，不容也。纵友见拙，不智也。纵怜见稚，不厚也。<br>  天怒成灾，人怒成害。君子戒悲，小人戒忧。不舍之情，羁身也。<br>  幸不恃色，荣定其品也。义不恃媚，信定其谐也。</p>
+<h2 id="向善卷-第八"><a href="#向善卷-第八" class="headerlink" title="向善卷 第八"></a>向善卷 第八</h2><p>  吉有其因，福有其源。天佑善者，其心悟焉。<br>  言善未必善，观其行也。言恶未必恶，审其心也。名勿信，实勿怠。<br>  君子亦怨，不误其事。小人亦友，不辍其争。利可求，遵可守。<br>  恶惑愚不惑智也。善贵诚不贵法也。</p>
+]]></content>
+      <categories>
+        <category>阅读</category>
+      </categories>
+      <tags>
+        <tag>古文</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>路由器中设置hosts</title>
+    <url>/%E8%B7%AF%E7%94%B1%E5%99%A8%E4%B8%AD%E8%AE%BE%E7%BD%AEhosts.html</url>
+    <content><![CDATA[<h3 id="1、新建修改myhosts"><a href="#1、新建修改myhosts" class="headerlink" title="1、新建修改myhosts"></a>1、新建修改myhosts</h3><span id="more"></span>
+
+<ul>
+<li>SSH连接路由</li>
+<li><code>vim /etc/myhosts</code> 建立文件</li>
+<li><code>192.168.2.1 domain.com</code> 添加记录</li>
+<li><code>108.160.166.42 api.themoviedb.org</code></li>
+<li><code>114.43.24.59 lncn.org</code></li>
+</ul>
+<h3 id="2、路由界面设置"><a href="#2、路由界面设置" class="headerlink" title="2、路由界面设置"></a>2、路由界面设置</h3><ul>
+<li><code>DHCP/DNS&gt;HOSTS</code>解析文件&gt;额外解析文件添加： <code>/etc/myhosts</code></li>
+</ul>
+<h3 id="3、SSH输入命令刷新"><a href="#3、SSH输入命令刷新" class="headerlink" title="3、SSH输入命令刷新"></a>3、SSH输入命令刷新</h3><ul>
+<li><code>service restart dnsmasq</code></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>openwrt</tag>
+      </tags>
+  </entry>
+</search>
