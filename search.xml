@@ -956,7 +956,571 @@
 </li>
 </ul>
 <p>进入 <code>Luci - Applications</code> 选择需要的插件，这里我列出部分常见的插件：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">luci-app-clash    # clash科学上网（基本上没用的了，已经给luci-app-openclash代替）</span><br><span class="line">luci-app-accesscontrol    # 访问时间控制</span><br><span class="line">luci-app-adblock    # ADB 广告过滤</span><br><span class="line">luci-app-adbyby-plus    # 广告屏蔽大师Plus +</span><br><span class="line">luci-app-adguardhome    # adguardhome广告过滤</span><br><span class="line">luci-app-advanced    # 高级设置（内置luci-app-fileassistant文件助手）</span><br><span class="line">luci-app-advanced-reboot    # 高级重启</span><br><span class="line">luci-app-aliyundrive-webdav    # 阿里云盘</span><br><span class="line">luci-app-ahcp    # 支持 AHCPd</span><br><span class="line">luci-app-airplay2    # Apple AirPlay2 无损音频接收服务器</span><br><span class="line">luci-app-aliddns    # 阿里 DDNS</span><br><span class="line">luci-app-amule    # aMule 下载工具</span><br><span class="line">luci-app-argon-config    # argon主题设置,要配合argon主题使用</span><br><span class="line">luci-app-aria2    # Aria2 下载工具</span><br><span class="line">luci-app-arpbind    # IP/MAC 绑定</span><br><span class="line">luci-app-asterisk    # 支持 Asterisk 电话服务器</span><br><span class="line">luci-app-attendedsysupgrade    # 固件更新升级相关</span><br><span class="line">luci-app-autoreboot    # 支持计划重启</span><br><span class="line">luci-app-autoupdate    # 定时更新固件插件</span><br><span class="line">luci-app-baidupcs-web    # 百度网盘管理</span><br><span class="line">luci-app-bcp38    # BCP38 网络入口过滤（不确定）</span><br><span class="line">luci-app-bird1-ipv4    # 对Bird1-ipv4的支持</span><br><span class="line">luci-app-bird1-ipv6    # 对Bird1-ipv6的支持</span><br><span class="line">luci-app-bmx6    # BMX6路由协议</span><br><span class="line">luci-app-cifs-mount    # CIFS/SMB挂载设置</span><br><span class="line">luci-app-cifsd    # CIFS/SMB网络共享</span><br><span class="line">luci-app-cjdns    # 加密IPV6网络相关</span><br><span class="line">luci-app-clamav    # ClamAV杀毒软件</span><br><span class="line">luci-app-commands    # Shell命令模块</span><br><span class="line">luci-app-control-timewol    # 定时网络设备唤醒</span><br><span class="line">luci-app-control-webrestriction    # 访问限制</span><br><span class="line">luci-app-control-weburl    # 网址过滤</span><br><span class="line">luci-app-cpulimit    # CPU性能调整</span><br><span class="line">luci-app-cshark    # CloudShark捕获工具</span><br><span class="line">luci-app-cupsd    # CUPS 打印服务器</span><br><span class="line">luci-app-ddns    # 动态域名 DNS（集成阿里DDNS客户端）</span><br><span class="line">luci-app-ddnsto    # 内网穿透</span><br><span class="line">luci-app-diag-core    # core诊断工具</span><br><span class="line">luci-app-diskman    # 磁盘管理工具</span><br><span class="line">luci-app-dnscrypt-proxy    # DNSCrypt解决DNS污染</span><br><span class="line">luci-app-dnsforwarder    # DNSForwarder防DNS污染</span><br><span class="line">luci-app-docker    # 不带控制面板的docker</span><br><span class="line">luci-app-dockerman    # 带控制面板的docker</span><br><span class="line">luci-app-dump1090    # 民航无线频率（不确定）</span><br><span class="line">luci-app-dynapoint    # DynaPoint（未知）</span><br><span class="line">luci-app-e2guardian    # Web内容过滤器</span><br><span class="line">luci-app-easymesh    # 简单MESH(可有线+无线回程)</span><br><span class="line">luci-app-eqos    # 内网IP地址限速</span><br><span class="line">luci-app-familycloud    # 家庭云盘</span><br><span class="line">luci-app-fileassistant    # 文件助手</span><br><span class="line">luci-app-filebrowser    # 文件管理器</span><br><span class="line">luci-app-filetransfer    # 文件传输（可web安装ipk包）</span><br><span class="line">luci-app-firewall    # 添加防火墙</span><br><span class="line">luci-app-frpc    # 内网穿透Frp客户端</span><br><span class="line">luci-app-frps    # 内网穿透Frp服务端</span><br><span class="line">luci-app-fwknopd    # Firewall Knock Operator服务器</span><br><span class="line">luci-app-godproxy    # 广告拦截</span><br><span class="line">luci-app-gost    # GO语言实现的安全隧道（隐蔽的https代理）</span><br><span class="line">luci-app-gowebdav    # GoWebDav 是一个轻巧、简单、快速的 WebDav 服务端程序</span><br><span class="line">luci-app-guest-wifi    # WiFi访客网络</span><br><span class="line">luci-app-haproxy-tcp    # HAProxy负载均衡-TCP</span><br><span class="line">luci-app-hd-idle    # 硬盘休眠</span><br><span class="line">luci-app-hnet    # Homenet Status家庭网络控制协议</span><br><span class="line">luci-app-https-dns-proxy    # 通过HTTPS代理为DNS提供Web UI</span><br><span class="line">luci-app-ipsec-vpnserver-manyusers    # ipsec-vpn（VPN服务器）</span><br><span class="line">luci-app-iptvhelper    # iptvhelper,帮助你轻松配置IPTV</span><br><span class="line">luci-app-jd-dailybonus    # 京东签到服务</span><br><span class="line">luci-app-kodexplorer    # KOD可道云私人网盘</span><br><span class="line">luci-app-koolddns    # 支持阿里DDNS、DnsPod动态域名解析</span><br><span class="line">luci-app-linkease    # 易有云文件管理器</span><br><span class="line">luci-app-lxc    # LXC容器管理</span><br><span class="line">luci-app-mentohust    # 锐捷验证</span><br><span class="line">luci-app-minidlna    # 完全兼容DLNA / UPnP-AV客户端的服务器软件</span><br><span class="line">luci-app-mjpg-streamer    # 兼容Linux-UVC的摄像头程序</span><br><span class="line">luci-app-music-remote-center    #PCHiFi 数字转盘遥控</span><br><span class="line">luci-app-mwan3    # MWAN3负载均衡</span><br><span class="line">luci-app-mwan3helper    # MWAN3分流助手</span><br><span class="line">luci-app-n2n_v2    # N2N内网穿透 N2N v2 VPN服务</span><br><span class="line">luci-app-netdata    # 实时监控中文版</span><br><span class="line">luci-app-nfs    # NFS网络共享</span><br><span class="line">luci-app-nft-qos    # QOS流量控制 Nftables版</span><br><span class="line">luci-app-nlbwmon    # 网络带宽监视器</span><br><span class="line">luci-app-noddos    # NodDOS Clients 阻止DDoS攻击（丢弃）</span><br><span class="line">luci-app-nps    # 内网穿透nps</span><br><span class="line">luci-app-ntpc    # NTP时间同步服务器</span><br><span class="line">luci-app-oaf    # 应用过滤</span><br><span class="line">luci-app-ocserv    # OpenConnect VPN服务</span><br><span class="line">luci-app-olsr    # OLSR配置和状态模块</span><br><span class="line">luci-app-olsr-services    # OLSR服务器</span><br><span class="line">luci-app-olsr-viz    # OLSR可视化</span><br><span class="line">luci-app-oled    # 为1306 0.91 oled专用，如果oled不显示，请看这里</span><br><span class="line">luci-app-onliner    # 流量监控</span><br><span class="line">luci-app-openclash    # openclash</span><br><span class="line">luci-app-openvpn    # OpenVPN客户端</span><br><span class="line">luci-app-openvpn-server    # 易于使用的OpenVPN服务器 Web-UI</span><br><span class="line">luci-app-oscam    # OSCAM服务器</span><br><span class="line">luci-app-p910nd    #打印服务</span><br><span class="line">luci-app-pagekitec    # Pagekitec内网穿透客户端</span><br><span class="line">luci-app-passwall    # 科学上网</span><br><span class="line">luci-app-polipo    # Polipo代理(是一个小型且快速的网页缓存代理)</span><br><span class="line">luci-app-poweroff    # 关机</span><br><span class="line">luci-app-pppoe-relay    # PPPoE NAT穿透 点对点协议（PPP）</span><br><span class="line">luci-app-pppoe-server    # 宽带接入认证服务器</span><br><span class="line">luci-app-pptp-server    # VPN服务器 PPTP</span><br><span class="line">luci-app-privoxy    # Privoxy网络代理(带过滤无缓存)</span><br><span class="line">luci-app-ps3netsrv    # PS3 NET服务器（用于加载蓝光/游戏ISO/PKG）</span><br><span class="line">luci-app-pushbot    # 钉钉推送（微信推送修改版）</span><br><span class="line">luci-app-qbittorrent    # BT下载工具（完整版）</span><br><span class="line">luci-app-qbittorrent_static    # BT下载工具</span><br><span class="line">luci-app-qos    # 流量服务质量(QoS)流控</span><br><span class="line">luci-app-radicale    # CalDAV/CardDAV同步工具</span><br><span class="line">luci-app-ramfree    # 释放内存</span><br><span class="line">luci-app-rclone    # 命令行云端同步工具</span><br><span class="line">luci-app-rebootschedule    # 多功能定时任务（重启网络、重启系统、重启WIFI、重新拨号...）</span><br><span class="line">luci-app-rp-pppoe-server    # Roaring Penguin PPPoE Server 服务器</span><br><span class="line">luci-app-samba    # 网络共享</span><br><span class="line">luci-app-samba4    # 网络共享（Samba4）</span><br><span class="line">luci-app-serverchan    # 微信推送</span><br><span class="line">luci-app-shadowsocks-libev    # SS-libev服务端</span><br><span class="line">luci-app-shairplay    # 支持AirPlay功能</span><br><span class="line">luci-app-siitwizard    # SIIT配置向导 SIIT-Wizzard</span><br><span class="line">luci-app-simple-adblock    # 简单的广告拦截</span><br><span class="line">luci-app-smartdns    # SmartDNS</span><br><span class="line">luci-app-smartinfo    # 穿越蓝天磁盘监控</span><br><span class="line">luci-app-socat    # 多功能的网络工具</span><br><span class="line">luci-app-softethervpn    # SoftEther VPN服务器 NAT穿透</span><br><span class="line">luci-app-splash    # Client-Splash是无线MESH网络的一个热点认证系统</span><br><span class="line">luci-app-store    # 在线商店</span><br><span class="line">luci-app-supervisord    # 一款golang开发的进程管理</span><br><span class="line">luci-app-sqm    # 流量智能队列管理（QOS）</span><br><span class="line">luci-app-squid    # Squid代理服务器</span><br><span class="line">luci-app-ssr-plus    #SSR Plus+ 科学上网</span><br><span class="line">luci-app-ssrserver-python    #ShadowsocksR Python服务器</span><br><span class="line">luci-app-statistics    # 流量监控工具</span><br><span class="line">luci-app-switch-lan-play    # 虚拟局域网联机工具</span><br><span class="line">luci-app-syncdial    # 多拨虚拟网卡（原macvlan）</span><br><span class="line">luci-app-syncthing    # syncthing同步工具</span><br><span class="line">luci-app-tencentddns    # 腾讯DDNS</span><br><span class="line">luci-app-timecontrol    # 时间控制跟（luci-app-accesscontrol）差不多，不同的是这个可以配合高级设置一起使用</span><br><span class="line">luci-app-tinyproxy    # Tinyproxy是 HTTP(S)代理服务器</span><br><span class="line">luci-app-transmission    # BT下载工具</span><br><span class="line">luci-app-travelmate    # 旅行路由器</span><br><span class="line">luci-app-ttnode    # 甜糖星愿自动采集插件</span><br><span class="line">luci-app-ttyd    # 网页终端命令窗</span><br><span class="line">luci-app-turboacc    # Turbo ACC 网络加速</span><br><span class="line">luci-app-udpxy    # udpxy做组播服务器</span><br><span class="line">luci-app-udp2raw    # udp2raw-tunnel管理界面-隧道服务器管理</span><br><span class="line">luci-app-uhttpd    # uHTTPd Web服务器</span><br><span class="line">luci-app-unblockmusic    #解锁网易云灰色歌曲</span><br><span class="line">luci-app-unblockneteasemusic    #新版本解除网易云音乐播放限制</span><br><span class="line">luci-app-unbound    # Unbound DNS解析器</span><br><span class="line">luci-app-upnp    # 通用即插即用UPnP（端口自动转发）</span><br><span class="line">luci-app-usb-printer    # USB 打印服务器</span><br><span class="line">luci-app-uugamebooster    # UU网游加速器</span><br><span class="line">luci-app-v2ray-server    # V2Ray 服务器</span><br><span class="line">luci-app-verysync    # 微力同步</span><br><span class="line">luci-app-vlmcsd    # KMS激活服务器</span><br><span class="line">luci-app-vnstat    # vnStat网络监控（图表）</span><br><span class="line">luci-app-vpnbypass    # VPN BypassWebUI 绕过VPN设置</span><br><span class="line">luci-app-vsftpd    # FTP服务器</span><br><span class="line">luci-app-vssr    # VSSR科学上网</span><br><span class="line">luci-app-watchcat    # 断网检测功能与定时重启</span><br><span class="line">luci-app-webadmin    # Web管理页面设置</span><br><span class="line">luci-app-wifischedule    # WiFi 计划</span><br><span class="line">luci-app-wireguard    # VPN服务器 WireGuard状态</span><br><span class="line">wifidog-wiwiz    # 拼拼WiFi(luci-app-eqos必选，然后在Network ---&gt; Captive Portals ---&gt; wifidog-wiwiz 勾选上)</span><br><span class="line">luci-app-wolplus    # 新版网络唤醒，替换luci-app-wol</span><br><span class="line">luci-app-wrtbwmon    # 实时流量监测</span><br><span class="line">luci-app-webd    # Webd 是一款轻量级的 (self-hosted) 自建网盘</span><br><span class="line">luci-app-xlnetacc    # 迅雷快鸟</span><br><span class="line">luci-app-zerotier    # ZeroTier内网穿透</span><br><span class="line">luci-theme-Light    # Light 主题</span><br><span class="line">luci-theme-argon    # argon 主题</span><br><span class="line">luci-theme-atmaterial    # atmaterial 主题</span><br><span class="line">luci-theme-bootstrap    # bootstrap 主题</span><br><span class="line">luci-theme-darkmatter    # 黑色 主题</span><br><span class="line">luci-theme-infinityfreedom    # 透明效果 主题</span><br><span class="line">luci-theme-material    # material 主题</span><br><span class="line">luci-theme-netgear    # 网件 主题</span><br><span class="line">luci-theme-neobird    # neobird 主题</span><br><span class="line">luci-theme-opentomcat    # opentomcat 主题</span><br><span class="line">luci-theme-rosy    # rosy 主题</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#luci-app-dockerman 和 luci-app-docker 只能二选一</span><br><span class="line">#想要编译luci-app-dockerman或者luci-app-docker</span><br><span class="line">#首先要在Global build settings ---&gt; Enable IPv6 support in packages (NEW)（选上）</span><br><span class="line">#选择dockerman或docker建议选上luci-app-diskman方便挂盘所用 </span><br><span class="line">#插件会根据情况而变动的，以后此列表就不更新了，以当时编译时候为准，如果您有什么插件想增加，而那个插件又确实可以在源码内使用的，可以告诉我，我增加上</span><br></pre></td></tr></table></figure>
+<h3 id="插件说明-CONFIGPACKAGE"><a href="#插件说明-CONFIGPACKAGE" class="headerlink" title="插件说明 CONFIGPACKAGE"></a>插件说明 CONFIG<em>PACKAGE</em></h3><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>名字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>luci-app-music-remote-center</td>
+<td>音乐远程中心</td>
+</tr>
+<tr>
+<td>luci-app-accesscontrol</td>
+<td>访问时间控制</td>
+</tr>
+<tr>
+<td>luci-app-adbyby-plus</td>
+<td>广告屏蔽大师 Plus +</td>
+</tr>
+<tr>
+<td>luci-app-arpbind</td>
+<td>IP&#x2F;MAC 绑定</td>
+</tr>
+<tr>
+<td>luci-app-ddns</td>
+<td>动态域名 DNS（集成阿里 DDNS 客户端）</td>
+</tr>
+<tr>
+<td>luci-app-filetransfer</td>
+<td>文件传输（可 web 安装 ipk 包）</td>
+</tr>
+<tr>
+<td>luci-app-firewall</td>
+<td>添加防火墙</td>
+</tr>
+<tr>
+<td>luci-app-flowoffload</td>
+<td>Turbo ACC 网络加速（集成 FLOW,BBR,NAT,DNS…</td>
+</tr>
+<tr>
+<td>luci-app-frpc</td>
+<td>内网穿透 Frp</td>
+</tr>
+<tr>
+<td>luci-app-guest-wifi</td>
+<td>WiFi 访客网络</td>
+</tr>
+<tr>
+<td>luci-app-ipsec-virtual</td>
+<td><strong>dvirtual</strong>服务器 IPSec</td>
+</tr>
+<tr>
+<td>luci-app-mwan3</td>
+<td>MWAN3 负载均衡</td>
+</tr>
+<tr>
+<td>luci-app-mwan3helper</td>
+<td>MWAN3 分流助手</td>
+</tr>
+<tr>
+<td>luci-app-ramfree</td>
+<td>释放内存</td>
+</tr>
+<tr>
+<td>luci-app-sqm</td>
+<td>流量智能队列管理（QOS）</td>
+</tr>
+<tr>
+<td>luci-app-乳酸菌饮料-plus</td>
+<td>乳酸菌饮料低调上网 Plus+</td>
+</tr>
+<tr>
+<td>s-s New Versiong</td>
+<td>新 SS 代理</td>
+</tr>
+<tr>
+<td>s-s Simple-obfs Plugin</td>
+<td>simple-obfs 简单混淆工具</td>
+</tr>
+<tr>
+<td>s-s v 贰瑞 Plugin</td>
+<td>SS v 贰瑞插件</td>
+</tr>
+<tr>
+<td>v 贰瑞</td>
+<td>v 贰瑞代理</td>
+</tr>
+<tr>
+<td>Trojan</td>
+<td>Trojan 代理</td>
+</tr>
+<tr>
+<td>red—socks2</td>
+<td>red—socks2 代理</td>
+</tr>
+<tr>
+<td>Kcptun</td>
+<td>Kcptun 加速</td>
+</tr>
+<tr>
+<td>敏感词 Server</td>
+<td>乳酸菌饮料服务器</td>
+</tr>
+<tr>
+<td>DNS2SOCKS</td>
+<td>DNS 服务器</td>
+</tr>
+<tr>
+<td>luci-app-syncdial</td>
+<td>多拨虚拟网卡（原 macvlan）</td>
+</tr>
+<tr>
+<td>luci-app-upnp</td>
+<td>通用即插即用 UPnP（端口自动转发）</td>
+</tr>
+<tr>
+<td>luci-app-vlmcsd</td>
+<td>KMS 服务器设置</td>
+</tr>
+<tr>
+<td>luci-app-vsftpd</td>
+<td>FTP 服务器</td>
+</tr>
+<tr>
+<td>luci-app-wifischedule</td>
+<td>WiFi 计划</td>
+</tr>
+<tr>
+<td>luci-app-wirele</td>
+<td>敏感词 egdb</td>
+</tr>
+<tr>
+<td>luci-app-wol</td>
+<td>WOL 网络唤醒</td>
+</tr>
+<tr>
+<td>luci-app-wrtbwmon</td>
+<td>实时流量监测</td>
+</tr>
+<tr>
+<td>luci-app-xlnetacc</td>
+<td>迅雷快鸟</td>
+</tr>
+<tr>
+<td>luci-app-zerotier</td>
+<td>ZeroTier 内网穿透</td>
+</tr>
+<tr>
+<td>Utilities —&gt; open-vm-tools</td>
+<td>打开适用于 VMware 的 VM Tools</td>
+</tr>
+<tr>
+<td>luci-app-acme</td>
+<td>ACME 自动化证书管理环境</td>
+</tr>
+<tr>
+<td>luci-app-adblock</td>
+<td>ADB 广告过滤</td>
+</tr>
+<tr>
+<td>luci-app-advanced-reboot</td>
+<td>Linksys 高级重启</td>
+</tr>
+<tr>
+<td>luci-app-ahcp</td>
+<td>支持 AHCPd</td>
+</tr>
+<tr>
+<td>luci-app-amule</td>
+<td>aMule 下载工具</td>
+</tr>
+<tr>
+<td>luci-app-aria2</td>
+<td>Aria2 下载工具</td>
+</tr>
+<tr>
+<td>luci-app-asterisk</td>
+<td>支持 Asterisk 电话服务器</td>
+</tr>
+<tr>
+<td>luci-app-attendedsysupgrade</td>
+<td>固件更新升级相关</td>
+</tr>
+<tr>
+<td>luci-app-autoreboot</td>
+<td>支持计划重启</td>
+</tr>
+<tr>
+<td>luci-app-baidupcs-web</td>
+<td>百度网盘管理</td>
+</tr>
+<tr>
+<td>luci-app-bcp38</td>
+<td>BCP38 网络入口过滤（不确定）</td>
+</tr>
+<tr>
+<td>luci-app-bird1-ipv4</td>
+<td>对 Bird1-ipv4 的支持</td>
+</tr>
+<tr>
+<td>luci-app-bird1-ipv6</td>
+<td>对 Bird1-ipv6 的支持</td>
+</tr>
+<tr>
+<td>luci-app-bmx6</td>
+<td>BMX6 路由协议</td>
+</tr>
+<tr>
+<td>luci-app-bmx7</td>
+<td>BMX7 路由协议</td>
+</tr>
+<tr>
+<td>luci-app-cifsd</td>
+<td>网络共享 CIFS&#x2F;SMB 服务器</td>
+</tr>
+<tr>
+<td>luci-app-cjdns</td>
+<td>加密 IPV6 网络相关</td>
+</tr>
+<tr>
+<td>luci-app-clamav</td>
+<td>ClamAV 杀毒软件</td>
+</tr>
+<tr>
+<td>luci-app-commands</td>
+<td>Shell 命令模块</td>
+</tr>
+<tr>
+<td>luci-app-cshark</td>
+<td>CloudShark 捕获工具</td>
+</tr>
+<tr>
+<td>luci-app-diag-core</td>
+<td>core 诊断工具</td>
+</tr>
+<tr>
+<td>luci-app-dnscrypt-proxy</td>
+<td>DNSCrypt 解决 DNS 污染</td>
+</tr>
+<tr>
+<td>luci-app-dnsforwarder</td>
+<td>DNSForwarder 防 DNS 污染</td>
+</tr>
+<tr>
+<td>luci-app-dockerman</td>
+<td>Docker 容器</td>
+</tr>
+<tr>
+<td>luci-app-dump1090</td>
+<td>民航无线频率（不确定）</td>
+</tr>
+<tr>
+<td>luci-app-dynapoint</td>
+<td>DynaPoint（未知）</td>
+</tr>
+<tr>
+<td>luci-app-e2guardian</td>
+<td>Web 内容过滤器</td>
+</tr>
+<tr>
+<td>luci-app-familycloud</td>
+<td>家庭云盘</td>
+</tr>
+<tr>
+<td>luci-app-freifunk-diagnostics</td>
+<td>freifunk 组件 诊断（未知）</td>
+</tr>
+<tr>
+<td>luci-app-freifunk-policyrouting</td>
+<td>freifunk 组件 策略路由（未知）</td>
+</tr>
+<tr>
+<td>luci-app-freifunk-widgets</td>
+<td>freifunk 组件 索引（未知）</td>
+</tr>
+<tr>
+<td>luci-app-fwknopd</td>
+<td>Firewall Knock Operator 服务器</td>
+</tr>
+<tr>
+<td>luci-app-haproxy-tcp</td>
+<td>HAProxy 负载均衡-TCP</td>
+</tr>
+<tr>
+<td>luci-app-hd-idle</td>
+<td>硬盘休眠</td>
+</tr>
+<tr>
+<td>luci-app-hnet</td>
+<td>Homenet Status 家庭网络控制协议</td>
+</tr>
+<tr>
+<td>luci-app-kodexplorer</td>
+<td>KOD 可道云私人网盘</td>
+</tr>
+<tr>
+<td>luci-app-lxc</td>
+<td>LXC 容器管理</td>
+</tr>
+<tr>
+<td>luci-app-meshwizard</td>
+<td>网络设置向导</td>
+</tr>
+<tr>
+<td>luci-app-minidlna</td>
+<td>完全兼容 DLNA &#x2F; UPnP-AV 客户端的服务器软件</td>
+</tr>
+<tr>
+<td>luci-app-mjpg-streamer</td>
+<td>兼容 Linux-UVC 的摄像头程序</td>
+</tr>
+<tr>
+<td>luci-app-mtwifi</td>
+<td>MTWiFi 驱动的支持</td>
+</tr>
+<tr>
+<td>luci-app-n2n_v2</td>
+<td>N2N 内网穿透 N2N v2 virtual**服务</td>
+</tr>
+<tr>
+<td>luci-app-netdata</td>
+<td>Netdata 实时监控（图表）</td>
+</tr>
+<tr>
+<td>luci-app-nft-qos</td>
+<td>QOS 流控 Nftables 版</td>
+</tr>
+<tr>
+<td>luci-app-nlbwmon</td>
+<td>网络带宽监视器</td>
+</tr>
+<tr>
+<td>luci-app-noddos</td>
+<td>NodDOS Clients 阻止 DDoS 攻击</td>
+</tr>
+<tr>
+<td>luci-app-nps</td>
+<td>内网穿透 nps</td>
+</tr>
+<tr>
+<td>luci-app-ntpc</td>
+<td>NTP 时间同步服务器</td>
+</tr>
+<tr>
+<td>luci-app-ocserv</td>
+<td>OpenConnect virtual**服务</td>
+</tr>
+<tr>
+<td>luci-app-olsr</td>
+<td>OLSR 配置和状态模块</td>
+</tr>
+<tr>
+<td>luci-app-olsr-services</td>
+<td>OLSR 服务器</td>
+</tr>
+<tr>
+<td>luci-app-olsr-viz</td>
+<td>OLSR 可视化</td>
+</tr>
+<tr>
+<td>luci-app-openvirtual**</td>
+<td>Openvirtual**客户端</td>
+</tr>
+<tr>
+<td>luci-app-openvirtual**-server</td>
+<td>易于使用的 Openvirtual**服务器 Web-UI</td>
+</tr>
+<tr>
+<td>luci-app-p910nd</td>
+<td>打印服务器模块</td>
+</tr>
+<tr>
+<td>luci-app-pagekitec</td>
+<td>Pagekite 内网穿透客户端</td>
+</tr>
+<tr>
+<td>luci-app-polipo</td>
+<td>Polipo 代理(是一个小型且快速的网页缓存代理)</td>
+</tr>
+<tr>
+<td>luci-app-pppoe-relay</td>
+<td>PPPoE NAT 穿透 点对点协议（PPP）</td>
+</tr>
+<tr>
+<td>luci-app-privoxy</td>
+<td>Privoxy 网络代理(带过滤无缓存)</td>
+</tr>
+<tr>
+<td>luci-app-qbittorrent</td>
+<td>BT 下载工具（qBittorrent）</td>
+</tr>
+<tr>
+<td>luci-app-qos</td>
+<td>流量服务质量(QoS)流控</td>
+</tr>
+<tr>
+<td>luci-app-radicale</td>
+<td>CalDAV&#x2F;CardDAV 同步工具</td>
+</tr>
+<tr>
+<td>luci-app-rp-pppoe-server</td>
+<td>Roaring Penguin PPPoE Server 服务器</td>
+</tr>
+<tr>
+<td>luci-app-samba4</td>
+<td>网络共享（Samba4）</td>
+</tr>
+<tr>
+<td>luci-app-sfe</td>
+<td>Turbo ACC 网络加速（flowoffload 二选一）</td>
+</tr>
+<tr>
+<td>luci-app-s-s-libes</td>
+<td>SS-libev 服务端</td>
+</tr>
+<tr>
+<td>luci-app-shairplay</td>
+<td>支持 AirPlay 功能</td>
+</tr>
+<tr>
+<td>luci-app-siitwizard</td>
+<td>SIIT 配置向导 SIIT-Wizzard</td>
+</tr>
+<tr>
+<td>luci-app-simple-adblock</td>
+<td>简单的广告拦截</td>
+</tr>
+<tr>
+<td>luci-app-softethervirtual**</td>
+<td>SoftEther virtual**服务器 NAT 穿透</td>
+</tr>
+<tr>
+<td>luci-app-splash</td>
+<td>Client-Splash 是无线 MESH 网络的一个热点认证系统</td>
+</tr>
+<tr>
+<td>luci-app-squid</td>
+<td>Squid 代理服务器</td>
+</tr>
+<tr>
+<td>luci-app-乳酸菌饮料 server-python</td>
+<td>敏感词 Python 服务器</td>
+</tr>
+<tr>
+<td>luci-app-statistics</td>
+<td>流量监控工具</td>
+</tr>
+<tr>
+<td>luci-app-tinyproxy</td>
+<td>Tinyproxy 是 HTTP(S)代理服务器</td>
+</tr>
+<tr>
+<td>luci-app-transmission</td>
+<td>BT 下载工具</td>
+</tr>
+<tr>
+<td>luci-app-travelmate</td>
+<td>旅行路由器</td>
+</tr>
+<tr>
+<td>luci-app-ttyd</td>
+<td>网页终端命令行</td>
+</tr>
+<tr>
+<td>luci-app-udpxy</td>
+<td>udpxy 做组播服务器</td>
+</tr>
+<tr>
+<td>luci-app-uhttpd</td>
+<td>uHTTPd Web 服务器</td>
+</tr>
+<tr>
+<td>luci-app-unblockmusic</td>
+<td>解锁网易云灰色歌曲 3 合 1 新版本</td>
+</tr>
+<tr>
+<td>CONFIG_UnblockNeteaseMusic_Go</td>
+<td>Golang 版本</td>
+</tr>
+<tr>
+<td>CONFIG_UnblockNeteaseMusic_NodeJS</td>
+<td>NodeJS 版本</td>
+</tr>
+<tr>
+<td>luci-app-unbound</td>
+<td>Unbound DNS 解析器</td>
+</tr>
+<tr>
+<td>luci-app-usb-printer</td>
+<td>USB 打印服务器</td>
+</tr>
+<tr>
+<td>luci-app-v 贰瑞-server</td>
+<td>v 贰瑞 服务器</td>
+</tr>
+<tr>
+<td>luci-app-vnstat</td>
+<td>vnStat 网络监控（图表）</td>
+</tr>
+<tr>
+<td>luci-app-verysync</td>
+<td>微力同步</td>
+</tr>
+<tr>
+<td>luci-app-watchcat</td>
+<td>断网检测功能与定时重启</td>
+</tr>
+<tr>
+<td>luci-app-virtual</td>
+<td><strong>bypassvirtual</strong> BypassWebUI 绕过 virtual**设置</td>
+</tr>
+<tr>
+<td>luci-app-wireguard</td>
+<td>virtual**服务器 WireGuard 状态</td>
+</tr>
+<tr>
+<td>luci-app-webadmin</td>
+<td>Web 管理页面设置</td>
+</tr>
+<tr>
+<td>luci-theme-Light</td>
+<td>Light 主题</td>
+</tr>
+<tr>
+<td>luci-theme-argon</td>
+<td>argon 主题</td>
+</tr>
+<tr>
+<td>luci-theme-atmaterial</td>
+<td>atmaterial 主题</td>
+</tr>
+<tr>
+<td>luci-theme-bootstrap</td>
+<td>bootstrap 主题</td>
+</tr>
+<tr>
+<td>luci-theme-darkmatter</td>
+<td>黑色 主题</td>
+</tr>
+<tr>
+<td>luci-theme-infinityfreedom</td>
+<td>透明效果 主题</td>
+</tr>
+<tr>
+<td>luci-theme-material</td>
+<td>material 主题</td>
+</tr>
+<tr>
+<td>luci-theme-netgear</td>
+<td>网件 主题</td>
+</tr>
+<tr>
+<td>luci-theme-neobird</td>
+<td>neobird 主题</td>
+</tr>
+<tr>
+<td>luci-theme-opentomcat</td>
+<td>opentomcat 主题</td>
+</tr>
+<tr>
+<td>luci-theme-rosy</td>
+<td>rosy 主题</td>
+</tr>
+</tbody></table>
+<h3 id="支持-iPv6"><a href="#支持-iPv6" class="headerlink" title="支持 iPv6"></a>支持 iPv6</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CONFIG_PACKAGE_ipv6helper           # ipv6 帮助</span><br><span class="line">CONFIG_PACKAGE_odhcp6c              # ipv6 dhcp</span><br><span class="line">CONFIG_PACKAGE_odhcp6c_ext_cer_id=0 # 暂时未知</span><br><span class="line">CONFIG_PACKAGE_odhcpd-ipv6only      # 仅ipv6 dhcp</span><br><span class="line">CONFIG_PACKAGE_luci-proto-ipv6      # ipv6 端口</span><br><span class="line">CONFIG_PACKAGE_luci-proto-ppp       # ppp 端口</span><br><span class="line">CONFIG_PACKAGE_iputils-traceroute6  # ipv6诊断</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#luci-app-dockerman 和 luci-app-docker 只能二选一</span><br><span class="line">#想要编译luci-app-dockerman或者luci-app-docker</span><br><span class="line">#首先要在Global build settings ---&gt; Enable IPv6 support in packages (NEW)（选上）</span><br><span class="line">#选择dockerman或docker建议选上luci-app-diskman方便挂盘所用 </span><br></pre></td></tr></table></figure>
 
 <p>配置完成后光标移动到 <code>Save</code> ，回车保存。</p>
 <h3 id="继续编译命令"><a href="#继续编译命令" class="headerlink" title="继续编译命令"></a>继续编译命令</h3><ol>
