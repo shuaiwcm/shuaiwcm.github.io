@@ -206,7 +206,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-12-25 07:03:57 / 修改时间：07:10:38" itemprop="dateCreated datePublished" datetime="2024-12-25T07:03:57+00:00">2024-12-25</time>
+              <time title="创建时间：2024-12-25 07:03:57 / 修改时间：07:22:02" itemprop="dateCreated datePublished" datetime="2024-12-25T07:03:57+00:00">2024-12-25</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -230,20 +230,14 @@
 
       
           <h3 id="编入视频流（内嵌字幕-硬字幕）"><a href="#编入视频流（内嵌字幕-硬字幕）" class="headerlink" title="编入视频流（内嵌字幕|硬字幕）"></a>编入视频流（内嵌字幕|硬字幕）</h3><p>要在视频流上面加上字幕，就得使用一个叫做 <code>subtitles</code> 的滤镜，要使用这个滤镜，在命令中写上 <code>-vf subtitles=字幕文件名</code> ，还是要注意，如果文件名包含空格或其他特殊字符，得用半角引号包起来： <code>-vf subtitles=&quot;字幕 文件名&quot;</code>。因为这个操作改写了视频流，所以视频流必须得重新编码。<br>使用 <code>subtitles</code> 滤镜为视频添加字幕（将字幕合成到视频流中，输出文件中不含字幕流）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mkv -vf subtitles=subtitles.srt output.mkv</span><br></pre></td></tr></table></figure>
-<p>将 <code>input.mkv</code> 中的字幕（默认）嵌入到 <code>output.mp4</code> 文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mkv -vf subtitles=input.mkv output.mp4</span><br></pre></td></tr></table></figure>
-<p>将 <code>input.mkv</code> 中的字幕（第二个）嵌入到 <code>output.mp4</code> 文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mkv -vf subtitles=input.mkv:si=1 output.mp4</span><br></pre></td></tr></table></figure>
-<p>关于<code> subtitles</code> 滤镜的详细用法：<a target="_blank" rel="noopener" href="http://ffmpeg.org/ffmpeg-all.html#subtitles-1">http://ffmpeg.org/ffmpeg-all.html#subtitles-1</a><br>还可以使用 <code>ass</code> 滤镜，用法和 <code>subtitles</code> 滤镜几乎一样，但它只用于 ASS (Ad­vanced Sub­sta­tion Al­pha) 字幕文件，可以先进行字幕转换，再使用它：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i subtitles.srt subtitles.ass</span><br><span class="line">ffmpeg -i input.mkv -vf ass=subtitles.ass output.mp4</span><br></pre></td></tr></table></figure>
-<p>关于 <code>ass</code> 滤镜的说明：<a target="_blank" rel="noopener" href="http://ffmpeg.org/ffmpeg-all.html#ass">http://ffmpeg.org/ffmpeg-all.html#ass</a><br>在实际使用中发现 <code>ass</code> 和 <code>subtitles</code> 最终效果并无区别，但 <code>ass</code> 只能使用 ASS 字幕文件，不可以直接使用容器中的字幕流，所以直接使用 <code>subtitles</code> 即可，省去了手动提取和转换的过程。</p>
-<h3 id="作为字幕流（内封字幕-软字幕）作为字幕流（内封字幕-软字幕）"><a href="#作为字幕流（内封字幕-软字幕）作为字幕流（内封字幕-软字幕）" class="headerlink" title="作为字幕流（内封字幕|软字幕）作为字幕流（内封字幕|软字幕）"></a>作为字幕流（内封字幕|软字幕）作为字幕流（内封字幕|软字幕）</h3><p>将字幕封装到容器中，就是所谓的字幕流，和视频流、音频流同等地位。值得说明的是，并非所有的容器都支持字幕流，先进的 MKV 是支持的，MP4 目前我只知道支持苹果的 MOV text。<br>MKV 封装工具：<a target="_blank" rel="noopener" href="https://mkvtoolnix.download/" title="MKVToolNix">MKVToolNix</a><br>MKV 提取工具：<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/gmkvextractgui/" title="gMKVExtractGUI">gMKVExtractGUI</a>、<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/mkvextractgui-2/" title="MKVExtractGUI">MKVExtractGUI</a><br>MKVEx­tract­GUI 无法使用，原因未知</p>
-<h5 id="使用图形化工具更方便。以下都是废话"><a href="#使用图形化工具更方便。以下都是废话" class="headerlink" title="使用图形化工具更方便。以下都是废话"></a>使用图形化工具更方便。以下都是废话</h5><h4 id="将字幕封装到容器中将字幕封装到容器中"><a href="#将字幕封装到容器中将字幕封装到容器中" class="headerlink" title="将字幕封装到容器中将字幕封装到容器中"></a>将字幕封装到容器中将字幕封装到容器中</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mkv -i subtitles.srt -c copy output.mkv</span><br></pre></td></tr></table></figure>
-<h4 id="从容器中提取字幕流"><a href="#从容器中提取字幕流" class="headerlink" title="从容器中提取字幕流"></a>从容器中提取字幕流</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mkv output.srt</span><br></pre></td></tr></table></figure>
-<p>例子中生成的是 srt 格式的，可以任意生成所需的格式，改一下扩展名即可。</p>
-<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><p><a target="_blank" rel="noopener" href="https://p3terx.com/archives/add-captions-to-your-videos-with-ffmpeg.html" title="使用 FFmpeg 为视频添加字幕">使用 FFmpeg 为视频添加字幕</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E4%BD%BF%E7%94%A8FFmpeg%E4%B8%BA%E8%A7%86%E9%A2%91%E6%B7%BB%E5%8A%A0%E5%AD%97%E5%B9%95.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

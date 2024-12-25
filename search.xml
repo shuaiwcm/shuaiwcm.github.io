@@ -1715,6 +1715,7 @@
     <title>使用FFmpeg为视频添加字幕</title>
     <url>/%E4%BD%BF%E7%94%A8FFmpeg%E4%B8%BA%E8%A7%86%E9%A2%91%E6%B7%BB%E5%8A%A0%E5%AD%97%E5%B9%95.html</url>
     <content><![CDATA[<h3 id="编入视频流（内嵌字幕-硬字幕）"><a href="#编入视频流（内嵌字幕-硬字幕）" class="headerlink" title="编入视频流（内嵌字幕|硬字幕）"></a>编入视频流（内嵌字幕|硬字幕）</h3><p>要在视频流上面加上字幕，就得使用一个叫做 <code>subtitles</code> 的滤镜，要使用这个滤镜，在命令中写上 <code>-vf subtitles=字幕文件名</code> ，还是要注意，如果文件名包含空格或其他特殊字符，得用半角引号包起来： <code>-vf subtitles=&quot;字幕 文件名&quot;</code>。因为这个操作改写了视频流，所以视频流必须得重新编码。<br>使用 <code>subtitles</code> 滤镜为视频添加字幕（将字幕合成到视频流中，输出文件中不含字幕流）：</p>
+<span id="more"></span>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i input.mkv -vf subtitles=subtitles.srt output.mkv</span><br></pre></td></tr></table></figure>
 <p>将 <code>input.mkv</code> 中的字幕（默认）嵌入到 <code>output.mp4</code> 文件</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i input.mkv -vf subtitles=input.mkv output.mp4</span><br></pre></td></tr></table></figure>
