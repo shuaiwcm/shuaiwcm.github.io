@@ -497,7 +497,7 @@
   <entry>
     <title>openwrt固件编译</title>
     <url>/openwrt%E5%9B%BA%E4%BB%B6%E7%BC%96%E8%AF%91.html</url>
-    <content><![CDATA[<h3 id="openwrt-编译"><a href="#openwrt-编译" class="headerlink" title="openwrt 编译"></a>openwrt 编译</h3><h4 id="本地编译"><a href="#本地编译" class="headerlink" title="本地编译"></a>本地编译</h4><ul>
+    <content><![CDATA[<h4 id="本地编译"><a href="#本地编译" class="headerlink" title="本地编译"></a>本地编译</h4><ul>
 <li>首先是注意事项<br>首先装好 Ubuntu 64bit，推荐 Ubuntu 22.04<br>不要用 root 用户 git 和编译！！！<br>国内用户编译前最好准备好软件源下载加速<br>默认登陆IP 192.168.1.1, 密码 password<span id="more"></span></li>
 <li>安装编译依赖</li>
 </ul>
