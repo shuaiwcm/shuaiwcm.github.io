@@ -1092,6 +1092,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> add-apt-repository universe</span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install ffmpeg</span><br></pre></td></tr></table></figure>
 <p>可以使用以下方法验证安装：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
 <h3 id="如何使用-ffmpeg"><a href="#如何使用-ffmpeg" class="headerlink" title="如何使用 ffmpeg"></a>如何使用 ffmpeg</h3><h4 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h4><h5 id="ffmpeg-命令的基本形式是："><a href="#ffmpeg-命令的基本形式是：" class="headerlink" title="ffmpeg 命令的基本形式是："></a>ffmpeg 命令的基本形式是：</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg [global_options] &#123;[input_file_options] -i input_url&#125; ... &#123;[output_file_options] output_url&#125; ...</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>1、您必须记住，所有文件选项仅适用于它们后面的文件（您必须为下一个文件再次写入它们）。<br>2、任何前面没有 -i 的文件都被视为输出文件。Ffmpeg 使用您提供的任意数量的输入和输出。您还可以对输入文件和输出文件使用相同的名称，但必须在输出文件名之前添加 -y 标签。<br>3、您不应该混合输入和输出;首先指定 Input Files（输入文件），然后指定 Output Files（输出文件）。</p>
