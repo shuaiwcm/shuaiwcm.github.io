@@ -20,17 +20,21 @@
     var CONFIG = {"hostname":"shuaiwcm.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="生命在于折腾">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LuRen&#39; Blog">
-<meta property="og:url" content="https://shuaiwcm.github.io/archives/2024/07/page/2/index.html">
+  <meta name="description" content="用ssh登陆路由 用fw_printenv boot_part查看当前运行的分区，结果会显示boot_parth&#x3D;1或boot_parth&#x3D;2 要的分区可以使用fw_setenv boot_part 1或fw_setenv boot_part 2 切换分区后重启路由器reboot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LinksysEA8500切换双分区">
+<meta property="og:url" content="https://shuaiwcm.github.io/LinksysEA8500%E5%88%87%E6%8D%A2%E5%88%86%E5%8C%BA.html">
 <meta property="og:site_name" content="LuRen&#39; Blog">
-<meta property="og:description" content="生命在于折腾">
+<meta property="og:description" content="用ssh登陆路由 用fw_printenv boot_part查看当前运行的分区，结果会显示boot_parth&#x3D;1或boot_parth&#x3D;2 要的分区可以使用fw_setenv boot_part 1或fw_setenv boot_part 2 切换分区后重启路由器reboot">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-01-02T03:44:00.000Z">
+<meta property="article:modified_time" content="2025-01-02T03:55:28.238Z">
 <meta property="article:author" content="LuRen">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="openwrt">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://shuaiwcm.github.io/archives/2024/07/page/2/">
+<link rel="canonical" href="https://shuaiwcm.github.io/LinksysEA8500%E5%88%87%E6%8D%A2%E5%88%86%E5%8C%BA.html">
 
 
 <script id="page-configurations">
@@ -38,12 +42,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | LuRen' Blog</title>
+  <title>LinksysEA8500切换双分区 | LuRen' Blog</title>
   
 
 
@@ -175,154 +179,96 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 22 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://shuaiwcm.github.io/LinksysEA8500%E5%88%87%E6%8D%A2%E5%88%86%E5%8C%BA.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/bxh.png">
+      <meta itemprop="name" content="LuRen">
+      <meta itemprop="description" content="生命在于折腾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LuRen' Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LinksysEA8500切换双分区
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-01-02 03:44:00 / 修改时间：03:55:28" itemprop="dateCreated datePublished" datetime="2025-01-02T03:44:00+00:00">2025-01-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" itemprop="url" rel="index"><span itemprop="name">技术分享</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2024</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-07-25T12:57:49+00:00"
-              content="2024-07-25">
-          07-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/%E8%B7%AF%E7%94%B1%E5%99%A8%E4%B8%AD%E8%AE%BE%E7%BD%AEhosts.html" itemprop="url">
-            <span itemprop="name">路由器中设置hosts</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-07-25T12:38:38+00:00"
-              content="2024-07-25">
-          07-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/linux%E9%85%8D%E7%BD%AEsamba.html" itemprop="url">
-            <span itemprop="name">linux配置samba</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-07-25T12:34:05+00:00"
-              content="2024-07-25">
-          07-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/linux%E5%AE%89%E8%A3%85frps.html" itemprop="url">
-            <span itemprop="name">linux安装frps</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-07-25T10:48:41+00:00"
-              content="2024-07-25">
-          07-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/linux%E5%AE%89%E8%A3%85docker.html" itemprop="url">
-            <span itemprop="name">linux安装docker</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-07-25T10:33:19+00:00"
-              content="2024-07-25">
-          07-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/linux%E5%AE%89%E8%A3%85zerotier.html" itemprop="url">
-            <span itemprop="name">linux安装zerotier</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2024-07-25T09:58:28+00:00"
-              content="2024-07-25">
-          07-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/linux%E5%AE%89%E8%A3%85%E8%8A%B1%E7%94%9F%E5%A3%B3.html" itemprop="url">
-            <span itemprop="name">linux安装花生壳</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+        <ul>
+<li>用ssh登陆路由</li>
+<li>用<code>fw_printenv boot_part</code>查看当前运行的分区，结果会显示<code>boot_parth=1</code>或<code>boot_parth=2</code></li>
+<li>要的分区可以使用<code>fw_setenv boot_part 1</code>或<code>fw_setenv boot_part 2</code></li>
+<li>切换分区后重启路由器<code>reboot</code></li>
+</ul>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/openwrt/" rel="tag"># openwrt</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E5%9C%A8linux%E4%B8%AD%E4%BD%BF%E7%94%A8ffmpeg.html" rel="prev" title="在linux中使用ffmpeg">
+      <i class="fa fa-chevron-left"></i> 在linux中使用ffmpeg
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2024/07/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/archives/2024/07/">1</a><span class="page-number current">2</span>
-  </nav>
+  
+  
 
 
 
