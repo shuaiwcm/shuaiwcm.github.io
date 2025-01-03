@@ -429,144 +429,6 @@
       </tags>
   </entry>
   <entry>
-    <title>openwrt中设置MosDNS</title>
-    <url>/openwrt%E4%B8%AD%E8%AE%BE%E7%BD%AEMosDNS.html</url>
-    <content><![CDATA[<h3 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h3><ul>
-<li><p>勾选启用——设置监听端口（这里可以自定义）——勾选自定义国内DNS——选择对应的DNS（建议选择加密DNS）——远程DNS根据自己实际情况选择（一般保持默认即可）——<code>Bootstrap DNS</code> 服务器保持默认或者可以自行测试一下</p>
-<span id="more"></span>
-</li>
-<li><p>设置监听端口：5335</p>
-</li>
-<li><p>勾选自定义国内DNS，选择对应的DNS（建议选择加密DNS）</p>
-</li>
-<li><p>远程DNS根据自己实际情况选择（一般保持默认即可）</p>
-</li>
-<li><p><code>Bootstrap DNS</code> 服务器保持默认或者可以自行测试一下</p>
-</li>
-</ul>
-<h3 id="高级设置"><a href="#高级设置" class="headerlink" title="高级设置"></a><strong>高级设置</strong></h3><ul>
-<li>DNS服务器并发数输入2</li>
-<li>勾选防止DNS泄露</li>
-<li>勾选启用DNS广告过滤（可选可不选）</li>
-<li>规则选择<code>anti-AD</code></li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>openwrt</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>openwrt中设置openclash</title>
-    <url>/openwrt%E4%B8%AD%E8%AE%BE%E7%BD%AEopenclash.html</url>
-    <content><![CDATA[<h3 id="1、插件设置"><a href="#1、插件设置" class="headerlink" title="1、插件设置"></a>1、插件设置</h3><ul>
-<li><p>覆写设置：</p>
-<ul>
-<li><p>Github 地址修改：<a href="https://cdn.jsdelivr.net/">https://cdn.jsdelivr.net</a></p>
-<span id="more"></span></li>
-</ul>
-</li>
-<li><p>模式设置：</p>
-<ul>
-<li>勾选：使用 <code>Meta</code> 内核（支持的协议比较多，而且还支持一些新的协议）</li>
-<li>运行模式选择<code>Fake-IP</code>模式（加快响应速度、缩短网页加载时间）</li>
-<li>代理模式选择：<code>Rule</code>（策略代理），这里根据自己的实际需要来选择</li>
-<li>其他的默认选择即可</li>
-</ul>
-</li>
-<li><p>流量控制：</p>
-<ul>
-<li>勾选：路由本机代理</li>
-<li>勾选：禁用 <code>QUIC</code></li>
-</ul>
-</li>
-<li><p>DNS设置：</p>
-<ul>
-<li>本地 DNS 劫持选择：使用 <code>Dnsmasq</code> 转发</li>
-<li>启用禁止 <code>Dnsmasq</code> 缓存 DNS</li>
-</ul>
-</li>
-<li><p>GEO数据库订阅（有助于确定特定IP地址的地理位置信息）：</p>
-<ul>
-<li>勾选自动更新 <code>GeoIP MMDB</code> 数据库</li>
-<li>勾选自动更新 <code>GeoSite</code> 数据库</li>
-</ul>
-</li>
-</ul>
-<h3 id="2、覆写设置"><a href="#2、覆写设置" class="headerlink" title="2、覆写设置"></a>2、覆写设置</h3><ul>
-<li>DNS设置<ul>
-<li>勾选：自定义上游 DNS 服务器</li>
-<li>勾选：<code>Fake-IP </code>持久化</li>
-</ul>
-</li>
-<li>Mate设置<ul>
-<li>勾选：启用 TCP 并发</li>
-<li>勾选：启用流量（域名）探测</li>
-</ul>
-</li>
-</ul>
-<h3 id="3、配合MosDNS时设置"><a href="#3、配合MosDNS时设置" class="headerlink" title="3、配合MosDNS时设置"></a>3、配合MosDNS时设置</h3><ul>
-<li>插件：<ul>
-<li>DNS：停用</li>
-</ul>
-</li>
-<li>覆写：<ul>
-<li>DNS：勾选自定义上游DNS</li>
-<li>NameSerever：全部取消，新建一个<code>127.0.0.1:5335</code>，并启用</li>
-<li>FallBack：全部取消</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>openwrt</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>openwrt中设置zerotier</title>
-    <url>/openwrt%E4%B8%AD%E8%AE%BE%E7%BD%AEzerotier.html</url>
-    <content><![CDATA[<h3 id="1、VPN-zerotier-ZeroTier-Network-ID中填入ID"><a href="#1、VPN-zerotier-ZeroTier-Network-ID中填入ID" class="headerlink" title="1、VPN&gt;zerotier&gt;ZeroTier Network ID中填入ID"></a>1、VPN&gt;zerotier&gt;ZeroTier Network ID中填入ID</h3><span id="more"></span>
-
-<h3 id="2、管理界面设置网络-接口-添加新接口"><a href="#2、管理界面设置网络-接口-添加新接口" class="headerlink" title="2、管理界面设置网络&gt;接口&gt;添加新接口"></a>2、管理界面设置网络&gt;接口&gt;添加新接口</h3><ul>
-<li>接口名称随意</li>
-<li>协议：不配置协议</li>
-<li>接口：选zti开头的</li>
-<li>提交后配置防火墙</li>
-<li>自定义一个新防火墙<code>zerotier</code></li>
-<li>保存并应用</li>
-</ul>
-<h3 id="3、管理界面设置网络-防火墙，编辑zerotier"><a href="#3、管理界面设置网络-防火墙，编辑zerotier" class="headerlink" title="3、管理界面设置网络&gt;防火墙，编辑zerotier"></a>3、管理界面设置网络&gt;防火墙，编辑zerotier</h3><ul>
-<li>全选接受</li>
-<li>IP动态伪装选中</li>
-<li>允许转发及转发到都选LAN</li>
-</ul>
-<h3 id="4、通信规则-添加规则并编辑"><a href="#4、通信规则-添加规则并编辑" class="headerlink" title="4、通信规则&gt;添加规则并编辑"></a>4、通信规则&gt;添加规则并编辑</h3><ul>
-<li>协议：<code>UDP</code></li>
-<li>源区域：任意区域</li>
-<li>目标区域：设备</li>
-<li>端口：9993</li>
-<li>保存并应用</li>
-</ul>
-<h3 id="5、zerotier官网上设置"><a href="#5、zerotier官网上设置" class="headerlink" title="5、zerotier官网上设置"></a>5、zerotier官网上设置</h3><ul>
-<li><code>Advanced&gt;Add Routes</code></li>
-<li><code>Destination</code>：填写局域网网段</li>
-<li><code>Via</code>：填写路由的虚拟网址</li>
-<li>添加</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>openwrt</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>openwrt固件编译</title>
     <url>/openwrt%E5%9B%BA%E4%BB%B6%E7%BC%96%E8%AF%91.html</url>
     <content><![CDATA[<h4 id="本地编译"><a href="#本地编译" class="headerlink" title="本地编译"></a>本地编译</h4><ul>
@@ -741,31 +603,6 @@
       </categories>
       <tags>
         <tag>linux</tag>
-        <tag>openwrt</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>openwrt通过dhcp自定义分配网关</title>
-    <url>/openwrt%E9%80%9A%E8%BF%87dhcp%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E9%85%8D%E7%BD%91%E5%85%B3.html</url>
-    <content><![CDATA[<h2 id="首先你需要给设备绑定静态IP"><a href="#首先你需要给设备绑定静态IP" class="headerlink" title="首先你需要给设备绑定静态IP"></a>首先你需要给设备绑定静态IP</h2><h2 id="在openwrt中依次选择：网络-接口-LAN-DHCP-高级设置，在DHCP选项中设置"><a href="#在openwrt中依次选择：网络-接口-LAN-DHCP-高级设置，在DHCP选项中设置" class="headerlink" title="在openwrt中依次选择：网络-&gt;接口-&gt;LAN-&gt;DHCP-&gt;高级设置，在DHCP选项中设置"></a>在openwrt中依次选择：网络-&gt;接口-&gt;LAN-&gt;DHCP-&gt;高级设置，在DHCP选项中设置</h2><ul>
-<li><code>tag:name,3,192.168.50.2</code><span id="more"></span></li>
-<li>参数说明，每个<code>,</code>为一项<ul>
-<li><code>tag:</code>标签设置，后面的名字可以自定义</li>
-<li>第二项<code>3</code>代表设置网关，常用可选项有：<ul>
-<li><code>1</code>代表设置子网掩码</li>
-<li><code>3</code>代表设置网关</li>
-<li><code>6</code>代表设置DNS</li>
-</ul>
-</li>
-<li>第三项为你要设置的静态IP地址</li>
-</ul>
-</li>
-</ul>
-<h2 id="通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置"><a href="#通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置" class="headerlink" title="通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置"></a>通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置</h2>]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
         <tag>openwrt</tag>
       </tags>
   </entry>
@@ -1402,32 +1239,6 @@
       </categories>
       <tags>
         <tag>古文</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>路由器中设置hosts</title>
-    <url>/%E8%B7%AF%E7%94%B1%E5%99%A8%E4%B8%AD%E8%AE%BE%E7%BD%AEhosts.html</url>
-    <content><![CDATA[<h3 id="1、新建修改myhosts"><a href="#1、新建修改myhosts" class="headerlink" title="1、新建修改myhosts"></a>1、新建修改myhosts</h3><span id="more"></span>
-
-<ul>
-<li>SSH连接路由</li>
-<li><code>vim /etc/myhosts</code> 建立文件</li>
-<li><code>192.168.2.1 domain.com</code> 添加记录</li>
-<li><code>108.160.166.42 api.themoviedb.org</code></li>
-<li><code>114.43.24.59 lncn.org</code></li>
-</ul>
-<h3 id="2、路由界面设置"><a href="#2、路由界面设置" class="headerlink" title="2、路由界面设置"></a>2、路由界面设置</h3><ul>
-<li><code>DHCP/DNS&gt;HOSTS</code>解析文件&gt;额外解析文件添加： <code>/etc/myhosts</code></li>
-</ul>
-<h3 id="3、SSH输入命令刷新"><a href="#3、SSH输入命令刷新" class="headerlink" title="3、SSH输入命令刷新"></a>3、SSH输入命令刷新</h3><ul>
-<li><code>service restart dnsmasq</code></li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>openwrt</tag>
       </tags>
   </entry>
   <entry>
