@@ -1387,7 +1387,18 @@
 </ul>
 </li>
 </ul>
-<h4 id="通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置"><a href="#通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置" class="headerlink" title="通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置"></a>通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置</h4>]]></content>
+<h4 id="通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置"><a href="#通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置" class="headerlink" title="通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置"></a>通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置</h4><h3 id="切换openwrt启动分区"><a href="#切换openwrt启动分区" class="headerlink" title="切换openwrt启动分区"></a>切换openwrt启动分区</h3><h4 id="确认当前分区状态"><a href="#确认当前分区状态" class="headerlink" title="确认当前分区状态"></a>确认当前分区状态</h4><p>检查设备当前运行的分区以及可用的分区信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat /proc/mtd</span><br></pre></td></tr></table></figure>
+<h4 id="查看和设置分区环境变量"><a href="#查看和设置分区环境变量" class="headerlink" title="查看和设置分区环境变量"></a>查看和设置分区环境变量</h4><p>可以通过以下命令检查当前分区设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fw_printenv</span><br></pre></td></tr></table></figure>
+<p>查找类似于boot_part的环境变量。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fw_setenv boot_part 2</span><br></pre></td></tr></table></figure>
+<p>如果需要修改分区，可以使用fw_setenv命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fw_setenv boot_part 2</span><br></pre></td></tr></table></figure>
+<h4 id="重启设备切换分区"><a href="#重启设备切换分区" class="headerlink" title="重启设备切换分区"></a>重启设备切换分区</h4><p>设置完成后，重启设备使更改生效：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
+<p>重启完成后验证一下</p>
+]]></content>
       <categories>
         <category>技术分享</category>
       </categories>
