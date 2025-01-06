@@ -1392,7 +1392,7 @@
 <h4 id="查看和设置分区环境变量"><a href="#查看和设置分区环境变量" class="headerlink" title="查看和设置分区环境变量"></a>查看和设置分区环境变量</h4><p>可以通过以下命令检查当前分区设置：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fw_printenv</span><br></pre></td></tr></table></figure>
 <p>查找类似于boot_part的环境变量。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fw_setenv boot_part 2</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">boot_part=1</span><br></pre></td></tr></table></figure>
 <p>如果需要修改分区，可以使用fw_setenv命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fw_setenv boot_part 2</span><br></pre></td></tr></table></figure>
 <h4 id="重启设备切换分区"><a href="#重启设备切换分区" class="headerlink" title="重启设备切换分区"></a>重启设备切换分区</h4><p>设置完成后，重启设备使更改生效：</p>
