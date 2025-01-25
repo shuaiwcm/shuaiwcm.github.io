@@ -1278,6 +1278,119 @@
       </tags>
   </entry>
   <entry>
+    <title>皋翰液位计参数表</title>
+    <url>/%E7%9A%8B%E7%BF%B0%E6%B6%B2%E4%BD%8D%E8%AE%A1%E5%8F%82%E6%95%B0%E8%A1%A8.html</url>
+    <content><![CDATA[<ul>
+<li>正常需要的设定参数  <ul>
+<li>传感器量程，长按上键设置</li>
+<li>水池深度，也就是光柱显示，长按下键设置    <span id="more"></span>    </li>
+<li>数值校正，也就是实际液位与显示液位的校正，一般是少显示，输入的数值是增加的数值。长按移位  <table>
+<thead>
+<tr>
+<th>参数</th>
+<th>功能定义</th>
+<th>出厂参数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AH</td>
+<td>上限蜂鸣器绝对值报警，并输出直流电压</td>
+<td>30.00</td>
+</tr>
+<tr>
+<td>AL</td>
+<td>下限蜂鸣器绝对值报警，并输出直流电压</td>
+<td>-1.00</td>
+</tr>
+<tr>
+<td>BS</td>
+<td>开始补水值</td>
+<td>-1.00</td>
+</tr>
+<tr>
+<td>Bt</td>
+<td>补水停止值</td>
+<td>30.00</td>
+</tr>
+<tr>
+<td>PS</td>
+<td>排水开始值</td>
+<td>30.00</td>
+</tr>
+<tr>
+<td>Pt</td>
+<td>排水停止值</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td>LOCK</td>
+<td>LOCK&#x3D;0003进入二级菜单，LOCK&#x3D;111长按保存还原出厂参数</td>
+<td></td>
+</tr>
+<tr>
+<td>dot</td>
+<td>小数点</td>
+<td></td>
+</tr>
+<tr>
+<td>PUL</td>
+<td>量程下限</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td>PUH</td>
+<td>量程上限</td>
+<td>5.00</td>
+</tr>
+<tr>
+<td>SC</td>
+<td>误差修正数</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td>K1</td>
+<td>介质密度，直接输入，无需换算</td>
+<td>1.00</td>
+</tr>
+<tr>
+<td>H2</td>
+<td>光柱比例</td>
+<td>5.00</td>
+</tr>
+<tr>
+<td>PH</td>
+<td>1&#x3D;排水，2&#x3D;补水</td>
+<td>1</td>
+</tr>
+<tr>
+<td>BH</td>
+<td>1&#x3D;排水，2&#x3D;补水</td>
+<td>2</td>
+</tr>
+<tr>
+<td>bAUd</td>
+<td>1200 2400 4800 9600</td>
+<td>9600</td>
+</tr>
+<tr>
+<td>ADDR</td>
+<td>通讯地址</td>
+<td>1</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>work</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在linux中使用ffmpeg</title>
     <url>/%E5%9C%A8linux%E4%B8%AD%E4%BD%BF%E7%94%A8ffmpeg.html</url>
     <content><![CDATA[<h3 id="在Ubuntu和其他Linux上安装ffmpeg"><a href="#在Ubuntu和其他Linux上安装ffmpeg" class="headerlink" title="在Ubuntu和其他Linux上安装ffmpeg"></a>在Ubuntu和其他Linux上安装ffmpeg</h3><p>在终端中使用以下命令完成这些操作：</p>
@@ -1403,119 +1516,6 @@
       </categories>
       <tags>
         <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>皋翰液位计参数表</title>
-    <url>/%E7%9A%8B%E7%BF%B0%E6%B6%B2%E4%BD%8D%E8%AE%A1%E5%8F%82%E6%95%B0%E8%A1%A8.html</url>
-    <content><![CDATA[<ul>
-<li>正常需要的设定参数  <ul>
-<li>传感器量程，长按上键设置</li>
-<li>水池深度，也就是光柱显示，长按下键设置    <span id="more"></span>    </li>
-<li>数值校正，也就是实际液位与显示液位的校正，一般是少显示，输入的数值是增加的数值。长按移位  <table>
-<thead>
-<tr>
-<th>参数</th>
-<th>功能定义</th>
-<th>出厂参数</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>AH</td>
-<td>上限蜂鸣器绝对值报警，并输出直流电压</td>
-<td>30.00</td>
-</tr>
-<tr>
-<td>AL</td>
-<td>下限蜂鸣器绝对值报警，并输出直流电压</td>
-<td>-1.00</td>
-</tr>
-<tr>
-<td>BS</td>
-<td>开始补水值</td>
-<td>-1.00</td>
-</tr>
-<tr>
-<td>Bt</td>
-<td>补水停止值</td>
-<td>30.00</td>
-</tr>
-<tr>
-<td>PS</td>
-<td>排水开始值</td>
-<td>30.00</td>
-</tr>
-<tr>
-<td>Pt</td>
-<td>排水停止值</td>
-<td>0.00</td>
-</tr>
-<tr>
-<td>LOCK</td>
-<td>LOCK&#x3D;0003进入二级菜单，LOCK&#x3D;111长按保存还原出厂参数</td>
-<td></td>
-</tr>
-<tr>
-<td>dot</td>
-<td>小数点</td>
-<td></td>
-</tr>
-<tr>
-<td>PUL</td>
-<td>量程下限</td>
-<td>0.00</td>
-</tr>
-<tr>
-<td>PUH</td>
-<td>量程上限</td>
-<td>5.00</td>
-</tr>
-<tr>
-<td>SC</td>
-<td>误差修正数</td>
-<td>0.00</td>
-</tr>
-<tr>
-<td>K1</td>
-<td>介质密度，直接输入，无需换算</td>
-<td>1.00</td>
-</tr>
-<tr>
-<td>H2</td>
-<td>光柱比例</td>
-<td>5.00</td>
-</tr>
-<tr>
-<td>PH</td>
-<td>1&#x3D;排水，2&#x3D;补水</td>
-<td>1</td>
-</tr>
-<tr>
-<td>BH</td>
-<td>1&#x3D;排水，2&#x3D;补水</td>
-<td>2</td>
-</tr>
-<tr>
-<td>bAUd</td>
-<td>1200 2400 4800 9600</td>
-<td>9600</td>
-</tr>
-<tr>
-<td>ADDR</td>
-<td>通讯地址</td>
-<td>1</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>work</tag>
       </tags>
   </entry>
   <entry>
