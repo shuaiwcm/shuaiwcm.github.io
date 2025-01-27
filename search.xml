@@ -543,6 +543,21 @@
 </ul>
 </li>
 </ul>
+<h4 id="Docker-Compose方式安装immich"><a href="#Docker-Compose方式安装immich" class="headerlink" title="Docker Compose方式安装immich"></a>Docker Compose方式安装immich</h4><ul>
+<li>创建一个目录并下载所需要文件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir ./immich</span><br><span class="line">cd ./immich</span><br><span class="line">wget -O docker-compose.yml https://github.com/immich-app/immich/releases/latest/download/docker-compose.yml</span><br><span class="line">wget -O .env https://github.com/immich-app/immich/releases/latest/download/example.env</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改<code>.env</code>文件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># You can find documentation for all the supported env variables at https://immich.app/docs/install/environment-variables</span><br><span class="line"></span><br><span class="line"># The location where your uploaded files are stored</span><br><span class="line">UPLOAD_LOCATION=./library</span><br><span class="line"># The location where your database files are stored</span><br><span class="line">DB_DATA_LOCATION=./postgres</span><br><span class="line"></span><br><span class="line"># To set a timezone, uncomment the next line and change Etc/UTC to a TZ identifier from this list: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List</span><br><span class="line"># TZ=Etc/UTC</span><br><span class="line"></span><br><span class="line"># The Immich version to use. You can pin this to a specific version like &quot;v1.71.0&quot;</span><br><span class="line">IMMICH_VERSION=release</span><br><span class="line"></span><br><span class="line"># Connection secret for postgres. You should change it to a random password</span><br><span class="line"># Please use only the characters `A-Za-z0-9`, without special characters or spaces</span><br><span class="line">DB_PASSWORD=postgres</span><br><span class="line"></span><br><span class="line"># The values below this line do not need to be changed</span><br><span class="line">###################################################################################</span><br><span class="line">DB_USERNAME=postgres</span><br><span class="line">DB_DATABASE_NAME=immich</span><br></pre></td></tr></table></figure>
+<ul>
+<li>启动容器</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+<ul>
+<li>原文地址：<a href="https://immich.app/docs/install/docker-compose">https://immich.app/docs/install/docker-compose</a></li>
+</ul>
 ]]></content>
       <categories>
         <category>技术分享</category>
