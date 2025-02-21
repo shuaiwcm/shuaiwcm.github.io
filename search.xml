@@ -1272,31 +1272,6 @@
       </tags>
   </entry>
   <entry>
-    <title>凡科网站ssl证书制作及上传</title>
-    <url>/%E5%87%A1%E7%A7%91%E7%BD%91%E7%AB%99ssl%E8%AF%81%E4%B9%A6%E5%88%B6%E4%BD%9C%E5%8F%8A%E4%B8%8A%E4%BC%A0.html</url>
-    <content><![CDATA[<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><ul>
-<li>在<code>https://certcloud.cn/</code>上注册并登陆</li>
-<li>下载<code>CMLite</code>软件并安装</li>
-<li>在软件中申请证书<span id="more"></span></li>
-<li>申请证书后需要在网站域名管理里面域名解析中添加解析记录</li>
-<li>然后如果申请成功，添加时如果提示证书链不全时需要进行下列操作<ul>
-<li>打开网站<code>https://myssl.com/chain_download.html</code></li>
-<li>上传证书并获取证书链接</li>
-<li>然后下载证书链接</li>
-<li>在新跳转的证书链接页面右键另存为<code>.crt</code>后缀的文件</li>
-<li>然后再次上传应该就没问题了</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>网站建设</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用FFmpeg为视频添加字幕</title>
     <url>/%E4%BD%BF%E7%94%A8FFmpeg%E4%B8%BA%E8%A7%86%E9%A2%91%E6%B7%BB%E5%8A%A0%E5%AD%97%E5%B9%95.html</url>
     <content><![CDATA[<h3 id="编入视频流（内嵌字幕-硬字幕）"><a href="#编入视频流（内嵌字幕-硬字幕）" class="headerlink" title="编入视频流（内嵌字幕|硬字幕）"></a>编入视频流（内嵌字幕|硬字幕）</h3><p>要在视频流上面加上字幕，就得使用一个叫做 <code>subtitles</code> 的滤镜，要使用这个滤镜，在命令中写上 <code>-vf subtitles=字幕文件名</code> ，还是要注意，如果文件名包含空格或其他特殊字符，得用半角引号包起来： <code>-vf subtitles=&quot;字幕 文件名&quot;</code>。因为这个操作改写了视频流，所以视频流必须得重新编码。<br>使用 <code>subtitles</code> 滤镜为视频添加字幕（将字幕合成到视频流中，输出文件中不含字幕流）：</p>
@@ -1324,6 +1299,31 @@
       </categories>
       <tags>
         <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>凡科网站ssl证书制作及上传</title>
+    <url>/%E5%87%A1%E7%A7%91%E7%BD%91%E7%AB%99ssl%E8%AF%81%E4%B9%A6%E5%88%B6%E4%BD%9C%E5%8F%8A%E4%B8%8A%E4%BC%A0.html</url>
+    <content><![CDATA[<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><ul>
+<li>在<code>https://certcloud.cn/</code>上注册并登陆</li>
+<li>下载<code>CMLite</code>软件并安装</li>
+<li>在软件中申请证书<span id="more"></span></li>
+<li>申请证书后需要在网站域名管理里面域名解析中添加解析记录</li>
+<li>然后如果申请成功，添加时如果提示证书链不全时需要进行下列操作<ul>
+<li>打开网站<code>https://myssl.com/chain_download.html</code></li>
+<li>上传证书并获取证书链接</li>
+<li>然后下载证书链接</li>
+<li>在新跳转的证书链接页面右键另存为<code>.crt</code>后缀的文件</li>
+<li>然后再次上传应该就没问题了</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>网站建设</tag>
       </tags>
   </entry>
   <entry>
