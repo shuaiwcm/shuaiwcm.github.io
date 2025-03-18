@@ -1042,6 +1042,139 @@
       </tags>
   </entry>
   <entry>
+    <title>tpclash尝试记录</title>
+    <url>/tpclash%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95.html</url>
+    <content><![CDATA[<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><blockquote>
+<p><a href="https://www.youtube.com/watch?v=KrjCBS8vgFY">抛弃openwrt，用linux部署代理全家科学上网。最稳的纯翻墙方案，电视盒子也能部署 - YouTube</a></p>
+</blockquote>
+<span id="more"></span>
+<h2 id="部署过程"><a href="#部署过程" class="headerlink" title="部署过程"></a>部署过程</h2><ul>
+<li><p>通过博主的指引，下载了github仓库里的几个文件</p>
+<ul>
+<li><p>首先是下载了这个版本tpclash-mihomo-linux-amd64-v3，经过尝试启动不起来</p>
+</li>
+<li><p>然后下载了tpclash-mihomo-linux-amd64版本，顺利启动</p>
+</li>
+<li><p>经过博主的指引修改的配置文件中少了一行命令，导致web页面没启动。代码如下下  </p>
+<p><code>external-controller: 0.0.0.0:9090</code></p>
+</li>
+<li><p>最终顺利启动，也测试成功，代理时出现的问题是，我发现自己的ipv6在没有禁用的情况下，会通过ipv6泄漏dns，我个人无法解决，又不想禁用ipv6，决定暂时弃用，待找到方案后再使用，这是一坑</p>
+</li>
+<li><p>等我根据使用文档，关闭开机自启，并关闭软件后，又有新问题出现了，就是我的ubuntu不能连网了，因为我自己是菜鸟，不会排查问题，所以解决问题的方法就是重装了系统，折腾了几个小时，幸好没有太多数据，这也是教训，测试不要在正在使用的服务器的进行，另建一个虚拟机最好。</p>
+</li>
+<li><p>下面记录下代码头部的完整部分，以备下次折腾</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 请指定自己实际的接口名称(ip a 获取)</span><br><span class="line">interface-name: ens18</span><br><span class="line"></span><br><span class="line">external-controller: 0.0.0.0:9090</span><br><span class="line"></span><br><span class="line">tun:</span><br><span class="line">  enable: true</span><br><span class="line">  stack: system</span><br><span class="line">  dns-hijack:</span><br><span class="line">    - any:53</span><br><span class="line">  #   - 8.8.8.8:53</span><br><span class="line">  #   - tcp://8.8.8.8:53</span><br><span class="line">  # auto-route 与 ebpf 冲突, 不能同时使用</span><br><span class="line">  #auto-route: true</span><br><span class="line">  #auto-redir: true</span><br><span class="line">  #auto-detect-interface: true</span><br><span class="line"></span><br><span class="line"># ebpf 需要指定物理网卡</span><br><span class="line">ebpf:</span><br><span class="line">  redirect-to-tun:</span><br><span class="line">    - ens18</span><br><span class="line"></span><br><span class="line"># ebpf 需要配置 mark</span><br><span class="line">routing-mark: 666</span><br><span class="line"></span><br><span class="line"># 开启 DNS 配置, 且使用 fake-ip 模式</span><br><span class="line">dns:</span><br><span class="line">  enable: true</span><br><span class="line">  listen: 0.0.0.0:1053</span><br><span class="line">  enhanced-mode: fake-ip</span><br><span class="line">  fake-ip-range: 198.18.0.1/16</span><br><span class="line">  default-nameserver:</span><br><span class="line">    - 223.5.5.5</span><br><span class="line">    - 119.29.29.29</span><br><span class="line">  nameserver:</span><br><span class="line">    - 223.5.5.5</span><br><span class="line">    - 119.29.29.29</span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>yt-dlp使用方法</title>
+    <url>/yt-dlp%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.html</url>
+    <content><![CDATA[<h1 id="yt-dlp-使用方法总结-Windows"><a href="#yt-dlp-使用方法总结-Windows" class="headerlink" title="yt-dlp 使用方法总结 (Windows)"></a>yt-dlp 使用方法总结 (Windows)</h1><h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2><ul>
+<li><strong>下载 yt-dlp</strong>：<ul>
+<li>从 <a href="https://github.com/yt-dlp/yt-dlp/releases/latest">https://github.com/yt-dlp/yt-dlp/releases/latest</a> 下载 <code>yt-dlp.exe</code>。</li>
+<li>存放路径：例如 <code>C:\Users\mr.wang\Desktop\youtobe</code>。</li>
+</ul>
+</li>
+<li><strong>安装 FFmpeg（可选但推荐）</strong>：<ul>
+<li>下载：<a href="https://www.gyan.dev/ffmpeg/builds/">https://www.gyan.dev/ffmpeg/builds/</a>，选择 <code>ffmpeg-release-essentials.zip</code>。</li>
+<li>解压后将 <code>bin</code> 文件夹中的 <code>ffmpeg.exe</code>、<code>ffprobe.exe</code> 放入 <code>yt-dlp.exe</code> 所在目录。</li>
+</ul>
+</li>
+<li><strong>代理设置</strong>：<ul>
+<li>如果需要代理访问 YouTube，使用 <code>--proxy</code> 参数，例如：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">--proxy &quot;http://127.0.0.1:10808&quot;</span><br></pre></td></tr></table></figure>
+<span id="more"></span></li>
+</ul>
+</li>
+</ul>
+<h2 id="2-基本操作"><a href="#2-基本操作" class="headerlink" title="2. 基本操作"></a>2. 基本操作</h2><ol>
+<li><strong>打开 CMD</strong>：<ul>
+<li><code>Win + R</code> &gt; 输入 <code>cmd</code> &gt; 回车。</li>
+<li>切换目录：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd C:\Users\mr.wang\Desktop\youtobe</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><strong>检查版本</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --version</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="3-下载视频"><a href="#3-下载视频" class="headerlink" title="3. 下载视频"></a>3. 下载视频</h2><ul>
+<li><strong>基本下载</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
+<ul>
+<li>默认下载最佳质量（可能是 WebM）。</li>
+</ul>
+</li>
+<li><strong>指定格式</strong>：<ol>
+<li>查看可用格式：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -F --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出示例：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">22   mp4   720p</span><br><span class="line">137  webm  1080p (video only)</span><br><span class="line">140  m4a   audio only</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>下载特定格式：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -f 22 --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-f 22</code> 表示 720p MP4。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><strong>最佳视频+音频（合并为 MP4）</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -f bestvideo+bestaudio --merge-output-format mp4 --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
+<ul>
+<li>需要 FFmpeg。</li>
+</ul>
+</li>
+<li><strong>下载音频</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --extract-audio --audio-format mp3 --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出 MP3，需要 FFmpeg。</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-其他功能"><a href="#4-其他功能" class="headerlink" title="4. 其他功能"></a>4. 其他功能</h2><ul>
+<li><strong>下载播放列表</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --proxy &quot;http://127.0.0.1:10808&quot; &quot;https://www.youtube.com/playlist?list=播放列表ID&quot;</span><br></pre></td></tr></table></figure></li>
+<li><strong>只获取标题（测试用）</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --get-title --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure></li>
+<li><strong>更新 yt-dlp</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -U</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="5-文件格式处理"><a href="#5-文件格式处理" class="headerlink" title="5. 文件格式处理"></a>5. 文件格式处理</h2><ul>
+<li><strong>WebM 格式</strong>：<ul>
+<li>默认高分辨率可能是 WebM（VP9 视频 + Opus 音频）。</li>
+<li>播放：用 VLC 或现代浏览器。</li>
+</ul>
+</li>
+<li><strong>转换为 MP4</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i 输入文件.webm 输出文件.mp4</span><br></pre></td></tr></table></figure>
+<ul>
+<li>示例：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i video.webm video.mp4</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="6-注意事项"><a href="#6-注意事项" class="headerlink" title="6. 注意事项"></a>6. 注意事项</h2><ul>
+<li><strong>代理验证</strong>：<ul>
+<li>测试代理：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -x http://127.0.0.1:10808 https://www.youtube.com</span><br></pre></td></tr></table></figure></li>
+<li>如果不通，检查代理软件端口（常见为 <code>1080</code> 或 <code>10808</code>）。</li>
+</ul>
+</li>
+<li><strong>错误排查</strong>：<ul>
+<li>加 <code>--verbose</code> 查看详细日志：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --proxy &quot;http://127.0.0.1:10808&quot; --verbose https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><strong>法律提醒</strong>：<ul>
+<li>仅限个人使用，遵守 YouTube 服务条款和当地法律。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>一些特殊端口</title>
     <url>/%E4%B8%80%E4%BA%9B%E7%89%B9%E6%AE%8A%E7%AB%AF%E5%8F%A3.html</url>
     <content><![CDATA[<h2 id="建站时，网页无法连接时可能的端口原因"><a href="#建站时，网页无法连接时可能的端口原因" class="headerlink" title="建站时，网页无法连接时可能的端口原因"></a>建站时，网页无法连接时可能的端口原因</h2><h3 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h3><p>提示信息为：</p>
@@ -1323,41 +1456,6 @@
       <tags>
         <tag>windows</tag>
         <tag>web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>tpclash尝试记录</title>
-    <url>/tpclash%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95.html</url>
-    <content><![CDATA[<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><blockquote>
-<p><a href="https://www.youtube.com/watch?v=KrjCBS8vgFY">抛弃openwrt，用linux部署代理全家科学上网。最稳的纯翻墙方案，电视盒子也能部署 - YouTube</a></p>
-</blockquote>
-<span id="more"></span>
-<h2 id="部署过程"><a href="#部署过程" class="headerlink" title="部署过程"></a>部署过程</h2><ul>
-<li><p>通过博主的指引，下载了github仓库里的几个文件</p>
-<ul>
-<li><p>首先是下载了这个版本tpclash-mihomo-linux-amd64-v3，经过尝试启动不起来</p>
-</li>
-<li><p>然后下载了tpclash-mihomo-linux-amd64版本，顺利启动</p>
-</li>
-<li><p>经过博主的指引修改的配置文件中少了一行命令，导致web页面没启动。代码如下下  </p>
-<p><code>external-controller: 0.0.0.0:9090</code></p>
-</li>
-<li><p>最终顺利启动，也测试成功，代理时出现的问题是，我发现自己的ipv6在没有禁用的情况下，会通过ipv6泄漏dns，我个人无法解决，又不想禁用ipv6，决定暂时弃用，待找到方案后再使用，这是一坑</p>
-</li>
-<li><p>等我根据使用文档，关闭开机自启，并关闭软件后，又有新问题出现了，就是我的ubuntu不能连网了，因为我自己是菜鸟，不会排查问题，所以解决问题的方法就是重装了系统，折腾了几个小时，幸好没有太多数据，这也是教训，测试不要在正在使用的服务器的进行，另建一个虚拟机最好。</p>
-</li>
-<li><p>下面记录下代码头部的完整部分，以备下次折腾</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 请指定自己实际的接口名称(ip a 获取)</span><br><span class="line">interface-name: ens18</span><br><span class="line"></span><br><span class="line">external-controller: 0.0.0.0:9090</span><br><span class="line"></span><br><span class="line">tun:</span><br><span class="line">  enable: true</span><br><span class="line">  stack: system</span><br><span class="line">  dns-hijack:</span><br><span class="line">    - any:53</span><br><span class="line">  #   - 8.8.8.8:53</span><br><span class="line">  #   - tcp://8.8.8.8:53</span><br><span class="line">  # auto-route 与 ebpf 冲突, 不能同时使用</span><br><span class="line">  #auto-route: true</span><br><span class="line">  #auto-redir: true</span><br><span class="line">  #auto-detect-interface: true</span><br><span class="line"></span><br><span class="line"># ebpf 需要指定物理网卡</span><br><span class="line">ebpf:</span><br><span class="line">  redirect-to-tun:</span><br><span class="line">    - ens18</span><br><span class="line"></span><br><span class="line"># ebpf 需要配置 mark</span><br><span class="line">routing-mark: 666</span><br><span class="line"></span><br><span class="line"># 开启 DNS 配置, 且使用 fake-ip 模式</span><br><span class="line">dns:</span><br><span class="line">  enable: true</span><br><span class="line">  listen: 0.0.0.0:1053</span><br><span class="line">  enhanced-mode: fake-ip</span><br><span class="line">  fake-ip-range: 198.18.0.1/16</span><br><span class="line">  default-nameserver:</span><br><span class="line">    - 223.5.5.5</span><br><span class="line">    - 119.29.29.29</span><br><span class="line">  nameserver:</span><br><span class="line">    - 223.5.5.5</span><br><span class="line">    - 119.29.29.29</span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>windows</tag>
-        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1676,104 +1774,6 @@
       </categories>
       <tags>
         <tag>古文</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>yt-dlp使用方法</title>
-    <url>/yt-dlp%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.html</url>
-    <content><![CDATA[<h1 id="yt-dlp-使用方法总结-Windows"><a href="#yt-dlp-使用方法总结-Windows" class="headerlink" title="yt-dlp 使用方法总结 (Windows)"></a>yt-dlp 使用方法总结 (Windows)</h1><h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2><ul>
-<li><strong>下载 yt-dlp</strong>：<ul>
-<li>从 <a href="https://github.com/yt-dlp/yt-dlp/releases/latest">https://github.com/yt-dlp/yt-dlp/releases/latest</a> 下载 <code>yt-dlp.exe</code>。</li>
-<li>存放路径：例如 <code>C:\Users\mr.wang\Desktop\youtobe</code>。</li>
-</ul>
-</li>
-<li><strong>安装 FFmpeg（可选但推荐）</strong>：<ul>
-<li>下载：<a href="https://www.gyan.dev/ffmpeg/builds/">https://www.gyan.dev/ffmpeg/builds/</a>，选择 <code>ffmpeg-release-essentials.zip</code>。</li>
-<li>解压后将 <code>bin</code> 文件夹中的 <code>ffmpeg.exe</code>、<code>ffprobe.exe</code> 放入 <code>yt-dlp.exe</code> 所在目录。</li>
-</ul>
-</li>
-<li><strong>代理设置</strong>：<ul>
-<li>如果需要代理访问 YouTube，使用 <code>--proxy</code> 参数，例如：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">--proxy &quot;http://127.0.0.1:10808&quot;</span><br></pre></td></tr></table></figure>
-<span id="more"></span></li>
-</ul>
-</li>
-</ul>
-<h2 id="2-基本操作"><a href="#2-基本操作" class="headerlink" title="2. 基本操作"></a>2. 基本操作</h2><ol>
-<li><strong>打开 CMD</strong>：<ul>
-<li><code>Win + R</code> &gt; 输入 <code>cmd</code> &gt; 回车。</li>
-<li>切换目录：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd C:\Users\mr.wang\Desktop\youtobe</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><strong>检查版本</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --version</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="3-下载视频"><a href="#3-下载视频" class="headerlink" title="3. 下载视频"></a>3. 下载视频</h2><ul>
-<li><strong>基本下载</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
-<ul>
-<li>默认下载最佳质量（可能是 WebM）。</li>
-</ul>
-</li>
-<li><strong>指定格式</strong>：<ol>
-<li>查看可用格式：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -F --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
-<ul>
-<li>输出示例：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">22   mp4   720p</span><br><span class="line">137  webm  1080p (video only)</span><br><span class="line">140  m4a   audio only</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>下载特定格式：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -f 22 --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>-f 22</code> 表示 720p MP4。</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><strong>最佳视频+音频（合并为 MP4）</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -f bestvideo+bestaudio --merge-output-format mp4 --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
-<ul>
-<li>需要 FFmpeg。</li>
-</ul>
-</li>
-<li><strong>下载音频</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --extract-audio --audio-format mp3 --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
-<ul>
-<li>输出 MP3，需要 FFmpeg。</li>
-</ul>
-</li>
-</ul>
-<h2 id="4-其他功能"><a href="#4-其他功能" class="headerlink" title="4. 其他功能"></a>4. 其他功能</h2><ul>
-<li><strong>下载播放列表</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --proxy &quot;http://127.0.0.1:10808&quot; &quot;https://www.youtube.com/playlist?list=播放列表ID&quot;</span><br></pre></td></tr></table></figure></li>
-<li><strong>只获取标题（测试用）</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --get-title --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure></li>
-<li><strong>更新 yt-dlp</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -U</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="5-文件格式处理"><a href="#5-文件格式处理" class="headerlink" title="5. 文件格式处理"></a>5. 文件格式处理</h2><ul>
-<li><strong>WebM 格式</strong>：<ul>
-<li>默认高分辨率可能是 WebM（VP9 视频 + Opus 音频）。</li>
-<li>播放：用 VLC 或现代浏览器。</li>
-</ul>
-</li>
-<li><strong>转换为 MP4</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i 输入文件.webm 输出文件.mp4</span><br></pre></td></tr></table></figure>
-<ul>
-<li>示例：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i video.webm video.mp4</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<h2 id="6-注意事项"><a href="#6-注意事项" class="headerlink" title="6. 注意事项"></a>6. 注意事项</h2><ul>
-<li><strong>代理验证</strong>：<ul>
-<li>测试代理：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -x http://127.0.0.1:10808 https://www.youtube.com</span><br></pre></td></tr></table></figure></li>
-<li>如果不通，检查代理软件端口（常见为 <code>1080</code> 或 <code>10808</code>）。</li>
-</ul>
-</li>
-<li><strong>错误排查</strong>：<ul>
-<li>加 <code>--verbose</code> 查看详细日志：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --proxy &quot;http://127.0.0.1:10808&quot; --verbose https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><strong>法律提醒</strong>：<ul>
-<li>仅限个人使用，遵守 YouTube 服务条款和当地法律。</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>windows</tag>
       </tags>
   </entry>
 </search>
