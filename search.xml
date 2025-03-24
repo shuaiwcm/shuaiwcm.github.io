@@ -485,7 +485,7 @@
 <li><code>apt install samba -y</code>安装samba</li>
 <li><code>mkdir -p Share</code>创建共享文件夹，并</li>
 <li><code> chmod 0777 Share</code>设置权限</li>
-<li>修改配置文件  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">  #在文件[global]中修改以下内容</span><br><span class="line">[global]</span><br><span class="line"> security = user                  #密码访问的选项</span><br><span class="line">#在文件最后增加以下内容</span><br><span class="line">[Ubuntu]                      #共享名称</span><br><span class="line">    comment = Samba                  #描述</span><br><span class="line">    path = /home/wang/Share        #共享路径</span><br><span class="line">    public = no                      #是否允许匿名访问</span><br><span class="line">    writable = yes                  #是否允许编辑、删除文件</span><br><span class="line">    available = yes                  #共享是否可用</span><br><span class="line">    browseable = yes              #共享是否可以在网络上浏览</span><br><span class="line">    valid users = wang            #用户名</span><br></pre></td></tr></table></figure></li>
+<li>修改配置文件<code>/etc/samba/smb.conf</code>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">  #在文件[global]中修改以下内容</span><br><span class="line">[global]</span><br><span class="line"> security = user                  #密码访问的选项</span><br><span class="line">#在文件最后增加以下内容</span><br><span class="line">[Ubuntu]                      #共享名称</span><br><span class="line">    comment = Samba                  #描述</span><br><span class="line">    path = /home/wang/Share        #共享路径</span><br><span class="line">    public = no                      #是否允许匿名访问</span><br><span class="line">    writable = yes                  #是否允许编辑、删除文件</span><br><span class="line">    available = yes                  #共享是否可用</span><br><span class="line">    browseable = yes              #共享是否可以在网络上浏览</span><br><span class="line">    valid users = wang            #用户名</span><br></pre></td></tr></table></figure></li>
 <li><code>smbpasswd -a wang</code>设置共享用户密码</li>
 <li><code>systemctl restart smbd.service</code> 重启smba</li>
 <li><code>systemctl enable smbd.service</code> 设置开机自启动</li>
@@ -493,67 +493,15 @@
 </ul>
 <h4 id="安装frps"><a href="#安装frps" class="headerlink" title="安装frps"></a>安装frps</h4><ul>
 <li><ul>
-<li>用wget下载fprc<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://github.com/fatedier/frp/releases/download/v0.5x.x/frp_0.5x.x_linux_amd64.tar.gz</span><br></pre></td></tr></table></figure></li>
+<li>用wget下载fprs<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://github.com/fatedier/frp/releases/download/v0.5x.x/frp_0.5x.x_linux_amd64.tar.gz</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li><code>tar -zxvf frp_0.5x.x_linux_amd64.tar.gz</code>解压</li>
 <li><code>cd frp_0.5x.x_linux_amd64</code>进入文件目录</li>
 <li><code>vim frps.toml</code>修改配置文件</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim frps.toml     #打开配置文件，添加以下代码</span><br><span class="line"></span><br><span class="line">[common]</span><br><span class="line">bind_port =8100</span><br><span class="line">vhost_http_port = 6100</span><br><span class="line">subdomain_host = a.b.com</span><br><span class="line">dashboard_port = 7100</span><br><span class="line">dashboard_user = username自定义</span><br><span class="line">dashboard_pwd = password自定义</span><br><span class="line">log_file = ./logs/frps.log</span><br><span class="line">log_level = error</span><br><span class="line">log_max_days = 3</span><br><span class="line">token = token自定义</span><br><span class="line">max_pool_count = 50</span><br><span class="line">tcp_mux = true</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bindPort = 7000</span><br><span class="line">vhostHTTPPort = 6001</span><br><span class="line">auth.token = &quot;123123&quot;</span><br><span class="line">webServer.addr = &quot;0.0.0.0&quot;</span><br><span class="line">webServer.port = 7001</span><br><span class="line">webServer.user = &quot;admin&quot;</span><br><span class="line">webServer.password = &quot;admin&quot;</span><br></pre></td></tr></table></figure>
 
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>bind_port</td>
-<td>客户端与服务端交互接口</td>
-</tr>
-<tr>
-<td>vhost_http_port</td>
-<td>http端口</td>
-</tr>
-<tr>
-<td>subdomain_host</td>
-<td>自定义域名</td>
-</tr>
-<tr>
-<td>dashboard_port</td>
-<td>服务器后台web访问端口</td>
-</tr>
-<tr>
-<td>dashboard_user</td>
-<td>服务器后台web访问用户名</td>
-</tr>
-<tr>
-<td>dashboard_pwd</td>
-<td>服务器后台web访问密码</td>
-</tr>
-<tr>
-<td>log_file</td>
-<td>定义log文件名称及存放位置</td>
-</tr>
-<tr>
-<td>log_level</td>
-<td>log文件记录的最低级别</td>
-</tr>
-<tr>
-<td>log_max_days</td>
-<td>log记录的最大天数</td>
-</tr>
-<tr>
-<td>token</td>
-<td>定义log文件名称及存放位置</td>
-</tr>
-<tr>
-<td>max_pool_count</td>
-<td>最大连接池大小</td>
-</tr>
-</tbody></table>
 <ul>
 <li>配置frps启动服务<ul>
 <li>在 <code>/etc/systemd/system</code> 目录下创建一个 <code>frps.service</code> 文件，用于配置 frps 服务。</li>
@@ -575,7 +523,7 @@
 <li><code>vim frpc.toml</code>修改配置文件</li>
 <li>添加以下内容</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr = &quot;0.0.0.0&quot;</span><br><span class="line">server_port = 7000</span><br><span class="line">token = &quot;123456&quot;</span><br><span class="line"></span><br><span class="line">[lede]</span><br><span class="line">type = &quot;tcp&quot;</span><br><span class="line">local_ip = &quot;192.168.50.1&quot;</span><br><span class="line">local_port = 22</span><br><span class="line">remote_port = 6000</span><br><span class="line"></span><br><span class="line">[e49l]</span><br><span class="line">type = &quot;tcp&quot;</span><br><span class="line">local_ip = &quot;192.168.50.7&quot;</span><br><span class="line">local_port = 22</span><br><span class="line">remote_port = 6003</span><br><span class="line"></span><br><span class="line">[desk]</span><br><span class="line">type = &quot;tcp&quot;</span><br><span class="line">local_ip = &quot;192.168.50.112&quot;</span><br><span class="line">local_port = 3389</span><br><span class="line">remote_port = 6002</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">serverAddr = &quot;0.0.0.0&quot;     #服务端Ip</span><br><span class="line">serverPort = 7000          #服务端口</span><br><span class="line">auth.token = &quot;Shuaiwcm0-&quot;  #token</span><br><span class="line"></span><br><span class="line">[[proxies]]</span><br><span class="line">name = &quot;lede&quot;</span><br><span class="line">type = &quot;tcp&quot;</span><br><span class="line">localIP = &quot;192.168.50.1&quot;</span><br><span class="line">localPort = 22</span><br><span class="line">remotePort = 6000</span><br><span class="line"></span><br><span class="line">[[proxies]]</span><br><span class="line">name = &quot;e49l&quot;</span><br><span class="line">type = &quot;tcp&quot;</span><br><span class="line">localIP = &quot;192.168.50.7&quot;</span><br><span class="line">localPort = 22</span><br><span class="line">remotePort = 6003</span><br><span class="line"></span><br><span class="line">[[proxies]]</span><br><span class="line">name = &quot;desk&quot;</span><br><span class="line">type = &quot;tcp&quot;</span><br><span class="line">localIP = &quot;192.168.50.112&quot;</span><br><span class="line">localPort = 3389</span><br><span class="line">remotePort = 6002</span><br><span class="line"></span><br><span class="line">[[proxies]]</span><br><span class="line">name = &quot;web&quot;</span><br><span class="line">type = &quot;http&quot;</span><br><span class="line">localIP = &quot;192.168.50.1&quot;</span><br><span class="line">localPort = 80</span><br><span class="line">customDomains = [&quot;yz.34476234.xyz&quot;]</span><br></pre></td></tr></table></figure>
 <ul>
 <li>复制frpc至<code>/usr/local/bin/</code>以方便启动</li>
 <li><code> /usr/local/bin/frpc -c /home/wang/frp/frpc.toml</code>手动启动测试</li>
