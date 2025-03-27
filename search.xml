@@ -543,7 +543,7 @@
 </ul>
 <h4 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h4><ul>
 <li><p><strong>使用官方脚本一键安装（推荐）：</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com | sh</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com | sh</span><br></pre></td></tr></table></figure></li>
 <li><p><strong>命令行安装</strong></p>
 <ul>
 <li>卸载旧版本（如有） <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt remove docker docker-engine docker.io containerd runc</span><br></pre></td></tr></table></figure></li>
@@ -566,9 +566,8 @@
  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">newgrp docker</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>3. 验证权限</strong></p>
-</li>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure></li>
 </ul>
-<p><code>docker run hello-world</code></p>
 <h4 id="安装immich"><a href="#安装immich" class="headerlink" title="安装immich"></a>安装immich</h4><ol>
 <li><strong>创建工作目录</strong><br>创建一个目录用于存放 Immich 的配置文件和数据：<br><code>mkdir ~/immich cd ~/immich</code></li>
 <li><strong>下载官方配置文件</strong><br>从 Immich 的 GitHub 仓库获取最新的 docker-compose.yml 和 .env 示例文件：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://github.com/immich-app/immich/releases/latest/download/docker-compose.yml</span><br><span class="line">wget -O .env https://github.com/immich-app/immich/releases/latest/download/example.env</span><br></pre></td></tr></table></figure></li>
