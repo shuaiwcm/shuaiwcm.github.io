@@ -128,31 +128,6 @@
       </tags>
   </entry>
   <entry>
-    <title>git基本命令</title>
-    <url>/git%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4.html</url>
-    <content><![CDATA[<h1 id="git仓库基础操作"><a href="#git仓库基础操作" class="headerlink" title="git仓库基础操作"></a>git仓库基础操作</h1><h2 id="仓库基本管理"><a href="#仓库基本管理" class="headerlink" title="仓库基本管理"></a>仓库基本管理</h2><p>初始化一个git仓库<br><code>git init</code>    </p>
-<span id="more"></span>
-
-<p>#初始化当前文件夹为一个git仓库</p>
-<h2 id="将文件添加到git的暂存区"><a href="#将文件添加到git的暂存区" class="headerlink" title="将文件添加到git的暂存区"></a>将文件添加到git的暂存区</h2><p><code>git add &quot;readme.txi&quot;</code><br>注：使用<code>git add -A</code>或<code>git add .</code>，可以提交当前仓库的所有改动</p>
-<h2 id="查看仓库当前文件提交状态"><a href="#查看仓库当前文件提交状态" class="headerlink" title="查看仓库当前文件提交状态"></a>查看仓库当前文件提交状态</h2><p><code>git status -s</code>  </p>
-<h2 id="从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息"><a href="#从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息" class="headerlink" title="从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息"></a>从git的暂存区提交版本到仓库，参数<code>-m</code>后为当次提交的备注信息</h2><p><code>git commit -m &quot;1.0.0&quot;</code>  </p>
-<h2 id="将本地仓库信息推送上传到服务器"><a href="#将本地仓库信息推送上传到服务器" class="headerlink" title="将本地仓库信息推送上传到服务器"></a>将本地仓库信息推送上传到服务器</h2><p><code>git push https://giteee.com/***/test.git</code><br>如果是克隆下来的仓库，可以省去链接<br>直接<code>git push</code>会提示输入用户名密码，可以配置TOKEN后，能过SSH克隆，再上传时不用输入密码。</p>
-<h1 id="远程仓库管理"><a href="#远程仓库管理" class="headerlink" title="远程仓库管理"></a>远程仓库管理</h1><h2 id="修改仓库名"><a href="#修改仓库名" class="headerlink" title="修改仓库名"></a>修改仓库名</h2><p>一般来讲，默认情况下，在执行克隆操作时，仓库名者是origin如果说多们想给它改名为wang，可以使用以下命令  </p>
-<p><code>git remote rename origin wang</code>  </p>
-<h2 id="添加一个仓库"><a href="#添加一个仓库" class="headerlink" title="添加一个仓库"></a>添加一个仓库</h2><p>在不执行克隆操作时，如果想将一个远程仓库添加到本地仓库中，可以执行<br><code>git remote add origin &quot;https://&quot;</code><br>注意：<code>origin</code>是你仓库的别名，可以随便改，但请务必不要与已有的仓库别名冲突，仓库地址一般来讲支持<code>http/https/ssh/git</code>等协议，其他协议地址请勿添加</p>
-<h2 id="查看当前仓库对应的远程仓库地址"><a href="#查看当前仓库对应的远程仓库地址" class="headerlink" title="查看当前仓库对应的远程仓库地址"></a>查看当前仓库对应的远程仓库地址</h2><p><code>git remote -v</code><br>这条命令能显示你当前仓库中已经添加了的倒库名和对应的仓库地址，通常来讲，会有两条一模一样的记录，分别是fetch和push，其中fetch是用来从远程同步，push是用来推送到远程。</p>
-<h2 id="修改仓库对应的远程仓库地址"><a href="#修改仓库对应的远程仓库地址" class="headerlink" title="修改仓库对应的远程仓库地址"></a>修改仓库对应的远程仓库地址</h2><p><code>git remote set-url origin &quot;https://</code></p>
-]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>windows</tag>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux安装docker</title>
     <url>/linux%E5%AE%89%E8%A3%85docker.html</url>
     <content><![CDATA[<h1 id="使用官方安装脚本自动安装"><a href="#使用官方安装脚本自动安装" class="headerlink" title="使用官方安装脚本自动安装"></a>使用官方安装脚本自动安装</h1><p><code>curl -fsSL https://test.docker.com -o test-docker.shdocker.sh</code></p>
@@ -198,6 +173,31 @@
         <category>技术分享</category>
       </categories>
       <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git基本命令</title>
+    <url>/git%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4.html</url>
+    <content><![CDATA[<h1 id="git仓库基础操作"><a href="#git仓库基础操作" class="headerlink" title="git仓库基础操作"></a>git仓库基础操作</h1><h2 id="仓库基本管理"><a href="#仓库基本管理" class="headerlink" title="仓库基本管理"></a>仓库基本管理</h2><p>初始化一个git仓库<br><code>git init</code>    </p>
+<span id="more"></span>
+
+<p>#初始化当前文件夹为一个git仓库</p>
+<h2 id="将文件添加到git的暂存区"><a href="#将文件添加到git的暂存区" class="headerlink" title="将文件添加到git的暂存区"></a>将文件添加到git的暂存区</h2><p><code>git add &quot;readme.txi&quot;</code><br>注：使用<code>git add -A</code>或<code>git add .</code>，可以提交当前仓库的所有改动</p>
+<h2 id="查看仓库当前文件提交状态"><a href="#查看仓库当前文件提交状态" class="headerlink" title="查看仓库当前文件提交状态"></a>查看仓库当前文件提交状态</h2><p><code>git status -s</code>  </p>
+<h2 id="从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息"><a href="#从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息" class="headerlink" title="从git的暂存区提交版本到仓库，参数-m后为当次提交的备注信息"></a>从git的暂存区提交版本到仓库，参数<code>-m</code>后为当次提交的备注信息</h2><p><code>git commit -m &quot;1.0.0&quot;</code>  </p>
+<h2 id="将本地仓库信息推送上传到服务器"><a href="#将本地仓库信息推送上传到服务器" class="headerlink" title="将本地仓库信息推送上传到服务器"></a>将本地仓库信息推送上传到服务器</h2><p><code>git push https://giteee.com/***/test.git</code><br>如果是克隆下来的仓库，可以省去链接<br>直接<code>git push</code>会提示输入用户名密码，可以配置TOKEN后，能过SSH克隆，再上传时不用输入密码。</p>
+<h1 id="远程仓库管理"><a href="#远程仓库管理" class="headerlink" title="远程仓库管理"></a>远程仓库管理</h1><h2 id="修改仓库名"><a href="#修改仓库名" class="headerlink" title="修改仓库名"></a>修改仓库名</h2><p>一般来讲，默认情况下，在执行克隆操作时，仓库名者是origin如果说多们想给它改名为wang，可以使用以下命令  </p>
+<p><code>git remote rename origin wang</code>  </p>
+<h2 id="添加一个仓库"><a href="#添加一个仓库" class="headerlink" title="添加一个仓库"></a>添加一个仓库</h2><p>在不执行克隆操作时，如果想将一个远程仓库添加到本地仓库中，可以执行<br><code>git remote add origin &quot;https://&quot;</code><br>注意：<code>origin</code>是你仓库的别名，可以随便改，但请务必不要与已有的仓库别名冲突，仓库地址一般来讲支持<code>http/https/ssh/git</code>等协议，其他协议地址请勿添加</p>
+<h2 id="查看当前仓库对应的远程仓库地址"><a href="#查看当前仓库对应的远程仓库地址" class="headerlink" title="查看当前仓库对应的远程仓库地址"></a>查看当前仓库对应的远程仓库地址</h2><p><code>git remote -v</code><br>这条命令能显示你当前仓库中已经添加了的倒库名和对应的仓库地址，通常来讲，会有两条一模一样的记录，分别是fetch和push，其中fetch是用来从远程同步，push是用来推送到远程。</p>
+<h2 id="修改仓库对应的远程仓库地址"><a href="#修改仓库对应的远程仓库地址" class="headerlink" title="修改仓库对应的远程仓库地址"></a>修改仓库对应的远程仓库地址</h2><p><code>git remote set-url origin &quot;https://</code></p>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
         <tag>linux</tag>
       </tags>
   </entry>
@@ -1141,6 +1141,36 @@
       </tags>
   </entry>
   <entry>
+    <title>使用FFmpeg为视频添加字幕</title>
+    <url>/%E4%BD%BF%E7%94%A8FFmpeg%E4%B8%BA%E8%A7%86%E9%A2%91%E6%B7%BB%E5%8A%A0%E5%AD%97%E5%B9%95.html</url>
+    <content><![CDATA[<h3 id="编入视频流（内嵌字幕-硬字幕）"><a href="#编入视频流（内嵌字幕-硬字幕）" class="headerlink" title="编入视频流（内嵌字幕|硬字幕）"></a>编入视频流（内嵌字幕|硬字幕）</h3><p>要在视频流上面加上字幕，就得使用一个叫做 <code>subtitles</code> 的滤镜，要使用这个滤镜，在命令中写上 <code>-vf subtitles=字幕文件名</code> ，还是要注意，如果文件名包含空格或其他特殊字符，得用半角引号包起来： <code>-vf subtitles=&quot;字幕 文件名&quot;</code>。因为这个操作改写了视频流，所以视频流必须得重新编码。<br>使用 <code>subtitles</code> 滤镜为视频添加字幕（将字幕合成到视频流中，输出文件中不含字幕流）：</p>
+<span id="more"></span>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i input.mkv -vf subtitles=subtitles.srt output.mkv</span><br></pre></td></tr></table></figure>
+<p>将 <code>input.mkv</code> 中的字幕（默认）嵌入到 <code>output.mp4</code> 文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i input.mkv -vf subtitles=input.mkv output.mp4</span><br></pre></td></tr></table></figure>
+<p>将 <code>input.mkv</code> 中的字幕（第二个）嵌入到 <code>output.mp4</code> 文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i input.mkv -vf subtitles=input.mkv:si=1 output.mp4</span><br></pre></td></tr></table></figure>
+<p>关于<code> subtitles</code> 滤镜的详细用法：<a href="http://ffmpeg.org/ffmpeg-all.html#subtitles-1">http://ffmpeg.org/ffmpeg-all.html#subtitles-1</a><br>还可以使用 <code>ass</code> 滤镜，用法和 <code>subtitles</code> 滤镜几乎一样，但它只用于 ASS (Ad­vanced Sub­sta­tion Al­pha) 字幕文件，可以先进行字幕转换，再使用它：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i subtitles.srt subtitles.ass</span><br><span class="line">ffmpeg -i input.mkv -vf ass=subtitles.ass output.mp4</span><br></pre></td></tr></table></figure>
+<p>关于 <code>ass</code> 滤镜的说明：<a href="http://ffmpeg.org/ffmpeg-all.html#ass">http://ffmpeg.org/ffmpeg-all.html#ass</a><br>在实际使用中发现 <code>ass</code> 和 <code>subtitles</code> 最终效果并无区别，但 <code>ass</code> 只能使用 ASS 字幕文件，不可以直接使用容器中的字幕流，所以直接使用 <code>subtitles</code> 即可，省去了手动提取和转换的过程。</p>
+<h3 id="作为字幕流（内封字幕-软字幕）作为字幕流（内封字幕-软字幕）"><a href="#作为字幕流（内封字幕-软字幕）作为字幕流（内封字幕-软字幕）" class="headerlink" title="作为字幕流（内封字幕|软字幕）作为字幕流（内封字幕|软字幕）"></a>作为字幕流（内封字幕|软字幕）作为字幕流（内封字幕|软字幕）</h3><p>将字幕封装到容器中，就是所谓的字幕流，和视频流、音频流同等地位。值得说明的是，并非所有的容器都支持字幕流，先进的 MKV 是支持的，MP4 目前我只知道支持苹果的 MOV text。<br>MKV 封装工具：<a href="https://mkvtoolnix.download/" title="MKVToolNix">MKVToolNix</a><br>MKV 提取工具：<a href="https://sourceforge.net/projects/gmkvextractgui/" title="gMKVExtractGUI">gMKVExtractGUI</a>、<a href="https://sourceforge.net/projects/mkvextractgui-2/" title="MKVExtractGUI">MKVExtractGUI</a><br>MKVEx­tract­GUI 无法使用，原因未知</p>
+<blockquote>
+<p>使用图形化工具更方便。</p>
+</blockquote>
+<h3 id="将字幕封装到容器中将字幕封装到容器中"><a href="#将字幕封装到容器中将字幕封装到容器中" class="headerlink" title="将字幕封装到容器中将字幕封装到容器中"></a>将字幕封装到容器中将字幕封装到容器中</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i input.mkv -i subtitles.srt -c copy output.mkv</span><br></pre></td></tr></table></figure>
+
+<h3 id="从容器中提取字幕流"><a href="#从容器中提取字幕流" class="headerlink" title="从容器中提取字幕流"></a>从容器中提取字幕流</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i input.mkv output.srt</span><br></pre></td></tr></table></figure>
+<p>例子中生成的是 srt 格式的，可以任意生成所需的格式，改一下扩展名即可。</p>
+<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><p><a href="https://p3terx.com/archives/add-captions-to-your-videos-with-ffmpeg.html" title="使用 FFmpeg 为视频添加字幕">使用 FFmpeg 为视频添加字幕</a></p>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>一些特殊端口</title>
     <url>/%E4%B8%80%E4%BA%9B%E7%89%B9%E6%AE%8A%E7%AB%AF%E5%8F%A3.html</url>
     <content><![CDATA[<h2 id="建站时，网页无法连接时可能的端口原因"><a href="#建站时，网页无法连接时可能的端口原因" class="headerlink" title="建站时，网页无法连接时可能的端口原因"></a>建站时，网页无法连接时可能的端口原因</h2><h3 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h3><p>提示信息为：</p>
@@ -1422,36 +1452,6 @@
       <tags>
         <tag>windows</tag>
         <tag>web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用FFmpeg为视频添加字幕</title>
-    <url>/%E4%BD%BF%E7%94%A8FFmpeg%E4%B8%BA%E8%A7%86%E9%A2%91%E6%B7%BB%E5%8A%A0%E5%AD%97%E5%B9%95.html</url>
-    <content><![CDATA[<h3 id="编入视频流（内嵌字幕-硬字幕）"><a href="#编入视频流（内嵌字幕-硬字幕）" class="headerlink" title="编入视频流（内嵌字幕|硬字幕）"></a>编入视频流（内嵌字幕|硬字幕）</h3><p>要在视频流上面加上字幕，就得使用一个叫做 <code>subtitles</code> 的滤镜，要使用这个滤镜，在命令中写上 <code>-vf subtitles=字幕文件名</code> ，还是要注意，如果文件名包含空格或其他特殊字符，得用半角引号包起来： <code>-vf subtitles=&quot;字幕 文件名&quot;</code>。因为这个操作改写了视频流，所以视频流必须得重新编码。<br>使用 <code>subtitles</code> 滤镜为视频添加字幕（将字幕合成到视频流中，输出文件中不含字幕流）：</p>
-<span id="more"></span>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i input.mkv -vf subtitles=subtitles.srt output.mkv</span><br></pre></td></tr></table></figure>
-<p>将 <code>input.mkv</code> 中的字幕（默认）嵌入到 <code>output.mp4</code> 文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i input.mkv -vf subtitles=input.mkv output.mp4</span><br></pre></td></tr></table></figure>
-<p>将 <code>input.mkv</code> 中的字幕（第二个）嵌入到 <code>output.mp4</code> 文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i input.mkv -vf subtitles=input.mkv:si=1 output.mp4</span><br></pre></td></tr></table></figure>
-<p>关于<code> subtitles</code> 滤镜的详细用法：<a href="http://ffmpeg.org/ffmpeg-all.html#subtitles-1">http://ffmpeg.org/ffmpeg-all.html#subtitles-1</a><br>还可以使用 <code>ass</code> 滤镜，用法和 <code>subtitles</code> 滤镜几乎一样，但它只用于 ASS (Ad­vanced Sub­sta­tion Al­pha) 字幕文件，可以先进行字幕转换，再使用它：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i subtitles.srt subtitles.ass</span><br><span class="line">ffmpeg -i input.mkv -vf ass=subtitles.ass output.mp4</span><br></pre></td></tr></table></figure>
-<p>关于 <code>ass</code> 滤镜的说明：<a href="http://ffmpeg.org/ffmpeg-all.html#ass">http://ffmpeg.org/ffmpeg-all.html#ass</a><br>在实际使用中发现 <code>ass</code> 和 <code>subtitles</code> 最终效果并无区别，但 <code>ass</code> 只能使用 ASS 字幕文件，不可以直接使用容器中的字幕流，所以直接使用 <code>subtitles</code> 即可，省去了手动提取和转换的过程。</p>
-<h3 id="作为字幕流（内封字幕-软字幕）作为字幕流（内封字幕-软字幕）"><a href="#作为字幕流（内封字幕-软字幕）作为字幕流（内封字幕-软字幕）" class="headerlink" title="作为字幕流（内封字幕|软字幕）作为字幕流（内封字幕|软字幕）"></a>作为字幕流（内封字幕|软字幕）作为字幕流（内封字幕|软字幕）</h3><p>将字幕封装到容器中，就是所谓的字幕流，和视频流、音频流同等地位。值得说明的是，并非所有的容器都支持字幕流，先进的 MKV 是支持的，MP4 目前我只知道支持苹果的 MOV text。<br>MKV 封装工具：<a href="https://mkvtoolnix.download/" title="MKVToolNix">MKVToolNix</a><br>MKV 提取工具：<a href="https://sourceforge.net/projects/gmkvextractgui/" title="gMKVExtractGUI">gMKVExtractGUI</a>、<a href="https://sourceforge.net/projects/mkvextractgui-2/" title="MKVExtractGUI">MKVExtractGUI</a><br>MKVEx­tract­GUI 无法使用，原因未知</p>
-<blockquote>
-<p>使用图形化工具更方便。</p>
-</blockquote>
-<h3 id="将字幕封装到容器中将字幕封装到容器中"><a href="#将字幕封装到容器中将字幕封装到容器中" class="headerlink" title="将字幕封装到容器中将字幕封装到容器中"></a>将字幕封装到容器中将字幕封装到容器中</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i input.mkv -i subtitles.srt -c copy output.mkv</span><br></pre></td></tr></table></figure>
-
-<h3 id="从容器中提取字幕流"><a href="#从容器中提取字幕流" class="headerlink" title="从容器中提取字幕流"></a>从容器中提取字幕流</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i input.mkv output.srt</span><br></pre></td></tr></table></figure>
-<p>例子中生成的是 srt 格式的，可以任意生成所需的格式，改一下扩展名即可。</p>
-<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><p><a href="https://p3terx.com/archives/add-captions-to-your-videos-with-ffmpeg.html" title="使用 FFmpeg 为视频添加字幕">使用 FFmpeg 为视频添加字幕</a></p>
-]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
