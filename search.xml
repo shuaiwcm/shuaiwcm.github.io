@@ -728,6 +728,8 @@
 <p>首次编译建议只选择架构，其它都不要动，这样编译成功率会更高。如果不打算调整组件则输入make defconfig，它会检测编译环境并生成默认的编译配置文件。</p>
 </blockquote>
 </li>
+<li><p>生成当前配置与默认配置的差异</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./scripts/diffconfig.sh &gt; diffconfig</span><br></pre></td></tr></table></figure></li>
 <li><p>预下载编译所需的软件包</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make download -j8 V=s</span><br></pre></td></tr></table></figure>
 <blockquote>

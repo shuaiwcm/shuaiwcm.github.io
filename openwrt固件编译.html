@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="LuRen&#39; Blog">
 <meta property="og:description" content="本地编译 首先是注意事项首先装好 Ubuntu 64bit，推荐 Ubuntu 22.04不要用 root 用户 git 和编译！！！国内用户编译前最好准备好软件源下载加速默认登陆IP 192.168.1.1, 密码 password">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-12-28T02:20:39.000Z">
-<meta property="article:modified_time" content="2024-12-31T06:57:13.068Z">
+<meta property="article:published_time" content="2024-12-27T18:20:39.000Z">
+<meta property="article:modified_time" content="2025-05-05T01:56:50.004Z">
 <meta property="article:author" content="LuRen">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="openwrt">
@@ -209,14 +209,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2024-12-28 10:20:39" itemprop="dateCreated datePublished" datetime="2024-12-28T10:20:39+08:00">2024-12-28</time>
+              <time title="创建时间：2024-12-28 02:20:39" itemprop="dateCreated datePublished" datetime="2024-12-28T02:20:39+08:00">2024-12-28</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-31 14:57:13" itemprop="dateModified" datetime="2024-12-31T14:57:13+08:00">2024-12-31</time>
+                <time title="修改时间：2025-05-05 09:56:50" itemprop="dateModified" datetime="2025-05-05T09:56:50+08:00">2025-05-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -284,6 +284,8 @@
 <p>首次编译建议只选择架构，其它都不要动，这样编译成功率会更高。如果不打算调整组件则输入make defconfig，它会检测编译环境并生成默认的编译配置文件。</p>
 </blockquote>
 </li>
+<li><p>生成当前配置与默认配置的差异</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./scripts/diffconfig.sh &gt; diffconfig</span><br></pre></td></tr></table></figure></li>
 <li><p>预下载编译所需的软件包</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make download -j8 V=s</span><br></pre></td></tr></table></figure>
 <blockquote>
