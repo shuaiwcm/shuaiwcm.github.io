@@ -1887,4 +1887,78 @@
         <tag>周易</tag>
       </tags>
   </entry>
+  <entry>
+    <title>电脑控制手机</title>
+    <url>/%E7%94%B5%E8%84%91%E6%8E%A7%E5%88%B6%E6%89%8B%E6%9C%BA.html</url>
+    <content><![CDATA[<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
+<li>手机已开启<strong>开发者选项 + USB 调试</strong>（设置 → 关于手机 → 连续点 MIUI 版本 → 更多设置 → 开发者选项 → 打开 USB 调试 + USB 调试（安全设置））。</li>
+<li>电脑已下载 scrcpy（推荐最新版 v3.3.4 或更高，从 GitHub 下载：<a href="https://github.com/Genymobile/scrcpy/releases?referrer=grok.com">https://github.com/Genymobile/scrcpy/releases</a>）。</li>
+<li>电脑和手机在<strong>同一个 Wi-Fi</strong>网络下。<span id="more"></span></li>
+</ul>
+<h3 id="无线控制步骤（推荐，最方便）"><a href="#无线控制步骤（推荐，最方便）" class="headerlink" title="无线控制步骤（推荐，最方便）"></a>无线控制步骤（推荐，最方便）</h3><ol>
+<li><p><strong>下载并解压 scrcpy 到电脑</strong>（Windows 示例）：</p>
+<ul>
+<li>下载 scrcpy-win64-v3.3.4.zip（或最新）。</li>
+<li>解压到一个文件夹（如 C:\scrcpy）。</li>
+</ul>
+</li>
+<li><p><strong>第一次用 USB 连接激活无线 ADB</strong>（只需做一次）：</p>
+<ul>
+<li><p>用 USB 数据线连手机到电脑。</p>
+</li>
+<li><p>手机弹出“允许 USB 调试？” → 点允许 + 打钩“始终允许此电脑”。</p>
+</li>
+<li><p>在电脑打开 PowerShell（或 CMD），进入 scrcpy 解压目录：        </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd C:\scrcpy       </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.\adb devices   # 确认看到设备 ID</span><br><span class="line">.\adb tcpip 5555   # 关键！开启无线模式</span><br></pre></td></tr></table></figure>
+
+<p>输出：restarting in TCP mode port: 5555</p>
+</li>
+</ul>
+</li>
+<li><p><strong>查手机 IP 地址</strong>：</p>
+<ul>
+<li>手机设置 → WLAN → 当前 Wi-Fi → 查看“IP 地址”（如 192.168.1.100）。</li>
+</ul>
+</li>
+<li><p><strong>拔掉 USB 数据线</strong>，然后无线连接：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.\adb connect 192.168.1.100:5555   # 换成你手机的 IP</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>成功输出：connected to 192.168.1.100:5555</li>
+<li>再跑 .\adb devices 确认看到 IP:5555 device。</li>
+</ul>
+</li>
+<li><p><strong>启动无线 scrcpy 控制</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.\scrcpy </span><br></pre></td></tr></table></figure>
+<ul>
+<li>或指定设备：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.\scrcpy -s 192.168.1.100:5555</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>以后每次直接用</strong>（手机重启后需重复步骤2激活 tcpip）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.\scrcpy -s 192.168.1.100:5555</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="有线版（备用，简单但需要线）"><a href="#有线版（备用，简单但需要线）" class="headerlink" title="有线版（备用，简单但需要线）"></a>有线版（备用，简单但需要线）</h3><ol>
+<li>USB 连手机 → 允许调试。</li>
+<li>在 scrcpy 目录运行：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.\scrcpy</span><br></pre></td></tr></table></figure>
+<ul>
+<li>直接投屏控制。</li>
+</ul>
+</li>
+</ol>
+<h3 id="小Tips"><a href="#小Tips" class="headerlink" title="小Tips"></a>小Tips</h3><ul>
+<li>手机锁屏时可盲输入密码：电脑键盘直接敲密码 + Enter。</li>
+<li>想全屏：scrcpy 窗口最大化。</li>
+<li>断开：Ctrl+C 关闭 scrcpy，或 .\adb disconnect 192.168.1.100:5555。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+      </tags>
+  </entry>
 </search>
