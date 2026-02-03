@@ -1961,4 +1961,38 @@
 父亲，永别了，也永在了我们心里。<br> 
 ]]></content>
   </entry>
+  <entry>
+    <title>chrome开启gemini</title>
+    <url>/chrome%E5%BC%80%E5%90%AFgemini.html</url>
+    <content><![CDATA[<h4 id="第一步：修改-Local-State-配置文件"><a href="#第一步：修改-Local-State-配置文件" class="headerlink" title="第一步：修改 Local State 配置文件"></a><strong>第一步：修改 Local State 配置文件</strong></h4><p>定位到 Chrome 的用户数据目录（如 Windows 的 <code>%LOCALAPPDATA%\Google\Chrome\User Data\Local State</code>），关闭浏览器后修改以下三项：</p>
+<ul>
+<li><p><code>variations_permanent_consistency_country</code>: 将 <code>&quot;cn&quot;</code> 改为 <code>&quot;us&quot;</code>。</p>
+</li>
+<li><p><code>variations_country</code>: 将 <code>&quot;cn&quot;</code> 改为 <code>&quot;us&quot;</code>。</p>
+</li>
+<li><p><code>is_glic_eligible</code>: 将 <code>false</code> 改为 <code>true</code>。</p>
+</li>
+</ul>
+<span id="more"></span>
+<h4 id="第二步：修改-Chrome-Flags-标志位"><a href="#第二步：修改-Chrome-Flags-标志位" class="headerlink" title="第二步：修改 Chrome Flags 标志位"></a><strong>第二步：修改 Chrome Flags 标志位</strong></h4><p>在浏览器地址栏输入 <code>chrome://flags</code>，将以下两项设为 <strong>Enabled</strong>：</p>
+<ul>
+<li><p><code>#glic</code></p>
+</li>
+<li><p><code>#glic-side-panel</code></p>
+</li>
+</ul>
+<h4 id="第三步：系统环境要求"><a href="#第三步：系统环境要求" class="headerlink" title="第三步：系统环境要求"></a><strong>第三步：系统环境要求</strong></h4><ul>
+<li><p><strong>语言设置：</strong> Chrome 的首选界面语言必须设置为 <strong>English</strong>（英语）。</p>
+</li>
+<li><p><strong>网络环境：</strong> 必须使用<strong>美国节点</strong>的网络环境。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+      </tags>
+  </entry>
 </search>
