@@ -2102,4 +2102,44 @@
         <tag>linux</tag>
       </tags>
   </entry>
+  <entry>
+    <title>外网 IPv4 访问家用纯 IPv6 服务（免端口+全 HTTPS 方案）</title>
+    <url>/%E5%A4%96%E7%BD%91-IPv4-%E8%AE%BF%E9%97%AE%E5%AE%B6%E7%94%A8%E7%BA%AF-IPv6-%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%85%8D%E7%AB%AF%E5%8F%A3-%E5%85%A8-HTTPS-%E6%96%B9%E6%A1%88%EF%BC%89.html</url>
+    <content><![CDATA[<h3 id="1-核心需求与背景"><a href="#1-核心需求与背景" class="headerlink" title="1. 核心需求与背景"></a>1. 核心需求与背景</h3><ul>
+<li><strong>环境</strong>：家庭宽带拥有公网 IPv6 地址，但外部网络（如公司、某些移动网络）仅支持 IPv4。</li>
+<li><strong>目标</strong>：通过自定义域名，不带端口号（如 <code>:8443</code>），且全过程 HTTPS 加密访问家中的 OpenWrt 或其他服务。</li>
+<li><strong>工具链</strong>：Cloudflare (CDN&#x2F;回源规则) + Lucky (反向代理&#x2F;动态域名) + IPv6 宽带。</li>
+</ul>
+<span id="more"></span>
+<h3 id="2-核心架构图"><a href="#2-核心架构图" class="headerlink" title="2. 核心架构图"></a>2. 核心架构图</h3><ol>
+<li><strong>客户端</strong>：发起 <code>https://abc.yourdomain_b.com</code> 请求（默认 443 端口）。</li>
+<li><strong>Cloudflare</strong>：接收 IPv4 请求，将其转换为 IPv6，并将 443 端口重写为 8443。</li>
+<li>**Lucky (源站)**：接收 8443 端口流量，添加反代记录并转发给局域网服务。</li>
+</ol>
+<h3 id="3-分步操作指南"><a href="#3-分步操作指南" class="headerlink" title="3. 分步操作指南"></a>3. 分步操作指南</h3><h4 id="第一步：Cloudflare-基础配置（实现-IPv4-转-IPv6）"><a href="#第一步：Cloudflare-基础配置（实现-IPv4-转-IPv6）" class="headerlink" title="第一步：Cloudflare 基础配置（实现 IPv4 转 IPv6）"></a>第一步：Cloudflare 基础配置（实现 IPv4 转 IPv6）</h4><ul>
+<li><strong>添加记录</strong>：新建一条 <strong>CNAME</strong> 记录，指向你家里的公网 IPv6子域名<code>https://abc.yourdomain_a.com</code>。</li>
+<li><strong>开启代理</strong>：务必开启 **“橙色小云朵” (Proxy)**，这是实现协议转换和隐藏 IP 的前提。</li>
+<li><strong>SSL 模式</strong>：在 <code>SSL/TLS</code> -&gt; <code>概述</code> 中，选择 <strong>“完全 (Full)”</strong>。</li>
+</ul>
+<h4 id="第二步：配置-Origin-Rules（实现“免端口”访问）"><a href="#第二步：配置-Origin-Rules（实现“免端口”访问）" class="headerlink" title="第二步：配置 Origin Rules（实现“免端口”访问）"></a>第二步：配置 Origin Rules（实现“免端口”访问）</h4><p>为了不输入 <code>:8443</code>，让 Cloudflare 在后台完成端口映射：</p>
+<ol>
+<li>进入 <code>规则 (Rules)</code> -&gt;<code>概述</code>-&gt; <code>Origin Rules</code>。</li>
+<li><strong>匹配条件</strong>：主机名 (Hostname) <strong>等于</strong> <code>abc.yourdomain.com</code>。</li>
+<li><strong>多条子域名</strong>：用<code>or</code>连接于后面。   </li>
+<li><strong>操作</strong>：目的端口 (Destination Port) <strong>重写到</strong> <code>8443</code>。</li>
+</ol>
+<h4 id="第三步：Lucky-大吉-关键设置"><a href="#第三步：Lucky-大吉-关键设置" class="headerlink" title="第三步：Lucky (大吉) 关键设置"></a>第三步：Lucky (大吉) 关键设置</h4><p>在 Lucky 的 <code>Web服务</code> 规则中进行如下设置，确保能顺利进入服务界面：</p>
+<ol>
+<li><strong>监听端口</strong>：设置为 <code>8443</code>（并确保证书已配置）。</li>
+<li><strong>域名列表</strong>：添加子域名 <code>abc.yourdomain_b.com</code>并指向内网地址。</li>
+<li><strong>忽略后端TLS证书验证</strong>：勾选为 <strong>“是”</strong>。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+      </tags>
+  </entry>
 </search>
