@@ -1,85 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>IDM注册</title>
-    <url>/IDM%E6%B3%A8%E5%86%8C.html</url>
-    <content><![CDATA[<ul>
-<li>在下面网址下载注册文件，在线注册因项目已归档而不能用了</li>
-<li>项目地址：<a href="https://github.com/WindowsAddict/IDM-Activation-Script">https://github.com/WindowsAddict/IDM-Activation-Script</a></li>
-<li>然后以管理员身份运行<code>IAS.cmd</code><ul>
-<li>2</li>
-<li>9</li>
-</ul>
+    <title>OpenClaw 在 Android Termux 上的全流程教程</title>
+    <url>/OpenClaw-%E5%9C%A8-Android-Termux-%E4%B8%8A%E7%9A%84%E5%85%A8%E6%B5%81%E7%A8%8B%E6%95%99%E7%A8%8B.html</url>
+    <content><![CDATA[<p>这份教程结合了 Sagar 的“内核绕过”技术与 PM2 的进程管理，确保你的 AI 机器人在安卓端 24&#x2F;7 稳定运行。</p>
+<h3 id="🛠️-前置准备"><a href="#🛠️-前置准备" class="headerlink" title="🛠️ 前置准备"></a>🛠️ 前置准备</h3><ol>
+<li><p><strong>设备</strong>：Android 10 或更高。</p>
 </li>
-<li>激活完成</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MAS使用方法</title>
-    <url>/MAS%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.html</url>
-    <content><![CDATA[<p><strong>Microsoft Activation Scripts (MAS) 使用方法</strong><br>以下是 MAS 的两种主要使用方式：<strong>在线激活</strong>和<strong>离线激活</strong>。根据网络环境和需求选择适合的方法。说明基于截至 2025 年 2 月 19 日的最新版本（MAS 3.0）。</p>
-<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
-<li>管理员权限：需以管理员身份运行命令或脚本。</li>
-<li>系统兼容性：支持 Windows 7 及以上，Office 2010 及以上。</li>
-<li>网络连接（在线方式）：需访问 <a href="https://get.activated.win./">https://get.activated.win。</a></li>
-<li>关闭防病毒软件（可选）：避免误报，建议暂时关闭或添加例外。<span id="more"></span></li>
-</ul>
-<h3 id="方法一：在线激活（推荐，简单快捷）"><a href="#方法一：在线激活（推荐，简单快捷）" class="headerlink" title="方法一：在线激活（推荐，简单快捷）"></a>方法一：在线激活（推荐，简单快捷）</h3><p>在线方式通过 PowerShell 一键下载并运行 MAS 脚本，适合有网络环境的用户。</p>
-<h4 id="打开-PowerShell（管理员模式）"><a href="#打开-PowerShell（管理员模式）" class="headerlink" title="打开 PowerShell（管理员模式）"></a>打开 PowerShell（管理员模式）</h4><ul>
-<li>按 <code>Win + S</code>，输入 <code>PowerShell</code>，右键选择“以管理员身份运行”。</li>
-</ul>
-<h4 id="输入命令并回车"><a href="#输入命令并回车" class="headerlink" title="输入命令并回车"></a>输入命令并回车</h4><p><code>irm https://get.activated.win | iex</code></p>
+<li><p><strong>Termux</strong>：请务必使用 <strong>F-Droid</strong> 版本。</p>
+</li>
+<li><p><strong>API Key</strong>：准备好 Gemini API Key。</p>
+</li>
+</ol>
+<span id="more"></span>
+
+
+<h3 id="1-环境搭建-Ubuntu-proot"><a href="#1-环境搭建-Ubuntu-proot" class="headerlink" title="1. 环境搭建 (Ubuntu proot)"></a>1. 环境搭建 (Ubuntu proot)</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pkg update &amp;&amp; pkg upgrade -y</span><br><span class="line">pkg install proot-distro -y</span><br><span class="line">proot-distro install ubuntu</span><br><span class="line">proot-distro login ubuntu</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-安装-Node-js-与-OpenClaw"><a href="#2-安装-Node-js-与-OpenClaw" class="headerlink" title="2. 安装 Node.js 与 OpenClaw"></a>2. 安装 Node.js 与 OpenClaw</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt update &amp;&amp; apt upgrade -y</span><br><span class="line">apt install curl git build-essential -y</span><br><span class="line">curl -fsSL https://deb.nodesource.com/setup_22.x | bash -</span><br><span class="line">apt install -y nodejs</span><br><span class="line">npm install -g openclaw@latest</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="3-核心补丁：Bionic-Bypass-解决-Error-13"><a href="#3-核心补丁：Bionic-Bypass-解决-Error-13" class="headerlink" title="3. 核心补丁：Bionic Bypass (解决 Error 13)"></a>3. 核心补丁：Bionic Bypass (解决 Error 13)</h3><p>这是防止 OpenClaw 闪退的关键。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 创建劫持脚本</span><br><span class="line">cat &lt;&lt;EOF &gt; /root/hijack.js</span><br><span class="line">const os = require(&#x27;os&#x27;);</span><br><span class="line">os.networkInterfaces = () =&gt; (&#123;&#125;);</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"># 写入环境变量，确保全局生效</span><br><span class="line">echo &#x27;export NODE_OPTIONS=&quot;-r /root/hijack.js&quot;&#x27; &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-初始化配置"><a href="#4-初始化配置" class="headerlink" title="4. 初始化配置"></a>4. 初始化配置</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openclaw onboard</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><code>irm</code>：<code>Invoke-RestMethod</code>，用于下载脚本。</li>
-<li><code>iex</code>：<code>Invoke-Expression</code>，用于执行脚本。</li>
-<li>备用域名：若网络受限，可用<code> irm https://massgrave.dev/get | iex</code>。</li>
+<li><strong>注意</strong>：在网关绑定（Gateway Bind）时，务必选择 <code>127.0.0.1</code>。</li>
 </ul>
-<h4 id="选择激活选项-脚本运行后显示菜单（英文），输入数字选择："><a href="#选择激活选项-脚本运行后显示菜单（英文），输入数字选择：" class="headerlink" title="选择激活选项 脚本运行后显示菜单（英文），输入数字选择："></a>选择激活选项 脚本运行后显示菜单（英文），输入数字选择：</h4><p>[1] HWID：Windows 数字许可证激活（永久，推荐）。<br>[2] KMS38：激活至 2038 年（长期稳定）。<br>[3] Online KMS：180 天激活，支持自动续期。<br>[4] Ohook：Office 永久激活。<br>[5] TSForge：支持 Windows 10 ESU 或特殊版本。<br>[6] 检查激活状态：查看系统激活状态。<br>[0] 退出。</p>
-<h4 id="等待完成"><a href="#等待完成" class="headerlink" title="等待完成"></a>等待完成</h4><ul>
-<li>激活过程几秒到几分钟，成功后显示“Product activated successfully”。</li>
-<li>若失败，屏幕提示错误原因（如网络问题）。</li>
+<h3 id="5-调试运行-测试用"><a href="#5-调试运行-测试用" class="headerlink" title="5. 调试运行 (测试用)"></a>5. 调试运行 (测试用)</h3><p>在正式进入后台运行前，先手动测试是否能跑通：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openclaw gateway --verbose</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>确认 Telegram 机器人有响应后，按 <code>Ctrl+C</code> 退出，进入下一步。</p>
+<h3 id="6-使用TMUX-持久化后台运行-新增"><a href="#6-使用TMUX-持久化后台运行-新增" class="headerlink" title="6. 使用TMUX 持久化后台运行 (新增)"></a>6. 使用TMUX 持久化后台运行 (新增)</h3><p>使用tmux可以让机器人即使在关闭终端窗口后依然运行。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 在termux下创建tmux的实例</span><br><span class="line">tmux new -s openclaw</span><br><span class="line"># 进入实例后启动openclaw</span><br><span class="line">openclaw gateway --verbose</span><br><span class="line"></span><br><span class="line"># 退出当前实例</span><br><span class="line">ctrl + b  然后  d</span><br><span class="line"># 查看当前在后台运行的实例</span><br><span class="line">tmux ls</span><br><span class="line"># 进入实例</span><br><span class="line">tmux a -t openclaw</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-手机端保活建议"><a href="#7-手机端保活建议" class="headerlink" title="7. 手机端保活建议"></a>7. 手机端保活建议</h3><ul>
+<li><p><strong>唤醒锁</strong>：在 Termux 菜单中点击 “Acquire wakelock”，或运行 <code>termux-wake-lock</code>。</p>
+</li>
+<li><p><strong>电池优化</strong>：在安卓设置中，将 Termux 设为“不优化电池使用”。</p>
+</li>
+<li><p><strong>控制台访问</strong>：手机浏览器访问 <code>http://127.0.0.1:18789</code> 管理面板。</p>
+</li>
 </ul>
-<h4 id="验证激活"><a href="#验证激活" class="headerlink" title="验证激活"></a>验证激活</h4><ul>
-<li>打开“设置 &gt; 更新和安全 &gt; 激活”，查看是否“已激活”。</li>
-<li>或在菜单选 [6] 检查。</li>
-</ul>
-<h3 id="方法二：离线激活（适合无网络环境）"><a href="#方法二：离线激活（适合无网络环境）" class="headerlink" title="方法二：离线激活（适合无网络环境）"></a>方法二：离线激活（适合无网络环境）</h3><p>离线方式需手动下载 MAS 脚本包，适合网络不稳定或批量操作场景。</p>
-<h4 id="下载-MAS-脚本包"><a href="#下载-MAS-脚本包" class="headerlink" title="下载 MAS 脚本包"></a>下载 MAS 脚本包</h4><ul>
-<li>访问 <a href="https://github.com/massgravel/Microsoft-Activation-Scripts">GitHub</a>。</li>
-<li>点击“Releases”，下载最新版本（如 <code>MAS_3.0.zip</code>）。</li>
-<li>或访问 <a href="https://massgrave.dev/">官方站点</a> 获取链接。</li>
-</ul>
-<h4 id="解压文件"><a href="#解压文件" class="headerlink" title="解压文件"></a>解压文件</h4><ul>
-<li>将 .zip 文件解压至任意文件夹（如桌面）。</li>
-</ul>
-<h4 id="运行脚本"><a href="#运行脚本" class="headerlink" title="运行脚本"></a>运行脚本</h4><ul>
-<li>打开解压文件夹，找到 MAS_AIO.cmd。</li>
-<li>右键点击，选择“以管理员身份运行”。</li>
-</ul>
-<h4 id="选择激活选项-界面显示菜单，与在线方式相同："><a href="#选择激活选项-界面显示菜单，与在线方式相同：" class="headerlink" title="选择激活选项 界面显示菜单，与在线方式相同："></a>选择激活选项 界面显示菜单，与在线方式相同：</h4><p>[1] HWID<br>[2] KMS38<br>[3] Online KMS<br>[4] Ohook<br>[5] TSForge<br>[6] 检查激活状态<br>[0] 退出<br>输入数字并回车。</p>
-<h4 id="完成激活"><a href="#完成激活" class="headerlink" title="完成激活"></a>完成激活</h4><ul>
-<li>离线模式下，部分功能（如 Online KMS）需网络，其他（如 HWID、Ohook）可直接运行。</li>
-<li>完成后检查激活状态。</li>
-</ul>
-<h3 id="激活类型选择"><a href="#激活类型选择" class="headerlink" title="激活类型选择"></a>激活类型选择</h3><ul>
-<li>HWID：永久绑定硬件，推荐。</li>
-<li>KMS38：长期无需续期。</li>
-<li>Online KMS：需定期联网，适合双激活。</li>
-<li>Ohook：Office 专用，高效。</li>
+<h3 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h3><ul>
+<li><a href="https://sagartamang.com/blog/openclaw-on-android-termux#2-install-dependencies">https://sagartamang.com/blog/openclaw-on-android-termux#2-install-dependencies</a></li>
 </ul>
 ]]></content>
       <categories>
         <category>技术分享</category>
       </categories>
       <tags>
-        <tag>windows</tag>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -144,8 +116,29 @@
         <category>技术分享</category>
       </categories>
       <tags>
-        <tag>windows</tag>
         <tag>linux</tag>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IDM注册</title>
+    <url>/IDM%E6%B3%A8%E5%86%8C.html</url>
+    <content><![CDATA[<ul>
+<li>在下面网址下载注册文件，在线注册因项目已归档而不能用了</li>
+<li>项目地址：<a href="https://github.com/WindowsAddict/IDM-Activation-Script">https://github.com/WindowsAddict/IDM-Activation-Script</a></li>
+<li>然后以管理员身份运行<code>IAS.cmd</code><ul>
+<li>2</li>
+<li>9</li>
+</ul>
+</li>
+<li>激活完成</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
       </tags>
   </entry>
   <entry>
@@ -169,8 +162,8 @@
         <category>技术分享</category>
       </categories>
       <tags>
-        <tag>windows</tag>
         <tag>linux</tag>
+        <tag>windows</tag>
       </tags>
   </entry>
   <entry>
@@ -483,6 +476,283 @@
       </tags>
   </entry>
   <entry>
+    <title>MAS使用方法</title>
+    <url>/MAS%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.html</url>
+    <content><![CDATA[<p><strong>Microsoft Activation Scripts (MAS) 使用方法</strong><br>以下是 MAS 的两种主要使用方式：<strong>在线激活</strong>和<strong>离线激活</strong>。根据网络环境和需求选择适合的方法。说明基于截至 2025 年 2 月 19 日的最新版本（MAS 3.0）。</p>
+<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
+<li>管理员权限：需以管理员身份运行命令或脚本。</li>
+<li>系统兼容性：支持 Windows 7 及以上，Office 2010 及以上。</li>
+<li>网络连接（在线方式）：需访问 <a href="https://get.activated.win./">https://get.activated.win。</a></li>
+<li>关闭防病毒软件（可选）：避免误报，建议暂时关闭或添加例外。<span id="more"></span></li>
+</ul>
+<h3 id="方法一：在线激活（推荐，简单快捷）"><a href="#方法一：在线激活（推荐，简单快捷）" class="headerlink" title="方法一：在线激活（推荐，简单快捷）"></a>方法一：在线激活（推荐，简单快捷）</h3><p>在线方式通过 PowerShell 一键下载并运行 MAS 脚本，适合有网络环境的用户。</p>
+<h4 id="打开-PowerShell（管理员模式）"><a href="#打开-PowerShell（管理员模式）" class="headerlink" title="打开 PowerShell（管理员模式）"></a>打开 PowerShell（管理员模式）</h4><ul>
+<li>按 <code>Win + S</code>，输入 <code>PowerShell</code>，右键选择“以管理员身份运行”。</li>
+</ul>
+<h4 id="输入命令并回车"><a href="#输入命令并回车" class="headerlink" title="输入命令并回车"></a>输入命令并回车</h4><p><code>irm https://get.activated.win | iex</code></p>
+<ul>
+<li><code>irm</code>：<code>Invoke-RestMethod</code>，用于下载脚本。</li>
+<li><code>iex</code>：<code>Invoke-Expression</code>，用于执行脚本。</li>
+<li>备用域名：若网络受限，可用<code> irm https://massgrave.dev/get | iex</code>。</li>
+</ul>
+<h4 id="选择激活选项-脚本运行后显示菜单（英文），输入数字选择："><a href="#选择激活选项-脚本运行后显示菜单（英文），输入数字选择：" class="headerlink" title="选择激活选项 脚本运行后显示菜单（英文），输入数字选择："></a>选择激活选项 脚本运行后显示菜单（英文），输入数字选择：</h4><p>[1] HWID：Windows 数字许可证激活（永久，推荐）。<br>[2] KMS38：激活至 2038 年（长期稳定）。<br>[3] Online KMS：180 天激活，支持自动续期。<br>[4] Ohook：Office 永久激活。<br>[5] TSForge：支持 Windows 10 ESU 或特殊版本。<br>[6] 检查激活状态：查看系统激活状态。<br>[0] 退出。</p>
+<h4 id="等待完成"><a href="#等待完成" class="headerlink" title="等待完成"></a>等待完成</h4><ul>
+<li>激活过程几秒到几分钟，成功后显示“Product activated successfully”。</li>
+<li>若失败，屏幕提示错误原因（如网络问题）。</li>
+</ul>
+<h4 id="验证激活"><a href="#验证激活" class="headerlink" title="验证激活"></a>验证激活</h4><ul>
+<li>打开“设置 &gt; 更新和安全 &gt; 激活”，查看是否“已激活”。</li>
+<li>或在菜单选 [6] 检查。</li>
+</ul>
+<h3 id="方法二：离线激活（适合无网络环境）"><a href="#方法二：离线激活（适合无网络环境）" class="headerlink" title="方法二：离线激活（适合无网络环境）"></a>方法二：离线激活（适合无网络环境）</h3><p>离线方式需手动下载 MAS 脚本包，适合网络不稳定或批量操作场景。</p>
+<h4 id="下载-MAS-脚本包"><a href="#下载-MAS-脚本包" class="headerlink" title="下载 MAS 脚本包"></a>下载 MAS 脚本包</h4><ul>
+<li>访问 <a href="https://github.com/massgravel/Microsoft-Activation-Scripts">GitHub</a>。</li>
+<li>点击“Releases”，下载最新版本（如 <code>MAS_3.0.zip</code>）。</li>
+<li>或访问 <a href="https://massgrave.dev/">官方站点</a> 获取链接。</li>
+</ul>
+<h4 id="解压文件"><a href="#解压文件" class="headerlink" title="解压文件"></a>解压文件</h4><ul>
+<li>将 .zip 文件解压至任意文件夹（如桌面）。</li>
+</ul>
+<h4 id="运行脚本"><a href="#运行脚本" class="headerlink" title="运行脚本"></a>运行脚本</h4><ul>
+<li>打开解压文件夹，找到 MAS_AIO.cmd。</li>
+<li>右键点击，选择“以管理员身份运行”。</li>
+</ul>
+<h4 id="选择激活选项-界面显示菜单，与在线方式相同："><a href="#选择激活选项-界面显示菜单，与在线方式相同：" class="headerlink" title="选择激活选项 界面显示菜单，与在线方式相同："></a>选择激活选项 界面显示菜单，与在线方式相同：</h4><p>[1] HWID<br>[2] KMS38<br>[3] Online KMS<br>[4] Ohook<br>[5] TSForge<br>[6] 检查激活状态<br>[0] 退出<br>输入数字并回车。</p>
+<h4 id="完成激活"><a href="#完成激活" class="headerlink" title="完成激活"></a>完成激活</h4><ul>
+<li>离线模式下，部分功能（如 Online KMS）需网络，其他（如 HWID、Ohook）可直接运行。</li>
+<li>完成后检查激活状态。</li>
+</ul>
+<h3 id="激活类型选择"><a href="#激活类型选择" class="headerlink" title="激活类型选择"></a>激活类型选择</h3><ul>
+<li>HWID：永久绑定硬件，推荐。</li>
+<li>KMS38：长期无需续期。</li>
+<li>Online KMS：需定期联网，适合双激活。</li>
+<li>Ohook：Office 专用，高效。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>chrome开启gemini</title>
+    <url>/chrome%E5%BC%80%E5%90%AFgemini.html</url>
+    <content><![CDATA[<h4 id="第一步：修改-Local-State-配置文件"><a href="#第一步：修改-Local-State-配置文件" class="headerlink" title="第一步：修改 Local State 配置文件"></a><strong>第一步：修改 Local State 配置文件</strong></h4><p>定位到 Chrome 的用户数据目录（如 Windows 的 <code>%LOCALAPPDATA%\Google\Chrome\User Data\Local State</code>），关闭浏览器后修改以下三项：</p>
+<ul>
+<li><p><code>variations_permanent_consistency_country</code>: 将 <code>&quot;cn&quot;</code> 改为 <code>&quot;us&quot;</code>。</p>
+</li>
+<li><p><code>variations_country</code>: 将 <code>&quot;cn&quot;</code> 改为 <code>&quot;us&quot;</code>。</p>
+</li>
+<li><p><code>is_glic_eligible</code>: 将 <code>false</code> 改为 <code>true</code>。</p>
+</li>
+</ul>
+<span id="more"></span>
+<h4 id="第二步：修改-Chrome-Flags-标志位"><a href="#第二步：修改-Chrome-Flags-标志位" class="headerlink" title="第二步：修改 Chrome Flags 标志位"></a><strong>第二步：修改 Chrome Flags 标志位</strong></h4><p>在浏览器地址栏输入 <code>chrome://flags</code>，将以下两项设为 <strong>Enabled</strong>：</p>
+<ul>
+<li><p><code>#glic</code></p>
+</li>
+<li><p><code>#glic-side-panel</code></p>
+</li>
+</ul>
+<h4 id="第三步：系统环境要求"><a href="#第三步：系统环境要求" class="headerlink" title="第三步：系统环境要求"></a><strong>第三步：系统环境要求</strong></h4><ul>
+<li><p><strong>语言设置：</strong> Chrome 的首选界面语言必须设置为 <strong>English</strong>（英语）。</p>
+</li>
+<li><p><strong>网络环境：</strong> 必须使用<strong>美国节点</strong>的网络环境。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>openwrt设置</title>
+    <url>/openwrt%E8%AE%BE%E7%BD%AE.html</url>
+    <content><![CDATA[<h3 id="overlay扩容"><a href="#overlay扩容" class="headerlink" title="overlay扩容"></a>overlay扩容</h3><ul>
+<li>准备好U盘，并格式化为ext4格式，</li>
+<li>插上U盘到路由器，在挂载点找到自动挂载未配置磁盘分区，并关掉。</li>
+<li>可以在挂载点里找到自己的U盘，记住设备名，一般为<code>/dev/sda1</code></li>
+<li>进行数据迁移<br><span id="more"></span><ul>
+<li>创建临时挂载点<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir /mnt/extdisk</span><br></pre></td></tr></table></figure></li>
+<li>挂载磁盘到临时挂载点<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mount /dev/sda1 /mnt/extdisk</span><br></pre></td></tr></table></figure></li>
+<li>复制整个&#x2F;overlay到U盘中<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tar -C /overlay -cvf - . | tar -C /mnt/extdisk -xf -</span><br></pre></td></tr></table></figure></li>
+<li>刷新一下<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sync</span><br></pre></td></tr></table></figure></li>
+<li>卸载临时挂在点，因为下一步就是要挂载到&#x2F;overlay目录了。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">umount  /mnt/extdisk</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>在web界面设置挂载点，添加挂载点，挂载点选‘作为外部voerlay’并保存（一定要保存&#x2F;保存并应用），</li>
+<li>然后重启路由。</li>
+<li>重启后进入软件包或在挂载点查看是否成功</li>
+</ul>
+<h3 id="openclash设置"><a href="#openclash设置" class="headerlink" title="openclash设置"></a>openclash设置</h3><h4 id="插件设置"><a href="#插件设置" class="headerlink" title="插件设置"></a>插件设置</h4><ul>
+<li><p>覆写设置：</p>
+<ul>
+<li>Github 地址修改：<a href="https://cdn.jsdelivr.net/">https://cdn.jsdelivr.net</a></li>
+<li>模式设置：</li>
+<li>勾选：使用 <code>Meta</code> 内核（支持的协议比较多，而且还支持一些新的协议）</li>
+<li>运行模式选择<code>Fake-IP</code>模式（加快响应速度、缩短网页加载时间）</li>
+<li>代理模式选择：<code>Rule</code>（策略代理），这里根据自己的实际需要来选择</li>
+<li>其他的默认选择即可</li>
+</ul>
+</li>
+<li><p>流量控制：</p>
+<ul>
+<li>勾选：路由本机代理</li>
+<li>勾选：禁用 <code>QUIC</code></li>
+<li>勾选：仅允许内网</li>
+<li>大陆域名DNS服务器：填写运营商的</li>
+</ul>
+</li>
+<li><p>DNS设置：</p>
+<ul>
+<li>本地 DNS 劫持选择：使用 <code>Dnsmasq</code> 转发</li>
+<li>启用禁止 <code>Dnsmasq</code> 缓存 DNS</li>
+</ul>
+</li>
+<li><p>GEO数据库订阅（有助于确定特定IP地址的地理位置信息）：</p>
+<ul>
+<li>勾选自动更新 <code>GeoIP MMDB</code> 数据库</li>
+<li>勾选自动更新 <code>GeoSite</code> 数据库</li>
+</ul>
+</li>
+</ul>
+<h4 id="覆写设置"><a href="#覆写设置" class="headerlink" title="覆写设置"></a>覆写设置</h4><ul>
+<li>DNS设置<ul>
+<li>勾选：自定义上游 DNS 服务器</li>
+<li>勾选：<code>Fake-IP </code>持久化</li>
+</ul>
+</li>
+<li>Mate设置<ul>
+<li>勾选：启用 TCP 并发</li>
+<li>勾选：启用流量（域名）探测</li>
+</ul>
+</li>
+</ul>
+<h4 id="配合MosDNS时设置"><a href="#配合MosDNS时设置" class="headerlink" title="配合MosDNS时设置"></a>配合MosDNS时设置</h4><ul>
+<li>插件：<ul>
+<li>DNS：停用</li>
+</ul>
+</li>
+<li>覆写：<ul>
+<li>DNS：勾选自定义上游DNS</li>
+<li>NameSerever：全部取消，新建一个<code>127.0.0.1:5335</code>，并启用</li>
+<li>FallBack：全部取消</li>
+</ul>
+</li>
+</ul>
+<h3 id="MosDNS设置"><a href="#MosDNS设置" class="headerlink" title="MosDNS设置"></a>MosDNS设置</h3><h4 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h4><ul>
+<li>勾选启用——设置监听端口（这里可以自定义）——勾选自定义国内DNS——选择对应的DNS（建议选择加密DNS）——远程DNS根据自己实际情况选择（一般保持默认即可）——<code>Bootstrap DNS</code> 服务器保持默认或者可以自行测试一下</li>
+<li>设置监听端口：5335</li>
+<li>勾选自定义国内DNS，选择对应的DNS（建议选择加密DNS）</li>
+<li>远程DNS根据自己实际情况选择（一般保持默认即可）</li>
+<li><code>Bootstrap DNS</code> 服务器保持默认或者可以自行测试一下</li>
+</ul>
+<h4 id="高级设置"><a href="#高级设置" class="headerlink" title="高级设置"></a><strong>高级设置</strong></h4><ul>
+<li>DNS服务器并发数输入2</li>
+<li>勾选防止DNS泄露</li>
+<li>勾选启用DNS广告过滤（可选可不选）</li>
+<li>规则选择<code>anti-AD</code></li>
+</ul>
+<h3 id="zerotier设置"><a href="#zerotier设置" class="headerlink" title="zerotier设置"></a>zerotier设置</h3><h4 id="VPN-zerotier-ZeroTier-Network-ID中填入ID"><a href="#VPN-zerotier-ZeroTier-Network-ID中填入ID" class="headerlink" title="VPN&gt;zerotier&gt;ZeroTier Network ID中填入ID"></a>VPN&gt;zerotier&gt;ZeroTier Network ID中填入ID</h4><h4 id="管理界面设置网络-接口-添加新接口"><a href="#管理界面设置网络-接口-添加新接口" class="headerlink" title="管理界面设置网络&gt;接口&gt;添加新接口"></a>管理界面设置网络&gt;接口&gt;添加新接口</h4><ul>
+<li>接口名称随意</li>
+<li>协议：不配置协议</li>
+<li>接口：选zti开头的</li>
+<li>提交后配置防火墙</li>
+<li>自定义一个新防火墙<code>zerotier</code></li>
+<li>保存并应用</li>
+</ul>
+<h4 id="管理界面设置网络-防火墙，编辑zerotier"><a href="#管理界面设置网络-防火墙，编辑zerotier" class="headerlink" title="管理界面设置网络&gt;防火墙，编辑zerotier"></a>管理界面设置网络&gt;防火墙，编辑zerotier</h4><ul>
+<li>全选接受</li>
+<li>IP动态伪装选中</li>
+<li>允许转发及转发到都选LAN</li>
+</ul>
+<h4 id="通信规则-添加规则并编辑"><a href="#通信规则-添加规则并编辑" class="headerlink" title="通信规则&gt;添加规则并编辑"></a>通信规则&gt;添加规则并编辑</h4><ul>
+<li>协议：<code>UDP</code></li>
+<li>源区域：任意区域</li>
+<li>目标区域：设备</li>
+<li>端口：9993</li>
+<li>保存并应用</li>
+</ul>
+<h4 id="zerotier官网上设置"><a href="#zerotier官网上设置" class="headerlink" title="zerotier官网上设置"></a>zerotier官网上设置</h4><ul>
+<li><code>Advanced&gt;Add Routes</code></li>
+<li><code>Destination</code>：填写局域网网段</li>
+<li><code>Via</code>：填写路由的虚拟网址</li>
+<li>添加</li>
+</ul>
+<h3 id="通过DHCP自定义分配网关"><a href="#通过DHCP自定义分配网关" class="headerlink" title="通过DHCP自定义分配网关"></a>通过DHCP自定义分配网关</h3><h4 id="首先你需要给设备绑定静态IP"><a href="#首先你需要给设备绑定静态IP" class="headerlink" title="首先你需要给设备绑定静态IP"></a>首先你需要给设备绑定静态IP</h4><h4 id="在openwrt中依次选择：网络-接口-LAN-DHCP-高级设置，在DHCP选项中设置"><a href="#在openwrt中依次选择：网络-接口-LAN-DHCP-高级设置，在DHCP选项中设置" class="headerlink" title="在openwrt中依次选择：网络-&gt;接口-&gt;LAN-&gt;DHCP-&gt;高级设置，在DHCP选项中设置"></a>在openwrt中依次选择：网络-&gt;接口-&gt;LAN-&gt;DHCP-&gt;高级设置，在DHCP选项中设置</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tag:name,3,192.168.50.2`</span><br></pre></td></tr></table></figure>
+<ul>
+<li>参数说明，每个<code>,</code>为一项<ul>
+<li><code>tag:</code>标签设置，后面的名字可以自定义</li>
+<li>第二项<code>3</code>代表设置网关，常用可选项有：<ul>
+<li><code>1</code>代表设置子网掩码</li>
+<li><code>3</code>代表设置网关</li>
+<li><code>6</code>代表设置DNS</li>
+</ul>
+</li>
+<li>第三项为你要设置的静态IP地址</li>
+</ul>
+</li>
+</ul>
+<h4 id="通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置"><a href="#通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置" class="headerlink" title="通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置"></a>通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置</h4><h3 id="切换openwrt启动分区"><a href="#切换openwrt启动分区" class="headerlink" title="切换openwrt启动分区"></a>切换openwrt启动分区</h3><h4 id="确认当前分区状态"><a href="#确认当前分区状态" class="headerlink" title="确认当前分区状态"></a>确认当前分区状态</h4><p>检查设备当前运行的分区以及可用的分区信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat /proc/mtd</span><br></pre></td></tr></table></figure>
+<h4 id="查看和设置分区环境变量"><a href="#查看和设置分区环境变量" class="headerlink" title="查看和设置分区环境变量"></a>查看和设置分区环境变量</h4><p>可以通过以下命令检查当前分区设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fw_printenv</span><br></pre></td></tr></table></figure>
+<p>查找类似于boot_part的环境变量。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">boot_part=1</span><br></pre></td></tr></table></figure>
+<p>如果需要修改分区，可以使用fw_setenv命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fw_setenv boot_part 2</span><br></pre></td></tr></table></figure>
+<h4 id="重启设备切换分区"><a href="#重启设备切换分区" class="headerlink" title="重启设备切换分区"></a>重启设备切换分区</h4><p>设置完成后，重启设备使更改生效：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
+<p>重启完成后验证一下</p>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>openwrt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>tpclash尝试记录</title>
+    <url>/tpclash%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95.html</url>
+    <content><![CDATA[<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><blockquote>
+<p><a href="https://www.youtube.com/watch?v=KrjCBS8vgFY">抛弃openwrt，用linux部署代理全家科学上网。最稳的纯翻墙方案，电视盒子也能部署 - YouTube</a></p>
+</blockquote>
+<span id="more"></span>
+<h2 id="部署过程"><a href="#部署过程" class="headerlink" title="部署过程"></a>部署过程</h2><ul>
+<li><p>通过博主的指引，下载了github仓库里的几个文件</p>
+<ul>
+<li><p>首先是下载了这个版本tpclash-mihomo-linux-amd64-v3，经过尝试启动不起来</p>
+</li>
+<li><p>然后下载了tpclash-mihomo-linux-amd64版本，顺利启动</p>
+</li>
+<li><p>经过博主的指引修改的配置文件中少了一行命令，导致web页面没启动。代码如下下  </p>
+<p><code>external-controller: 0.0.0.0:9090</code></p>
+</li>
+<li><p>最终顺利启动，也测试成功，代理时出现的问题是，我发现自己的ipv6在没有禁用的情况下，会通过ipv6泄漏dns，我个人无法解决，又不想禁用ipv6，决定暂时弃用，待找到方案后再使用，这是一坑</p>
+</li>
+<li><p>等我根据使用文档，关闭开机自启，并关闭软件后，又有新问题出现了，就是我的ubuntu不能连网了，因为我自己是菜鸟，不会排查问题，所以解决问题的方法就是重装了系统，折腾了几个小时，幸好没有太多数据，这也是教训，测试不要在正在使用的服务器的进行，另建一个虚拟机最好。</p>
+</li>
+<li><p>下面记录下代码头部的完整部分，以备下次折腾</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 请指定自己实际的接口名称(ip a 获取)</span><br><span class="line">interface-name: ens18</span><br><span class="line"></span><br><span class="line">external-controller: 0.0.0.0:9090</span><br><span class="line"></span><br><span class="line">tun:</span><br><span class="line">  enable: true</span><br><span class="line">  stack: system</span><br><span class="line">  dns-hijack:</span><br><span class="line">    - any:53</span><br><span class="line">  #   - 8.8.8.8:53</span><br><span class="line">  #   - tcp://8.8.8.8:53</span><br><span class="line">  # auto-route 与 ebpf 冲突, 不能同时使用</span><br><span class="line">  #auto-route: true</span><br><span class="line">  #auto-redir: true</span><br><span class="line">  #auto-detect-interface: true</span><br><span class="line"></span><br><span class="line"># ebpf 需要指定物理网卡</span><br><span class="line">ebpf:</span><br><span class="line">  redirect-to-tun:</span><br><span class="line">    - ens18</span><br><span class="line"></span><br><span class="line"># ebpf 需要配置 mark</span><br><span class="line">routing-mark: 666</span><br><span class="line"></span><br><span class="line"># 开启 DNS 配置, 且使用 fake-ip 模式</span><br><span class="line">dns:</span><br><span class="line">  enable: true</span><br><span class="line">  listen: 0.0.0.0:1053</span><br><span class="line">  enhanced-mode: fake-ip</span><br><span class="line">  fake-ip-range: 198.18.0.1/16</span><br><span class="line">  default-nameserver:</span><br><span class="line">    - 223.5.5.5</span><br><span class="line">    - 119.29.29.29</span><br><span class="line">  nameserver:</span><br><span class="line">    - 223.5.5.5</span><br><span class="line">    - 119.29.29.29</span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux设置</title>
     <url>/linux%E8%AE%BE%E7%BD%AE.html</url>
     <content><![CDATA[<h3 id="ubuntu相关设置"><a href="#ubuntu相关设置" class="headerlink" title="ubuntu相关设置"></a>ubuntu相关设置</h3><h4 id="设置合盖不休眠"><a href="#设置合盖不休眠" class="headerlink" title="设置合盖不休眠"></a>设置合盖不休眠</h4><ul>
@@ -699,466 +969,6 @@
       </categories>
       <tags>
         <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>openwrt固件编译</title>
-    <url>/openwrt%E5%9B%BA%E4%BB%B6%E7%BC%96%E8%AF%91.html</url>
-    <content><![CDATA[<h4 id="本地编译"><a href="#本地编译" class="headerlink" title="本地编译"></a>本地编译</h4><ul>
-<li>首先是注意事项<br>首先装好 Ubuntu 64bit，推荐 Ubuntu 22.04<br>不要用 root 用户 git 和编译！！！<br>国内用户编译前最好准备好软件源下载加速<br>默认登陆IP 192.168.1.1, 密码 password<span id="more"></span></li>
-<li>安装编译依赖</li>
-</ul>
-   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update -y</span><br><span class="line"><span class="built_in">sudo</span> apt full-upgrade -y</span><br><span class="line"><span class="built_in">sudo</span> apt install -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \</span><br><span class="line">bzip2 ccache clang cmake cpio curl device-tree-compiler flex gawk gettext gcc-multilib g++-multilib \</span><br><span class="line">git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libfuse-dev libglib2.0-dev libgmp3-dev \</span><br><span class="line">libltdl-dev libmpc-dev libmpfr-dev libncurses-dev libncurses-dev libpython3-dev libreadline-dev \</span><br><span class="line">libssl-dev libtool llvm lrzsz genisoimage msmtp ninja-build p7zip p7zip-full patch pkgconf python3 \</span><br><span class="line">python3-pyelftools python3-setuptools qemu-utils rsync scons squashfs-tools subversion swig texinfo \</span><br><span class="line">uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev</span><br></pre></td></tr></table></figure>
-<ul>
-<li>下载源代码，更新 feeds 并选择配置</li>
-</ul>
-   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/coolsnowwolf/lede</span><br><span class="line"><span class="built_in">cd</span> lede</span><br><span class="line">./scripts/feeds update -a</span><br><span class="line">./scripts/feeds install -a</span><br><span class="line">make menuconfig</span><br></pre></td></tr></table></figure>
-<ul>
-<li>下载 dl 库，编译固件<br>（-j 后面是线程数，第一次编译推荐用单线程）</li>
-</ul>
-   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make download -j8</span><br><span class="line">make V=s -j1</span><br></pre></td></tr></table></figure>
-<ul>
-<li>二次编译：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> lede</span><br><span class="line">git pull</span><br><span class="line">./scripts/feeds update -a</span><br><span class="line">./scripts/feeds install -a</span><br><span class="line">make defconfig</span><br><span class="line">make download -j8</span><br><span class="line">make V=s -j$(<span class="built_in">nproc</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>如果需要重新配置：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> -rf .config</span><br><span class="line">make menuconfig</span><br><span class="line">make V=s -j$(<span class="built_in">nproc</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>编译完成后输出路径：bin&#x2F;targets</li>
-<li>原文链接：<a href="https://github.com/coolsnowwolf/lede">https://github.com/coolsnowwolf/lede</a></li>
-</ul>
-<h4 id="openwrt编译步骤与命令详解"><a href="#openwrt编译步骤与命令详解" class="headerlink" title="openwrt编译步骤与命令详解"></a>openwrt编译步骤与命令详解</h4><ul>
-<li><p>首次编译</p>
-<ul>
-<li>克隆 Open­Wrt 源码<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/coolsnowwolf/lede openwrt</span><br></pre></td></tr></table></figure></li>
-<li>进入源码目录 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd openwrt</span><br></pre></td></tr></table></figure></li>
-<li>下载 feeds 源中的软件包源码<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./scripts/feeds update -a</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>feeds 是扩展的软件包，独立于 Open­Wrt 源码之外，所以需要单独进行拉取和更新。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>安装 feeds 中的软件包</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./scripts/feeds install -a</span><br></pre></td></tr></table></figure></li>
-<li><p>调整 Open­Wrt 系统组件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make menuconfig</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>首次编译建议只选择架构，其它都不要动，这样编译成功率会更高。如果不打算调整组件则输入make defconfig，它会检测编译环境并生成默认的编译配置文件。</p>
-</blockquote>
-</li>
-<li><p>生成当前配置与默认配置的差异</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./scripts/diffconfig.sh &gt; diffconfig</span><br></pre></td></tr></table></figure></li>
-<li><p>预下载编译所需的软件包</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make download -j8 V=s</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>-j8是指使用8个线程下载，理论上是数字越大下载越快，但似乎有个上限，实测5线程以上其实速度相差不了多少，在网络好的情况下，基本在5分钟以内能下载完。</p>
-</blockquote>
-</li>
-<li><p>检查文件完整性</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">find dl -size -1024c -exec ls -l &#123;&#125; \;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>此命令可以列出下载不完整的文件（根据我多次编译的经验得出小于1k的文件属于下载不完整），如果存在这样的文件可以使用find dl -size -1024c -exec rm -f {} ;命令将它们删除，然后重新执行make download下载并反复检查，确认所有文件完整可大大提高编译成功率，避免浪费时间。</p>
-</blockquote>
-</li>
-<li><p>开始编译</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make -j1 V=s</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>-j1：使用单线程编译。新手推荐单线程编译，一是因为玄学问题可能成功率高，二是方便查看错误日志。<br>V&#x3D;s：输出详细日志，用于编译失败时找出错误。而且满屏代码在跑能装逼，一跑就是几个小时，装逼更持久。</p>
-</blockquote>
-</li>
-<li><p>再次编译</p>
-</li>
-<li><p>进入源码目录（如果不在此目录）</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd openwrt</span><br></pre></td></tr></table></figure></li>
-<li><p>更新</p>
-<blockquote>
-<p>TIPS： 短期内再次编译可忽略更新这个步骤。</p>
-</blockquote>
-<ul>
-<li>更新系统软件包<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo sh -c &quot;apt update &amp;&amp; apt upgrade -y&quot;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>主要作用是更新在编译环境搭建时所安装的编译组件</p>
-</blockquote>
-</li>
-<li>拉取 Open­Wrt 源码更新<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure></li>
-<li>更新 feeds 源中的软件包源码<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./scripts/feeds update -a</span><br></pre></td></tr></table></figure></li>
-<li>安装 feeds 中的软件包<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./scripts/feeds install -a</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>文件清理</p>
-<ul>
-<li>清除旧的编译产物（可选）<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make clean</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在源码有大规模更新或者内核更新后执行，以保证编译质量。此操作会删除&#x2F;bin和&#x2F;build_dir目录中的文件。</p>
-</blockquote>
-</li>
-<li>清除旧的编译产物、交叉编译工具及工具链等目录（可选）<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make dirclean</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>更换架构编译前必须执行。此操作会删除&#x2F;bin和&#x2F;build_dir目录的中的文件(make clean)以及&#x2F;staging_dir、&#x2F;toolchain、&#x2F;tmp和&#x2F;logs中的文件。</p>
-</blockquote>
-</li>
-<li>清除 Open­Wrt 源码以外的文件（可选）<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make distclean</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>除非是做开发，并打算 push 到 GitHub 这样的远程仓库，否则几乎用不到。此操作相当于make dirclean外加删除&#x2F;dl、&#x2F;feeds目录和.config文件。</p>
-</blockquote>
-</li>
-<li>还原 Open­Wrt 源码到初始状态（可选）<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clean -xdf</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如果把源码改坏了，或者长时间没有进行编译时使用。</p>
-</blockquote>
-</li>
-<li>清除临时文件<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm -rf tmp</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>删除执行make menuconfig后产生的一些临时文件，包括一些软件包的检索信息，删除后会重新加载package目录下的软件包。若不删除会导致一些新加入的软件包不显示。</p>
-</blockquote>
-</li>
-<li>删除编译配置文件<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm -f .config</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在不删除的情况下如果取消选择某些组件它的依赖组件不会自动取消，所以对于需要调整组件的情况下建议删除。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>编译</p>
-<ul>
-<li>调整 Open­Wrt 系统组件<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make menuconfig</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如果不打算调整组件则输入make defconfig，它会检测编译环境并根据更新自动调整编译配置文件。</p>
-</blockquote>
-</li>
-<li>预下载编译所需的软件包<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make download -j8 V=s</span><br></pre></td></tr></table></figure></li>
-<li>检查文件完整性<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">find dl -size -1024c -exec ls -l &#123;&#125; \;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>此命令可以列出下载不完整的文件（根据我多次编译的经验得出小于1k的文件属于下载不完整），如果存在这样的文件可以使用find dl -size -1024c -exec rm -f {} ;命令将它们删除，然后重新执行make download下载并反复检查，确认所有文件完整可大大提高编译成功率，避免浪费时间。</p>
-</blockquote>
-</li>
-<li>开始编译<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make -j$(nproc) || make -j1 || make -j1 V=s</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>多线程编译失败后自动进入单线程编译，失败则输出详细日志。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>原文链接：<a href="https://p3terx.com/archives/openwrt-compilation-steps-and-commands.html">https://p3terx.com/archives/openwrt-compilation-steps-and-commands.html</a></p>
-</li>
-</ul>
-<h4 id="在线云编译"><a href="#在线云编译" class="headerlink" title="在线云编译"></a>在线云编译</h4><h5 id="P3TERX方案"><a href="#P3TERX方案" class="headerlink" title="P3TERX方案"></a>P3TERX方案</h5><ul>
-<li>前提<br>1、已经会本地编译<br>2、有GitHub账号</li>
-<li>第一步<br>打开自己本地编译目录，先和大屌源码同步一下<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull</span><br><span class="line">./scripts/feeds update -a</span><br><span class="line">./scripts/feeds install -a</span><br></pre></td></tr></table></figure>
-然后执行<code>make menuconfig</code> 选好后执行<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make defconfig</span><br><span class="line">./scripts/diffconfig.sh &gt; seed.config</span><br></pre></td></tr></table></figure>
-这样配置的差异部分就写入这个文件了</li>
-<li>第二步<br>1、打开 <code>https://github.com/P3TERX/Actions-OpenWrt</code> fork这个项目<br>2、之后在自己fork出来的项目里的网页里创建一个新文件（点击Create new file）<code>.conifg</code><br>3、然后把前面提到的seed.config文件的内容粘贴进来<br>4、其它修改化设置可以查看<code>https://p3terx.com/archives/build-openwrt-with-github-actions.html</code></li>
-<li>第三步<br>1、在<code>Actions</code>页面可以手动开始编译了<br>2、固件下载在<code>Actions--Build OpenWrt--Artifacts--OpenWrt firmware</code></li>
-<li>原文链接：<a href="https://github.com/coolsnowwolf/lede/issues/2288">https://github.com/coolsnowwolf/lede/issues/2288</a></li>
-</ul>
-<h5 id="KFERMercer方案"><a href="#KFERMercer方案" class="headerlink" title="KFERMercer方案"></a>KFERMercer方案</h5><ul>
-<li>fork <a href="https://github.com/coolsnowwolf/lede">https://github.com/coolsnowwolf/lede</a> 仓库</li>
-<li>在<code>.github/workflows/</code>下创建工作流文件<code>openwrt-CI.yml</code></li>
-<li>代码内容为：如需定制，代码内有详细说明</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">name: OpenWrt-CI</span><br><span class="line"></span><br><span class="line"># 触发方式：支持手动触发并要求用户输入版本号，默认为 &quot;v1.0.0&quot;</span><br><span class="line">on:</span><br><span class="line">  workflow_dispatch:</span><br><span class="line">    inputs:</span><br><span class="line">      tag:</span><br><span class="line">        description: &quot;Release tag for the firmware&quot;</span><br><span class="line">        required: true</span><br><span class="line">        default: &quot;v1.0.0&quot;</span><br><span class="line"></span><br><span class="line"># 设置权限：仅允许读取内容</span><br><span class="line">permissions:</span><br><span class="line">  contents: read</span><br><span class="line"></span><br><span class="line">jobs:</span><br><span class="line">  build_openwrt:</span><br><span class="line">    name: Build OpenWrt Firmware # 定义任务名称</span><br><span class="line">    runs-on: ubuntu-latest       # 运行环境，使用最新的 Ubuntu 系统</span><br><span class="line"></span><br><span class="line">    steps:</span><br><span class="line">      - name: Space cleanup and Initialization environment</span><br><span class="line">        env:</span><br><span class="line">          DEBIAN_FRONTEND: noninteractive # 避免交互式安装</span><br><span class="line">        run: |</span><br><span class="line">          # 清理环境以释放磁盘空间和提高构建效率</span><br><span class="line">          sudo -E rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android</span><br><span class="line">          sudo -E apt-mark hold grub-efi-amd64-signed</span><br><span class="line">          sudo -E apt update</span><br><span class="line">          sudo -E apt -y purge azure-cli* docker* ghc* zulu* llvm* firefox google* dotnet* powershell* openjdk* mysql* php* mongodb* dotnet* snap*</span><br><span class="line">          sudo -E apt -y full-upgrade</span><br><span class="line">          # 安装所需的软件包</span><br><span class="line">          sudo -E apt -y install ack antlr3 aria2 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libreadline-dev libssl-dev libtool lrzsz mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python3 python3-pip libpython3-dev qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev</span><br><span class="line">          # 清理不必要的文件和包</span><br><span class="line">          sudo -E systemctl daemon-reload</span><br><span class="line">          sudo -E apt -y autoremove --purge</span><br><span class="line">          sudo -E apt clean</span><br><span class="line">          # 设置时区为上海</span><br><span class="line">          sudo -E timedatectl set-timezone &quot;Asia/Shanghai&quot;</span><br><span class="line"></span><br><span class="line">      - name: Checkout OpenWrt</span><br><span class="line">        uses: actions/checkout@v4 # 从 Git 仓库拉取代码</span><br><span class="line"></span><br><span class="line">      - name: Update feeds</span><br><span class="line">        run: |</span><br><span class="line">          # 添加额外的软件源 OpenClash</span><br><span class="line">          echo &#x27;src-git OpenClash https://github.com/vernesong/OpenClash.git;master&#x27; &gt;&gt;feeds.conf.default</span><br><span class="line">          # 更新并安装所有的源</span><br><span class="line">          ./scripts/feeds update -a</span><br><span class="line">          ./scripts/feeds install -a</span><br><span class="line"></span><br><span class="line">      - name: Generate configuration file</span><br><span class="line">        run: |</span><br><span class="line">          # 删除之前的配置文件</span><br><span class="line">          rm -f ./.config*</span><br><span class="line">          touch ./.config</span><br><span class="line"></span><br><span class="line">          # 添加 OpenWrt 配置</span><br><span class="line">          cat &gt;&gt; .config &lt;&lt;EOF</span><br><span class="line">          CONFIG_TARGET_ipq806x=y</span><br><span class="line">          CONFIG_TARGET_ipq806x_generic=y</span><br><span class="line">          CONFIG_TARGET_ipq806x_generic_DEVICE_linksys_ea8500=y</span><br><span class="line">          # ... (省略部分具体配置内容)</span><br><span class="line">          EOF</span><br><span class="line"></span><br><span class="line">          # 去掉配置文件中的缩进以满足编译要求</span><br><span class="line">          sed -i &#x27;s/^[ \t]*//g&#x27; ./.config</span><br><span class="line">          # 生成默认配置</span><br><span class="line">          make defconfig</span><br><span class="line">          # 添加网络配置到默认设置文件</span><br><span class="line">          sed -i &quot;2i # network config&quot; ./package/lean/default-settings/files/zzz-default-settings</span><br><span class="line">          sed -i &quot;3i uci set network.lan.ipaddr=&#x27;192.168.50.1&#x27;&quot; ./package/lean/default-settings/files/zzz-default-settings # 设置 LAN IP 地址</span><br><span class="line">          sed -i &quot;4i uci set network.lan.proto=&#x27;static&#x27;&quot; ./package/lean/default-settings/files/zzz-default-settings # 设置 LAN 使用静态 IP</span><br><span class="line"></span><br><span class="line">      - name: Download packages</span><br><span class="line">        run: make download -j16 # 并行下载所需的编译包，加速构建过程</span><br><span class="line"></span><br><span class="line">      - name: Compile firmware</span><br><span class="line">        run: |</span><br><span class="line">          # 使用多核编译以加快构建速度，如果失败则显示详细错误日志</span><br><span class="line">          make -j$(nproc) || make -j1 V=s</span><br><span class="line"></span><br><span class="line">      - name: Prepare artifact</span><br><span class="line">        run: |</span><br><span class="line">          # 创建保存固件、包和编译信息的目录</span><br><span class="line">          mkdir -p ./artifact/firmware</span><br><span class="line">          mkdir -p ./artifact/package</span><br><span class="line">          mkdir -p ./artifact/buildinfo</span><br><span class="line">          # 删除无用的 package 文件夹</span><br><span class="line">          rm -rf $(find ./bin/targets/ -type d -name &quot;packages&quot;)</span><br><span class="line">          # 将固件、安装包和构建信息拷贝到相应目录</span><br><span class="line">          cp -rf $(find ./bin/targets/ -type f -name &quot;*.bin&quot;) ./artifact/firmware/</span><br><span class="line">          cp -rf $(find ./bin/packages/ -type f -name &quot;*.ipk&quot;) ./artifact/package/</span><br><span class="line">          cp -rf $(find ./bin/targets/ -type f -name &quot;*.buildinfo&quot; -o -name &quot;*.manifest&quot;) ./artifact/buildinfo/</span><br><span class="line"></span><br><span class="line">      - name: Upload buildinfo</span><br><span class="line">        uses: actions/upload-artifact@v4 # 上传构建信息到 GitHub</span><br><span class="line">        with:</span><br><span class="line">          name: OpenWrt_buildinfo</span><br><span class="line">          path: ./artifact/buildinfo/</span><br><span class="line"></span><br><span class="line">      - name: Upload firmware</span><br><span class="line">        uses: actions/upload-artifact@v4 # 上传固件到 GitHub</span><br><span class="line">        with:</span><br><span class="line">          name: OpenWrt_firmware</span><br><span class="line">          path: ./artifact/firmware/</span><br><span class="line">      </span><br><span class="line">      - name: Upload package</span><br><span class="line">        uses: actions/upload-artifact@v4 # 上传安装包到 GitHub</span><br><span class="line">        with:</span><br><span class="line">          name: OpenWrt_package</span><br><span class="line">          path: ./artifact/package/</span><br><span class="line">          </span><br><span class="line">      - name: Set Release Date</span><br><span class="line">        id: release_date</span><br><span class="line">        run: |</span><br><span class="line">          # 获取当前时间并格式化为 年.月.日-时分</span><br><span class="line">          release_date=$(date +&#x27;%Y.%m.%d-%H:%M&#x27;)</span><br><span class="line">          echo &quot;::set-output name=date::$release_date&quot;</span><br><span class="line"></span><br><span class="line">      - name: Upload release asset</span><br><span class="line">        if: github.event_name == &#x27;workflow_dispatch&#x27; # 确保只有在手动触发时上传 Release</span><br><span class="line">        uses: svenstaro/upload-release-action@v2</span><br><span class="line">        with:</span><br><span class="line">          repo_token: $&#123;&#123; secrets.YOURTOKEN &#125;&#125; # 使用 GitHub Token 进行授权</span><br><span class="line">          file: ./artifact/firmware/*.bin # 指定要上传的固件文件</span><br><span class="line">          tag: $&#123;&#123; github.event.inputs.tag &#125;&#125; # 使用用户输入的版本号作为 Tag</span><br><span class="line">          release_name: &quot;OpenWrt Release on $&#123;&#123; steps.release_date.outputs.date &#125;&#125;&quot; # 使用格式化的时间作为 Release 名称</span><br><span class="line">          file_glob: true # 支持通配符</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>个人在原仓库代码的基础上做了少量修改及加入备注，以符合个人需求</li>
-<li>仓库地址：<a href="https://github.com/KFERMercer/OpenWrt-CI">https://github.com/KFERMercer/OpenWrt-CI</a></li>
-</ul>
-<h4 id="在线自动生成固件"><a href="#在线自动生成固件" class="headerlink" title="在线自动生成固件"></a>在线自动生成固件</h4><ul>
-<li><a href="https://firmware-selector.openwrt.org/">https://firmware-selector.openwrt.org/</a></li>
-<li><a href="https://firmware-selector.immortalwrt.org/">https://firmware-selector.immortalwrt.org/</a></li>
-<li><a href="https://openwrt.ai/">https://openwrt.ai/</a></li>
-</ul>
-<h4 id="插件中英文对照"><a href="#插件中英文对照" class="headerlink" title="插件中英文对照"></a>插件中英文对照</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">luci-app-clash    # clash科学上网（基本上没用的了，已经给luci-app-openclash代替）</span><br><span class="line">luci-app-accesscontrol    # 访问时间控制</span><br><span class="line">luci-app-adblock    # ADB 广告过滤</span><br><span class="line">luci-app-adbyby-plus    # 广告屏蔽大师Plus +</span><br><span class="line">luci-app-adguardhome    # adguardhome广告过滤</span><br><span class="line">luci-app-advanced    # 高级设置（内置luci-app-fileassistant文件助手）</span><br><span class="line">luci-app-advanced-reboot    # 高级重启</span><br><span class="line">luci-app-aliyundrive-webdav    # 阿里云盘</span><br><span class="line">luci-app-ahcp    # 支持 AHCPd</span><br><span class="line">luci-app-airplay2    # Apple AirPlay2 无损音频接收服务器</span><br><span class="line">luci-app-aliddns    # 阿里 DDNS</span><br><span class="line">luci-app-amule    # aMule 下载工具</span><br><span class="line">luci-app-argon-config    # argon主题设置,要配合argon主题使用</span><br><span class="line">luci-app-aria2    # Aria2 下载工具</span><br><span class="line">luci-app-arpbind    # IP/MAC 绑定</span><br><span class="line">luci-app-asterisk    # 支持 Asterisk 电话服务器</span><br><span class="line">luci-app-attendedsysupgrade    # 固件更新升级相关</span><br><span class="line">luci-app-autoreboot    # 支持计划重启</span><br><span class="line">luci-app-autoupdate    # 定时更新固件插件</span><br><span class="line">luci-app-baidupcs-web    # 百度网盘管理</span><br><span class="line">luci-app-bcp38    # BCP38 网络入口过滤（不确定）</span><br><span class="line">luci-app-bird1-ipv4    # 对Bird1-ipv4的支持</span><br><span class="line">luci-app-bird1-ipv6    # 对Bird1-ipv6的支持</span><br><span class="line">luci-app-bmx6    # BMX6路由协议</span><br><span class="line">luci-app-cifs-mount    # CIFS/SMB挂载设置</span><br><span class="line">luci-app-cifsd    # CIFS/SMB网络共享</span><br><span class="line">luci-app-cjdns    # 加密IPV6网络相关</span><br><span class="line">luci-app-clamav    # ClamAV杀毒软件</span><br><span class="line">luci-app-commands    # Shell命令模块</span><br><span class="line">luci-app-control-timewol    # 定时网络设备唤醒</span><br><span class="line">luci-app-control-webrestriction    # 访问限制</span><br><span class="line">luci-app-control-weburl    # 网址过滤</span><br><span class="line">luci-app-cpulimit    # CPU性能调整</span><br><span class="line">luci-app-cshark    # CloudShark捕获工具</span><br><span class="line">luci-app-cupsd    # CUPS 打印服务器</span><br><span class="line">luci-app-ddns    # 动态域名 DNS（集成阿里DDNS客户端）</span><br><span class="line">luci-app-ddnsto    # 内网穿透</span><br><span class="line">luci-app-diag-core    # core诊断工具</span><br><span class="line">luci-app-diskman    # 磁盘管理工具</span><br><span class="line">luci-app-dnscrypt-proxy    # DNSCrypt解决DNS污染</span><br><span class="line">luci-app-dnsforwarder    # DNSForwarder防DNS污染</span><br><span class="line">luci-app-docker    # 不带控制面板的docker</span><br><span class="line">luci-app-dockerman    # 带控制面板的docker</span><br><span class="line">luci-app-dump1090    # 民航无线频率（不确定）</span><br><span class="line">luci-app-dynapoint    # DynaPoint（未知）</span><br><span class="line">luci-app-e2guardian    # Web内容过滤器</span><br><span class="line">luci-app-easymesh    # 简单MESH(可有线+无线回程)</span><br><span class="line">luci-app-eqos    # 内网IP地址限速</span><br><span class="line">luci-app-familycloud    # 家庭云盘</span><br><span class="line">luci-app-fileassistant    # 文件助手</span><br><span class="line">luci-app-filebrowser    # 文件管理器</span><br><span class="line">luci-app-filetransfer    # 文件传输（可web安装ipk包）</span><br><span class="line">luci-app-firewall    # 添加防火墙</span><br><span class="line">luci-app-frpc    # 内网穿透Frp客户端</span><br><span class="line">luci-app-frps    # 内网穿透Frp服务端</span><br><span class="line">luci-app-fwknopd    # Firewall Knock Operator服务器</span><br><span class="line">luci-app-godproxy    # 广告拦截</span><br><span class="line">luci-app-gost    # GO语言实现的安全隧道（隐蔽的https代理）</span><br><span class="line">luci-app-gowebdav    # GoWebDav 是一个轻巧、简单、快速的 WebDav 服务端程序</span><br><span class="line">luci-app-guest-wifi    # WiFi访客网络</span><br><span class="line">luci-app-haproxy-tcp    # HAProxy负载均衡-TCP</span><br><span class="line">luci-app-hd-idle    # 硬盘休眠</span><br><span class="line">luci-app-hnet    # Homenet Status家庭网络控制协议</span><br><span class="line">luci-app-https-dns-proxy    # 通过HTTPS代理为DNS提供Web UI</span><br><span class="line">luci-app-ipsec-vpnserver-manyusers    # ipsec-vpn（VPN服务器）</span><br><span class="line">luci-app-iptvhelper    # iptvhelper,帮助你轻松配置IPTV</span><br><span class="line">luci-app-jd-dailybonus    # 京东签到服务</span><br><span class="line">luci-app-kodexplorer    # KOD可道云私人网盘</span><br><span class="line">luci-app-koolddns    # 支持阿里DDNS、DnsPod动态域名解析</span><br><span class="line">luci-app-linkease    # 易有云文件管理器</span><br><span class="line">luci-app-lxc    # LXC容器管理</span><br><span class="line">luci-app-mentohust    # 锐捷验证</span><br><span class="line">luci-app-minidlna    # 完全兼容DLNA / UPnP-AV客户端的服务器软件</span><br><span class="line">luci-app-mjpg-streamer    # 兼容Linux-UVC的摄像头程序</span><br><span class="line">luci-app-music-remote-center    #PCHiFi 数字转盘遥控</span><br><span class="line">luci-app-mwan3    # MWAN3负载均衡</span><br><span class="line">luci-app-mwan3helper    # MWAN3分流助手</span><br><span class="line">luci-app-n2n_v2    # N2N内网穿透 N2N v2 VPN服务</span><br><span class="line">luci-app-netdata    # 实时监控中文版</span><br><span class="line">luci-app-nfs    # NFS网络共享</span><br><span class="line">luci-app-nft-qos    # QOS流量控制 Nftables版</span><br><span class="line">luci-app-nlbwmon    # 网络带宽监视器</span><br><span class="line">luci-app-noddos    # NodDOS Clients 阻止DDoS攻击（丢弃）</span><br><span class="line">luci-app-nps    # 内网穿透nps</span><br><span class="line">luci-app-ntpc    # NTP时间同步服务器</span><br><span class="line">luci-app-oaf    # 应用过滤</span><br><span class="line">luci-app-ocserv    # OpenConnect VPN服务</span><br><span class="line">luci-app-olsr    # OLSR配置和状态模块</span><br><span class="line">luci-app-olsr-services    # OLSR服务器</span><br><span class="line">luci-app-olsr-viz    # OLSR可视化</span><br><span class="line">luci-app-oled    # 为1306 0.91 oled专用，如果oled不显示，请看这里</span><br><span class="line">luci-app-onliner    # 流量监控</span><br><span class="line">luci-app-openclash    # openclash</span><br><span class="line">luci-app-openvpn    # OpenVPN客户端</span><br><span class="line">luci-app-openvpn-server    # 易于使用的OpenVPN服务器 Web-UI</span><br><span class="line">luci-app-oscam    # OSCAM服务器</span><br><span class="line">luci-app-p910nd    #打印服务</span><br><span class="line">luci-app-pagekitec    # Pagekitec内网穿透客户端</span><br><span class="line">luci-app-passwall    # 科学上网</span><br><span class="line">luci-app-polipo    # Polipo代理(是一个小型且快速的网页缓存代理)</span><br><span class="line">luci-app-poweroff    # 关机</span><br><span class="line">luci-app-pppoe-relay    # PPPoE NAT穿透 点对点协议（PPP）</span><br><span class="line">luci-app-pppoe-server    # 宽带接入认证服务器</span><br><span class="line">luci-app-pptp-server    # VPN服务器 PPTP</span><br><span class="line">luci-app-privoxy    # Privoxy网络代理(带过滤无缓存)</span><br><span class="line">luci-app-ps3netsrv    # PS3 NET服务器（用于加载蓝光/游戏ISO/PKG）</span><br><span class="line">luci-app-pushbot    # 钉钉推送（微信推送修改版）</span><br><span class="line">luci-app-qbittorrent    # BT下载工具（完整版）</span><br><span class="line">luci-app-qbittorrent_static    # BT下载工具</span><br><span class="line">luci-app-qos    # 流量服务质量(QoS)流控</span><br><span class="line">luci-app-radicale    # CalDAV/CardDAV同步工具</span><br><span class="line">luci-app-ramfree    # 释放内存</span><br><span class="line">luci-app-rclone    # 命令行云端同步工具</span><br><span class="line">luci-app-rebootschedule    # 多功能定时任务（重启网络、重启系统、重启WIFI、重新拨号...）</span><br><span class="line">luci-app-rp-pppoe-server    # Roaring Penguin PPPoE Server 服务器</span><br><span class="line">luci-app-samba    # 网络共享</span><br><span class="line">luci-app-samba4    # 网络共享（Samba4）</span><br><span class="line">luci-app-serverchan    # 微信推送</span><br><span class="line">luci-app-shadowsocks-libev    # SS-libev服务端</span><br><span class="line">luci-app-shairplay    # 支持AirPlay功能</span><br><span class="line">luci-app-siitwizard    # SIIT配置向导 SIIT-Wizzard</span><br><span class="line">luci-app-simple-adblock    # 简单的广告拦截</span><br><span class="line">luci-app-smartdns    # SmartDNS</span><br><span class="line">luci-app-smartinfo    # 穿越蓝天磁盘监控</span><br><span class="line">luci-app-socat    # 多功能的网络工具</span><br><span class="line">luci-app-softethervpn    # SoftEther VPN服务器 NAT穿透</span><br><span class="line">luci-app-splash    # Client-Splash是无线MESH网络的一个热点认证系统</span><br><span class="line">luci-app-store    # 在线商店</span><br><span class="line">luci-app-supervisord    # 一款golang开发的进程管理</span><br><span class="line">luci-app-sqm    # 流量智能队列管理（QOS）</span><br><span class="line">luci-app-squid    # Squid代理服务器</span><br><span class="line">luci-app-ssr-plus    #SSR Plus+ 科学上网</span><br><span class="line">luci-app-ssrserver-python    #ShadowsocksR Python服务器</span><br><span class="line">luci-app-statistics    # 流量监控工具</span><br><span class="line">luci-app-switch-lan-play    # 虚拟局域网联机工具</span><br><span class="line">luci-app-syncdial    # 多拨虚拟网卡（原macvlan）</span><br><span class="line">luci-app-syncthing    # syncthing同步工具</span><br><span class="line">luci-app-tencentddns    # 腾讯DDNS</span><br><span class="line">luci-app-timecontrol    # 时间控制跟（luci-app-accesscontrol）差不多，不同的是这个可以配合高级设置一起使用</span><br><span class="line">luci-app-tinyproxy    # Tinyproxy是 HTTP(S)代理服务器</span><br><span class="line">luci-app-transmission    # BT下载工具</span><br><span class="line">luci-app-travelmate    # 旅行路由器</span><br><span class="line">luci-app-ttnode    # 甜糖星愿自动采集插件</span><br><span class="line">luci-app-ttyd    # 网页终端命令窗</span><br><span class="line">luci-app-turboacc    # Turbo ACC 网络加速</span><br><span class="line">luci-app-udpxy    # udpxy做组播服务器</span><br><span class="line">luci-app-udp2raw    # udp2raw-tunnel管理界面-隧道服务器管理</span><br><span class="line">luci-app-uhttpd    # uHTTPd Web服务器</span><br><span class="line">luci-app-unblockmusic    #解锁网易云灰色歌曲</span><br><span class="line">luci-app-unblockneteasemusic    #新版本解除网易云音乐播放限制</span><br><span class="line">luci-app-unbound    # Unbound DNS解析器</span><br><span class="line">luci-app-upnp    # 通用即插即用UPnP（端口自动转发）</span><br><span class="line">luci-app-usb-printer    # USB 打印服务器</span><br><span class="line">luci-app-uugamebooster    # UU网游加速器</span><br><span class="line">luci-app-v2ray-server    # V2Ray 服务器</span><br><span class="line">luci-app-verysync    # 微力同步</span><br><span class="line">luci-app-vlmcsd    # KMS激活服务器</span><br><span class="line">luci-app-vnstat    # vnStat网络监控（图表）</span><br><span class="line">luci-app-vpnbypass    # VPN BypassWebUI 绕过VPN设置</span><br><span class="line">luci-app-vsftpd    # FTP服务器</span><br><span class="line">luci-app-vssr    # VSSR科学上网</span><br><span class="line">luci-app-watchcat    # 断网检测功能与定时重启</span><br><span class="line">luci-app-webadmin    # Web管理页面设置</span><br><span class="line">luci-app-wifischedule    # WiFi 计划</span><br><span class="line">luci-app-wireguard    # VPN服务器 WireGuard状态</span><br><span class="line">wifidog-wiwiz    # 拼拼WiFi(luci-app-eqos必选，然后在Network ---&gt; Captive Portals ---&gt; wifidog-wiwiz 勾选上)</span><br><span class="line">luci-app-wolplus    # 新版网络唤醒，替换luci-app-wol</span><br><span class="line">luci-app-wrtbwmon    # 实时流量监测</span><br><span class="line">luci-app-webd    # Webd 是一款轻量级的 (self-hosted) 自建网盘</span><br><span class="line">luci-app-xlnetacc    # 迅雷快鸟</span><br><span class="line">luci-app-zerotier    # ZeroTier内网穿透</span><br><span class="line">luci-theme-Light    # Light 主题</span><br><span class="line">luci-theme-argon    # argon 主题</span><br><span class="line">luci-theme-atmaterial    # atmaterial 主题</span><br><span class="line">luci-theme-bootstrap    # bootstrap 主题</span><br><span class="line">luci-theme-darkmatter    # 黑色 主题</span><br><span class="line">luci-theme-infinityfreedom    # 透明效果 主题</span><br><span class="line">luci-theme-material    # material 主题</span><br><span class="line">luci-theme-netgear    # 网件 主题</span><br><span class="line">luci-theme-neobird    # neobird 主题</span><br><span class="line">luci-theme-opentomcat    # opentomcat 主题</span><br><span class="line">luci-theme-rosy    # rosy 主题</span><br><span class="line">luci-app-dockerman 和 luci-app-docker 只能二选一</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>openwrt</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>openwrt设置</title>
-    <url>/openwrt%E8%AE%BE%E7%BD%AE.html</url>
-    <content><![CDATA[<h3 id="overlay扩容"><a href="#overlay扩容" class="headerlink" title="overlay扩容"></a>overlay扩容</h3><ul>
-<li>准备好U盘，并格式化为ext4格式，</li>
-<li>插上U盘到路由器，在挂载点找到自动挂载未配置磁盘分区，并关掉。</li>
-<li>可以在挂载点里找到自己的U盘，记住设备名，一般为<code>/dev/sda1</code></li>
-<li>进行数据迁移<br><span id="more"></span><ul>
-<li>创建临时挂载点<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir /mnt/extdisk</span><br></pre></td></tr></table></figure></li>
-<li>挂载磁盘到临时挂载点<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mount /dev/sda1 /mnt/extdisk</span><br></pre></td></tr></table></figure></li>
-<li>复制整个&#x2F;overlay到U盘中<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tar -C /overlay -cvf - . | tar -C /mnt/extdisk -xf -</span><br></pre></td></tr></table></figure></li>
-<li>刷新一下<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sync</span><br></pre></td></tr></table></figure></li>
-<li>卸载临时挂在点，因为下一步就是要挂载到&#x2F;overlay目录了。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">umount  /mnt/extdisk</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>在web界面设置挂载点，添加挂载点，挂载点选‘作为外部voerlay’并保存（一定要保存&#x2F;保存并应用），</li>
-<li>然后重启路由。</li>
-<li>重启后进入软件包或在挂载点查看是否成功</li>
-</ul>
-<h3 id="openclash设置"><a href="#openclash设置" class="headerlink" title="openclash设置"></a>openclash设置</h3><h4 id="插件设置"><a href="#插件设置" class="headerlink" title="插件设置"></a>插件设置</h4><ul>
-<li><p>覆写设置：</p>
-<ul>
-<li>Github 地址修改：<a href="https://cdn.jsdelivr.net/">https://cdn.jsdelivr.net</a></li>
-<li>模式设置：</li>
-<li>勾选：使用 <code>Meta</code> 内核（支持的协议比较多，而且还支持一些新的协议）</li>
-<li>运行模式选择<code>Fake-IP</code>模式（加快响应速度、缩短网页加载时间）</li>
-<li>代理模式选择：<code>Rule</code>（策略代理），这里根据自己的实际需要来选择</li>
-<li>其他的默认选择即可</li>
-</ul>
-</li>
-<li><p>流量控制：</p>
-<ul>
-<li>勾选：路由本机代理</li>
-<li>勾选：禁用 <code>QUIC</code></li>
-<li>勾选：仅允许内网</li>
-<li>大陆域名DNS服务器：填写运营商的</li>
-</ul>
-</li>
-<li><p>DNS设置：</p>
-<ul>
-<li>本地 DNS 劫持选择：使用 <code>Dnsmasq</code> 转发</li>
-<li>启用禁止 <code>Dnsmasq</code> 缓存 DNS</li>
-</ul>
-</li>
-<li><p>GEO数据库订阅（有助于确定特定IP地址的地理位置信息）：</p>
-<ul>
-<li>勾选自动更新 <code>GeoIP MMDB</code> 数据库</li>
-<li>勾选自动更新 <code>GeoSite</code> 数据库</li>
-</ul>
-</li>
-</ul>
-<h4 id="覆写设置"><a href="#覆写设置" class="headerlink" title="覆写设置"></a>覆写设置</h4><ul>
-<li>DNS设置<ul>
-<li>勾选：自定义上游 DNS 服务器</li>
-<li>勾选：<code>Fake-IP </code>持久化</li>
-</ul>
-</li>
-<li>Mate设置<ul>
-<li>勾选：启用 TCP 并发</li>
-<li>勾选：启用流量（域名）探测</li>
-</ul>
-</li>
-</ul>
-<h4 id="配合MosDNS时设置"><a href="#配合MosDNS时设置" class="headerlink" title="配合MosDNS时设置"></a>配合MosDNS时设置</h4><ul>
-<li>插件：<ul>
-<li>DNS：停用</li>
-</ul>
-</li>
-<li>覆写：<ul>
-<li>DNS：勾选自定义上游DNS</li>
-<li>NameSerever：全部取消，新建一个<code>127.0.0.1:5335</code>，并启用</li>
-<li>FallBack：全部取消</li>
-</ul>
-</li>
-</ul>
-<h3 id="MosDNS设置"><a href="#MosDNS设置" class="headerlink" title="MosDNS设置"></a>MosDNS设置</h3><h4 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h4><ul>
-<li>勾选启用——设置监听端口（这里可以自定义）——勾选自定义国内DNS——选择对应的DNS（建议选择加密DNS）——远程DNS根据自己实际情况选择（一般保持默认即可）——<code>Bootstrap DNS</code> 服务器保持默认或者可以自行测试一下</li>
-<li>设置监听端口：5335</li>
-<li>勾选自定义国内DNS，选择对应的DNS（建议选择加密DNS）</li>
-<li>远程DNS根据自己实际情况选择（一般保持默认即可）</li>
-<li><code>Bootstrap DNS</code> 服务器保持默认或者可以自行测试一下</li>
-</ul>
-<h4 id="高级设置"><a href="#高级设置" class="headerlink" title="高级设置"></a><strong>高级设置</strong></h4><ul>
-<li>DNS服务器并发数输入2</li>
-<li>勾选防止DNS泄露</li>
-<li>勾选启用DNS广告过滤（可选可不选）</li>
-<li>规则选择<code>anti-AD</code></li>
-</ul>
-<h3 id="zerotier设置"><a href="#zerotier设置" class="headerlink" title="zerotier设置"></a>zerotier设置</h3><h4 id="VPN-zerotier-ZeroTier-Network-ID中填入ID"><a href="#VPN-zerotier-ZeroTier-Network-ID中填入ID" class="headerlink" title="VPN&gt;zerotier&gt;ZeroTier Network ID中填入ID"></a>VPN&gt;zerotier&gt;ZeroTier Network ID中填入ID</h4><h4 id="管理界面设置网络-接口-添加新接口"><a href="#管理界面设置网络-接口-添加新接口" class="headerlink" title="管理界面设置网络&gt;接口&gt;添加新接口"></a>管理界面设置网络&gt;接口&gt;添加新接口</h4><ul>
-<li>接口名称随意</li>
-<li>协议：不配置协议</li>
-<li>接口：选zti开头的</li>
-<li>提交后配置防火墙</li>
-<li>自定义一个新防火墙<code>zerotier</code></li>
-<li>保存并应用</li>
-</ul>
-<h4 id="管理界面设置网络-防火墙，编辑zerotier"><a href="#管理界面设置网络-防火墙，编辑zerotier" class="headerlink" title="管理界面设置网络&gt;防火墙，编辑zerotier"></a>管理界面设置网络&gt;防火墙，编辑zerotier</h4><ul>
-<li>全选接受</li>
-<li>IP动态伪装选中</li>
-<li>允许转发及转发到都选LAN</li>
-</ul>
-<h4 id="通信规则-添加规则并编辑"><a href="#通信规则-添加规则并编辑" class="headerlink" title="通信规则&gt;添加规则并编辑"></a>通信规则&gt;添加规则并编辑</h4><ul>
-<li>协议：<code>UDP</code></li>
-<li>源区域：任意区域</li>
-<li>目标区域：设备</li>
-<li>端口：9993</li>
-<li>保存并应用</li>
-</ul>
-<h4 id="zerotier官网上设置"><a href="#zerotier官网上设置" class="headerlink" title="zerotier官网上设置"></a>zerotier官网上设置</h4><ul>
-<li><code>Advanced&gt;Add Routes</code></li>
-<li><code>Destination</code>：填写局域网网段</li>
-<li><code>Via</code>：填写路由的虚拟网址</li>
-<li>添加</li>
-</ul>
-<h3 id="通过DHCP自定义分配网关"><a href="#通过DHCP自定义分配网关" class="headerlink" title="通过DHCP自定义分配网关"></a>通过DHCP自定义分配网关</h3><h4 id="首先你需要给设备绑定静态IP"><a href="#首先你需要给设备绑定静态IP" class="headerlink" title="首先你需要给设备绑定静态IP"></a>首先你需要给设备绑定静态IP</h4><h4 id="在openwrt中依次选择：网络-接口-LAN-DHCP-高级设置，在DHCP选项中设置"><a href="#在openwrt中依次选择：网络-接口-LAN-DHCP-高级设置，在DHCP选项中设置" class="headerlink" title="在openwrt中依次选择：网络-&gt;接口-&gt;LAN-&gt;DHCP-&gt;高级设置，在DHCP选项中设置"></a>在openwrt中依次选择：网络-&gt;接口-&gt;LAN-&gt;DHCP-&gt;高级设置，在DHCP选项中设置</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tag:name,3,192.168.50.2`</span><br></pre></td></tr></table></figure>
-<ul>
-<li>参数说明，每个<code>,</code>为一项<ul>
-<li><code>tag:</code>标签设置，后面的名字可以自定义</li>
-<li>第二项<code>3</code>代表设置网关，常用可选项有：<ul>
-<li><code>1</code>代表设置子网掩码</li>
-<li><code>3</code>代表设置网关</li>
-<li><code>6</code>代表设置DNS</li>
-</ul>
-</li>
-<li>第三项为你要设置的静态IP地址</li>
-</ul>
-</li>
-</ul>
-<h4 id="通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置"><a href="#通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置" class="headerlink" title="通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置"></a>通过这样的设置，在你有旁路网关时，可以灵活的给内网设备分配网关，而不用在每个设备上设置</h4><h3 id="切换openwrt启动分区"><a href="#切换openwrt启动分区" class="headerlink" title="切换openwrt启动分区"></a>切换openwrt启动分区</h3><h4 id="确认当前分区状态"><a href="#确认当前分区状态" class="headerlink" title="确认当前分区状态"></a>确认当前分区状态</h4><p>检查设备当前运行的分区以及可用的分区信息：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat /proc/mtd</span><br></pre></td></tr></table></figure>
-<h4 id="查看和设置分区环境变量"><a href="#查看和设置分区环境变量" class="headerlink" title="查看和设置分区环境变量"></a>查看和设置分区环境变量</h4><p>可以通过以下命令检查当前分区设置：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fw_printenv</span><br></pre></td></tr></table></figure>
-<p>查找类似于boot_part的环境变量。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">boot_part=1</span><br></pre></td></tr></table></figure>
-<p>如果需要修改分区，可以使用fw_setenv命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fw_setenv boot_part 2</span><br></pre></td></tr></table></figure>
-<h4 id="重启设备切换分区"><a href="#重启设备切换分区" class="headerlink" title="重启设备切换分区"></a>重启设备切换分区</h4><p>设置完成后，重启设备使更改生效：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
-<p>重启完成后验证一下</p>
-]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>openwrt</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>tpclash尝试记录</title>
-    <url>/tpclash%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95.html</url>
-    <content><![CDATA[<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><blockquote>
-<p><a href="https://www.youtube.com/watch?v=KrjCBS8vgFY">抛弃openwrt，用linux部署代理全家科学上网。最稳的纯翻墙方案，电视盒子也能部署 - YouTube</a></p>
-</blockquote>
-<span id="more"></span>
-<h2 id="部署过程"><a href="#部署过程" class="headerlink" title="部署过程"></a>部署过程</h2><ul>
-<li><p>通过博主的指引，下载了github仓库里的几个文件</p>
-<ul>
-<li><p>首先是下载了这个版本tpclash-mihomo-linux-amd64-v3，经过尝试启动不起来</p>
-</li>
-<li><p>然后下载了tpclash-mihomo-linux-amd64版本，顺利启动</p>
-</li>
-<li><p>经过博主的指引修改的配置文件中少了一行命令，导致web页面没启动。代码如下下  </p>
-<p><code>external-controller: 0.0.0.0:9090</code></p>
-</li>
-<li><p>最终顺利启动，也测试成功，代理时出现的问题是，我发现自己的ipv6在没有禁用的情况下，会通过ipv6泄漏dns，我个人无法解决，又不想禁用ipv6，决定暂时弃用，待找到方案后再使用，这是一坑</p>
-</li>
-<li><p>等我根据使用文档，关闭开机自启，并关闭软件后，又有新问题出现了，就是我的ubuntu不能连网了，因为我自己是菜鸟，不会排查问题，所以解决问题的方法就是重装了系统，折腾了几个小时，幸好没有太多数据，这也是教训，测试不要在正在使用的服务器的进行，另建一个虚拟机最好。</p>
-</li>
-<li><p>下面记录下代码头部的完整部分，以备下次折腾</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 请指定自己实际的接口名称(ip a 获取)</span><br><span class="line">interface-name: ens18</span><br><span class="line"></span><br><span class="line">external-controller: 0.0.0.0:9090</span><br><span class="line"></span><br><span class="line">tun:</span><br><span class="line">  enable: true</span><br><span class="line">  stack: system</span><br><span class="line">  dns-hijack:</span><br><span class="line">    - any:53</span><br><span class="line">  #   - 8.8.8.8:53</span><br><span class="line">  #   - tcp://8.8.8.8:53</span><br><span class="line">  # auto-route 与 ebpf 冲突, 不能同时使用</span><br><span class="line">  #auto-route: true</span><br><span class="line">  #auto-redir: true</span><br><span class="line">  #auto-detect-interface: true</span><br><span class="line"></span><br><span class="line"># ebpf 需要指定物理网卡</span><br><span class="line">ebpf:</span><br><span class="line">  redirect-to-tun:</span><br><span class="line">    - ens18</span><br><span class="line"></span><br><span class="line"># ebpf 需要配置 mark</span><br><span class="line">routing-mark: 666</span><br><span class="line"></span><br><span class="line"># 开启 DNS 配置, 且使用 fake-ip 模式</span><br><span class="line">dns:</span><br><span class="line">  enable: true</span><br><span class="line">  listen: 0.0.0.0:1053</span><br><span class="line">  enhanced-mode: fake-ip</span><br><span class="line">  fake-ip-range: 198.18.0.1/16</span><br><span class="line">  default-nameserver:</span><br><span class="line">    - 223.5.5.5</span><br><span class="line">    - 119.29.29.29</span><br><span class="line">  nameserver:</span><br><span class="line">    - 223.5.5.5</span><br><span class="line">    - 119.29.29.29</span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>windows</tag>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>yt-dlp使用方法</title>
-    <url>/yt-dlp%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.html</url>
-    <content><![CDATA[<h1 id="yt-dlp-使用方法总结-Windows"><a href="#yt-dlp-使用方法总结-Windows" class="headerlink" title="yt-dlp 使用方法总结 (Windows)"></a>yt-dlp 使用方法总结 (Windows)</h1><h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2><ul>
-<li><strong>下载 yt-dlp</strong>：<ul>
-<li>从 <a href="https://github.com/yt-dlp/yt-dlp/releases/latest">https://github.com/yt-dlp/yt-dlp/releases/latest</a> 下载 <code>yt-dlp.exe</code>。</li>
-<li>存放路径：例如 <code>C:\Users\mr.wang\Desktop\youtobe</code>。</li>
-</ul>
-</li>
-<li><strong>安装 FFmpeg（可选但推荐）</strong>：<ul>
-<li>下载：<a href="https://www.gyan.dev/ffmpeg/builds/">https://www.gyan.dev/ffmpeg/builds/</a>，选择 <code>ffmpeg-release-essentials.zip</code>。</li>
-<li>解压后将 <code>bin</code> 文件夹中的 <code>ffmpeg.exe</code>、<code>ffprobe.exe</code> 放入 <code>yt-dlp.exe</code> 所在目录。</li>
-</ul>
-</li>
-<li><strong>代理设置</strong>：<ul>
-<li>如果需要代理访问 YouTube，使用 <code>--proxy</code> 参数，例如：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">--proxy &quot;http://127.0.0.1:10808&quot;</span><br></pre></td></tr></table></figure>
-<span id="more"></span></li>
-</ul>
-</li>
-</ul>
-<h2 id="2-基本操作"><a href="#2-基本操作" class="headerlink" title="2. 基本操作"></a>2. 基本操作</h2><ol>
-<li><strong>打开 CMD</strong>：<ul>
-<li><code>Win + R</code> &gt; 输入 <code>cmd</code> &gt; 回车。</li>
-<li>切换目录：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd C:\Users\mr.wang\Desktop\youtobe</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><strong>检查版本</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --version</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="3-下载视频"><a href="#3-下载视频" class="headerlink" title="3. 下载视频"></a>3. 下载视频</h2><ul>
-<li><strong>基本下载</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
-<ul>
-<li>默认下载最佳质量（可能是 WebM）。</li>
-</ul>
-</li>
-<li><strong>指定格式</strong>：<ol>
-<li>查看可用格式：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -F --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
-<ul>
-<li>输出示例：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">22   mp4   720p</span><br><span class="line">137  webm  1080p (video only)</span><br><span class="line">140  m4a   audio only</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>下载特定格式：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -f 22 --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>-f 22</code> 表示 720p MP4。</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><strong>最佳视频+音频（合并为 MP4）</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -f bestvideo+bestaudio --merge-output-format mp4 --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
-<ul>
-<li>需要 FFmpeg。</li>
-</ul>
-</li>
-<li><strong>下载音频</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --extract-audio --audio-format mp3 --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
-<ul>
-<li>输出 MP3，需要 FFmpeg。</li>
-</ul>
-</li>
-</ul>
-<h2 id="4-其他功能"><a href="#4-其他功能" class="headerlink" title="4. 其他功能"></a>4. 其他功能</h2><ul>
-<li><strong>下载播放列表</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --proxy &quot;http://127.0.0.1:10808&quot; &quot;https://www.youtube.com/playlist?list=播放列表ID&quot;</span><br></pre></td></tr></table></figure></li>
-<li><strong>只获取标题（测试用）</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --get-title --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure></li>
-<li><strong>更新 yt-dlp</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -U</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="5-文件格式处理"><a href="#5-文件格式处理" class="headerlink" title="5. 文件格式处理"></a>5. 文件格式处理</h2><ul>
-<li><strong>WebM 格式</strong>：<ul>
-<li>默认高分辨率可能是 WebM（VP9 视频 + Opus 音频）。</li>
-<li>播放：用 VLC 或现代浏览器。</li>
-</ul>
-</li>
-<li><strong>转换为 MP4</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i 输入文件.webm 输出文件.mp4</span><br></pre></td></tr></table></figure>
-<ul>
-<li>示例：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i video.webm video.mp4</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<h2 id="6-注意事项"><a href="#6-注意事项" class="headerlink" title="6. 注意事项"></a>6. 注意事项</h2><ul>
-<li><strong>代理验证</strong>：<ul>
-<li>测试代理：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -x http://127.0.0.1:10808 https://www.youtube.com</span><br></pre></td></tr></table></figure></li>
-<li>如果不通，检查代理软件端口（常见为 <code>1080</code> 或 <code>10808</code>）。</li>
-</ul>
-</li>
-<li><strong>错误排查</strong>：<ul>
-<li>加 <code>--verbose</code> 查看详细日志：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --proxy &quot;http://127.0.0.1:10808&quot; --verbose https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><strong>法律提醒</strong>：<ul>
-<li>仅限个人使用，遵守 YouTube 服务条款和当地法律。</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>windows</tag>
       </tags>
   </entry>
   <entry>
@@ -1629,6 +1439,46 @@
       </tags>
   </entry>
   <entry>
+    <title>外网 IPv4 访问家用纯 IPv6 服务（免端口+全 HTTPS 方案）</title>
+    <url>/%E5%A4%96%E7%BD%91-IPv4-%E8%AE%BF%E9%97%AE%E5%AE%B6%E7%94%A8%E7%BA%AF-IPv6-%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%85%8D%E7%AB%AF%E5%8F%A3-%E5%85%A8-HTTPS-%E6%96%B9%E6%A1%88%EF%BC%89.html</url>
+    <content><![CDATA[<h3 id="1-核心需求与背景"><a href="#1-核心需求与背景" class="headerlink" title="1. 核心需求与背景"></a>1. 核心需求与背景</h3><ul>
+<li><strong>环境</strong>：家庭宽带拥有公网 IPv6 地址，但外部网络（如公司、某些移动网络）仅支持 IPv4。</li>
+<li><strong>目标</strong>：通过自定义域名，不带端口号（如 <code>:8443</code>），且全过程 HTTPS 加密访问家中的 OpenWrt 或其他服务。</li>
+<li><strong>工具链</strong>：Cloudflare (CDN&#x2F;回源规则) + Lucky (反向代理&#x2F;动态域名) + IPv6 宽带。</li>
+</ul>
+<span id="more"></span>
+<h3 id="2-核心架构图"><a href="#2-核心架构图" class="headerlink" title="2. 核心架构图"></a>2. 核心架构图</h3><ol>
+<li><strong>客户端</strong>：发起 <code>https://abc.yourdomain_b.com</code> 请求（默认 443 端口）。</li>
+<li><strong>Cloudflare</strong>：接收 IPv4 请求，将其转换为 IPv6，并将 443 端口重写为 8443。</li>
+<li>**Lucky (源站)**：接收 8443 端口流量，添加反代记录并转发给局域网服务。</li>
+</ol>
+<h3 id="3-分步操作指南"><a href="#3-分步操作指南" class="headerlink" title="3. 分步操作指南"></a>3. 分步操作指南</h3><h4 id="第一步：Cloudflare-基础配置（实现-IPv4-转-IPv6）"><a href="#第一步：Cloudflare-基础配置（实现-IPv4-转-IPv6）" class="headerlink" title="第一步：Cloudflare 基础配置（实现 IPv4 转 IPv6）"></a>第一步：Cloudflare 基础配置（实现 IPv4 转 IPv6）</h4><ul>
+<li><strong>添加记录</strong>：新建一条 <strong>CNAME</strong> 记录，指向你家里的公网 IPv6子域名<code>https://abc.yourdomain_a.com</code>。</li>
+<li><strong>开启代理</strong>：务必开启 **“橙色小云朵” (Proxy)**，这是实现协议转换和隐藏 IP 的前提。</li>
+<li><strong>SSL 模式</strong>：在 <code>SSL/TLS</code> -&gt; <code>概述</code> 中，选择 <strong>“完全 (Full)”</strong>。</li>
+</ul>
+<h4 id="第二步：配置-Origin-Rules（实现“免端口”访问）"><a href="#第二步：配置-Origin-Rules（实现“免端口”访问）" class="headerlink" title="第二步：配置 Origin Rules（实现“免端口”访问）"></a>第二步：配置 Origin Rules（实现“免端口”访问）</h4><p>为了不输入 <code>:8443</code>，让 Cloudflare 在后台完成端口映射：</p>
+<ol>
+<li>进入 <code>规则 (Rules)</code> -&gt;<code>概述</code>-&gt; <code>Origin Rules</code>。</li>
+<li><strong>匹配条件</strong>：主机名 (Hostname) <strong>等于</strong> <code>abc.yourdomain.com</code>。</li>
+<li><strong>多条子域名</strong>：用<code>or</code>连接于后面。   </li>
+<li><strong>操作</strong>：目的端口 (Destination Port) <strong>重写到</strong> <code>8443</code>。</li>
+</ol>
+<h4 id="第三步：Lucky-大吉-关键设置"><a href="#第三步：Lucky-大吉-关键设置" class="headerlink" title="第三步：Lucky (大吉) 关键设置"></a>第三步：Lucky (大吉) 关键设置</h4><p>在 Lucky 的 <code>Web服务</code> 规则中进行如下设置，确保能顺利进入服务界面：</p>
+<ol>
+<li><strong>监听端口</strong>：设置为 <code>8443</code>（并确保证书已配置）。</li>
+<li><strong>域名列表</strong>：添加子域名 <code>abc.yourdomain_b.com</code>并指向内网地址。</li>
+<li><strong>忽略后端TLS证书验证</strong>：勾选为 <strong>“是”</strong>。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>电脑控制手机</title>
     <url>/%E7%94%B5%E8%84%91%E6%8E%A7%E5%88%B6%E6%89%8B%E6%9C%BA.html</url>
     <content><![CDATA[<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
@@ -1816,6 +1666,126 @@
       </tags>
   </entry>
   <entry>
+    <title>yt-dlp使用方法</title>
+    <url>/yt-dlp%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.html</url>
+    <content><![CDATA[<h1 id="yt-dlp-使用方法总结-Windows"><a href="#yt-dlp-使用方法总结-Windows" class="headerlink" title="yt-dlp 使用方法总结 (Windows)"></a>yt-dlp 使用方法总结 (Windows)</h1><h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2><ul>
+<li><strong>下载 yt-dlp</strong>：<ul>
+<li>从 <a href="https://github.com/yt-dlp/yt-dlp/releases/latest">https://github.com/yt-dlp/yt-dlp/releases/latest</a> 下载 <code>yt-dlp.exe</code>。</li>
+<li>存放路径：例如 <code>C:\Users\mr.wang\Desktop\youtobe</code>。</li>
+</ul>
+</li>
+<li><strong>安装 FFmpeg（可选但推荐）</strong>：<ul>
+<li>下载：<a href="https://www.gyan.dev/ffmpeg/builds/">https://www.gyan.dev/ffmpeg/builds/</a>，选择 <code>ffmpeg-release-essentials.zip</code>。</li>
+<li>解压后将 <code>bin</code> 文件夹中的 <code>ffmpeg.exe</code>、<code>ffprobe.exe</code> 放入 <code>yt-dlp.exe</code> 所在目录。</li>
+</ul>
+</li>
+<li><strong>代理设置</strong>：<ul>
+<li>如果需要代理访问 YouTube，使用 <code>--proxy</code> 参数，例如：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">--proxy &quot;http://127.0.0.1:10808&quot;</span><br></pre></td></tr></table></figure>
+<span id="more"></span></li>
+</ul>
+</li>
+</ul>
+<h2 id="2-基本操作"><a href="#2-基本操作" class="headerlink" title="2. 基本操作"></a>2. 基本操作</h2><ol>
+<li><strong>打开 CMD</strong>：<ul>
+<li><code>Win + R</code> &gt; 输入 <code>cmd</code> &gt; 回车。</li>
+<li>切换目录：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd C:\Users\mr.wang\Desktop\youtobe</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><strong>检查版本</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --version</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="3-下载视频"><a href="#3-下载视频" class="headerlink" title="3. 下载视频"></a>3. 下载视频</h2><ul>
+<li><strong>基本下载</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
+<ul>
+<li>默认下载最佳质量（可能是 WebM）。</li>
+</ul>
+</li>
+<li><strong>指定格式</strong>：<ol>
+<li>查看可用格式：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -F --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出示例：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">22   mp4   720p</span><br><span class="line">137  webm  1080p (video only)</span><br><span class="line">140  m4a   audio only</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>下载特定格式：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -f 22 --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-f 22</code> 表示 720p MP4。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><strong>最佳视频+音频（合并为 MP4）</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -f bestvideo+bestaudio --merge-output-format mp4 --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
+<ul>
+<li>需要 FFmpeg。</li>
+</ul>
+</li>
+<li><strong>下载音频</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --extract-audio --audio-format mp3 --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出 MP3，需要 FFmpeg。</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-其他功能"><a href="#4-其他功能" class="headerlink" title="4. 其他功能"></a>4. 其他功能</h2><ul>
+<li><strong>下载播放列表</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --proxy &quot;http://127.0.0.1:10808&quot; &quot;https://www.youtube.com/playlist?list=播放列表ID&quot;</span><br></pre></td></tr></table></figure></li>
+<li><strong>只获取标题（测试用）</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --get-title --proxy &quot;http://127.0.0.1:10808&quot; https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure></li>
+<li><strong>更新 yt-dlp</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -U</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="5-文件格式处理"><a href="#5-文件格式处理" class="headerlink" title="5. 文件格式处理"></a>5. 文件格式处理</h2><ul>
+<li><strong>WebM 格式</strong>：<ul>
+<li>默认高分辨率可能是 WebM（VP9 视频 + Opus 音频）。</li>
+<li>播放：用 VLC 或现代浏览器。</li>
+</ul>
+</li>
+<li><strong>转换为 MP4</strong>：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i 输入文件.webm 输出文件.mp4</span><br></pre></td></tr></table></figure>
+<ul>
+<li>示例：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i video.webm video.mp4</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="6-注意事项"><a href="#6-注意事项" class="headerlink" title="6. 注意事项"></a>6. 注意事项</h2><ul>
+<li><strong>代理验证</strong>：<ul>
+<li>测试代理：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -x http://127.0.0.1:10808 https://www.youtube.com</span><br></pre></td></tr></table></figure></li>
+<li>如果不通，检查代理软件端口（常见为 <code>1080</code> 或 <code>10808</code>）。</li>
+</ul>
+</li>
+<li><strong>错误排查</strong>：<ul>
+<li>加 <code>--verbose</code> 查看详细日志：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --proxy &quot;http://127.0.0.1:10808&quot; --verbose https://www.youtube.com/watch?v=JnOV6XHhZCg</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><strong>法律提醒</strong>：<ul>
+<li>仅限个人使用，遵守 YouTube 服务条款和当地法律。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解厄鉴</title>
+    <url>/%E8%A7%A3%E5%8E%84%E9%89%B4.html</url>
+    <content><![CDATA[<center><b>作者：晏殊</b></center>
+
+<h2 id="藏锋卷-第一"><a href="#藏锋卷-第一" class="headerlink" title="藏锋卷 第一"></a>藏锋卷 第一</h2><p>  厄者，人之本也。锋者，厄之厉也。厄欲减，才莫显。<br>  上求贤，毕其功而志易。下求荣，成其事而意满。不知戒惕，上下难容也。<br>  仁者不逐其名，仁贵焉。明者不恋其位，明弃焉。勇者不争其锋，勇敛焉。<br>  生之惟艰，何足道哉？</p>
+<span id="more"></span>
+<h2 id="隐智卷-第二"><a href="#隐智卷-第二" class="headerlink" title="隐智卷 第二"></a>隐智卷 第二</h2><p>  用智者利，弄智者弊。暗用无敌，彰显无功。<br>  不为已谋，君子之智也。莫使已亏，小人之奸也。不怨智寡，忠义换焉。<br>  上惟忠，能次之。下惟实，术次之。不明其心，厄之难止。<br>  愚者言智，愚也。智者言智，祸也。</p>
+<h2 id="戒欲卷-第三"><a href="#戒欲卷-第三" class="headerlink" title="戒欲卷 第三"></a>戒欲卷 第三</h2><p>  欲大无根，心宽无恨。好之莫极，强之有咎。<br>  君子修身，避祸也。小人无忌，授首也。一念之失，死生之别也。<br>  治贪以严，莫以宽。惩淫以辱，莫以隐。伐恶以尽，莫以慈。<br>  制欲求于德，勿求于诫。悟者畅达，迷者困矣。</p>
+<h2 id="省身卷-第四"><a href="#省身卷-第四" class="headerlink" title="省身卷 第四"></a>省身卷 第四</h2><p>  自知者弗窘也。识世者无求也。<br>  人有异，命不同焉。物有别，衰相近焉。待已如人，大计不失。<br>  智不及事，非察莫中。人心多易，非思难度。俗不堪亲，非礼无存。<br>  忧身者无邪，正而九焉。忧心者无疚，宁而吉焉。</p>
+<h2 id="求实卷-第五"><a href="#求实卷-第五" class="headerlink" title="求实卷 第五"></a>求实卷 第五</h2><p>  致远者实，近利者虚。众趋者慎，已悦者进。<br>  不拘于书，则不失于本。不求于全，则不损于实。人无贱者，惟自弃也。<br>  大智无诈，顺乎天也。小智无德，背乎情也。识察勿忧，忧弗学也。<br>  苦劳而少获，非实之过也。闲逸而多得，乃实之旨焉。</p>
+<h2 id="慎言卷-第六"><a href="#慎言卷-第六" class="headerlink" title="慎言卷 第六"></a>慎言卷 第六</h2><p>  言之祸，无论忧劣也。语之弊，由人取舍也。<br>  君子不道虚言，实则逆耳。小人不表真心，伪则障目。见言见志，其行亦断也。<br>  贵者宜谦不宜傲。卑者亦恭不宜放。人无信，则言勿听。<br>  不知机而无泄，大安也。不避亲而密疏，大患也。</p>
+<h2 id="节情卷-第七"><a href="#节情卷-第七" class="headerlink" title="节情卷 第七"></a>节情卷 第七</h2><p>  知书而后忘情焉。抑性而后正身焉。<br>  纵亲见私，不容也。纵友见拙，不智也。纵怜见稚，不厚也。<br>  天怒成灾，人怒成害。君子戒悲，小人戒忧。不舍之情，羁身也。<br>  幸不恃色，荣定其品也。义不恃媚，信定其谐也。</p>
+<h2 id="向善卷-第八"><a href="#向善卷-第八" class="headerlink" title="向善卷 第八"></a>向善卷 第八</h2><p>  吉有其因，福有其源。天佑善者，其心悟焉。<br>  言善未必善，观其行也。言恶未必恶，审其心也。名勿信，实勿怠。<br>  君子亦怨，不误其事。小人亦友，不辍其争。利可求，遵可守。<br>  恶惑愚不惑智也。善贵诚不贵法也。</p>
+]]></content>
+      <categories>
+        <category>阅读</category>
+      </categories>
+      <tags>
+        <tag>古文</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>蓍草起卦</title>
     <url>/%E8%93%8D%E8%8D%89%E8%B5%B7%E5%8D%A6.html</url>
     <content><![CDATA[<p>用蓍草（shī cǎo）起卦是《易经》最传统、最正宗的起卦方法，也就是所谓的“大衍之数”。相比金钱卦（用铜板摇），蓍草法步骤繁琐，耗时较长，但古人认为这种繁琐的过程正是为了收摄心神，体现诚意，从而达到“感而遂通”的境界。</p>
@@ -1926,73 +1896,183 @@
       </tags>
   </entry>
   <entry>
-    <title>解厄鉴</title>
-    <url>/%E8%A7%A3%E5%8E%84%E9%89%B4.html</url>
-    <content><![CDATA[<center><b>作者：晏殊</b></center>
+    <title>openwrt固件编译</title>
+    <url>/openwrt%E5%9B%BA%E4%BB%B6%E7%BC%96%E8%AF%91.html</url>
+    <content><![CDATA[<h4 id="本地编译"><a href="#本地编译" class="headerlink" title="本地编译"></a>本地编译</h4><ul>
+<li>首先是注意事项<br>首先装好 Ubuntu 64bit，推荐 Ubuntu 22.04<br>不要用 root 用户 git 和编译！！！<br>国内用户编译前最好准备好软件源下载加速<br>默认登陆IP 192.168.1.1, 密码 password<span id="more"></span></li>
+<li>安装编译依赖</li>
+</ul>
+   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update -y</span><br><span class="line"><span class="built_in">sudo</span> apt full-upgrade -y</span><br><span class="line"><span class="built_in">sudo</span> apt install -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \</span><br><span class="line">bzip2 ccache clang cmake cpio curl device-tree-compiler flex gawk gettext gcc-multilib g++-multilib \</span><br><span class="line">git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libfuse-dev libglib2.0-dev libgmp3-dev \</span><br><span class="line">libltdl-dev libmpc-dev libmpfr-dev libncurses-dev libncurses-dev libpython3-dev libreadline-dev \</span><br><span class="line">libssl-dev libtool llvm lrzsz genisoimage msmtp ninja-build p7zip p7zip-full patch pkgconf python3 \</span><br><span class="line">python3-pyelftools python3-setuptools qemu-utils rsync scons squashfs-tools subversion swig texinfo \</span><br><span class="line">uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载源代码，更新 feeds 并选择配置</li>
+</ul>
+   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/coolsnowwolf/lede</span><br><span class="line"><span class="built_in">cd</span> lede</span><br><span class="line">./scripts/feeds update -a</span><br><span class="line">./scripts/feeds install -a</span><br><span class="line">make menuconfig</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载 dl 库，编译固件<br>（-j 后面是线程数，第一次编译推荐用单线程）</li>
+</ul>
+   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make download -j8</span><br><span class="line">make V=s -j1</span><br></pre></td></tr></table></figure>
+<ul>
+<li>二次编译：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> lede</span><br><span class="line">git pull</span><br><span class="line">./scripts/feeds update -a</span><br><span class="line">./scripts/feeds install -a</span><br><span class="line">make defconfig</span><br><span class="line">make download -j8</span><br><span class="line">make V=s -j$(<span class="built_in">nproc</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果需要重新配置：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> -rf .config</span><br><span class="line">make menuconfig</span><br><span class="line">make V=s -j$(<span class="built_in">nproc</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编译完成后输出路径：bin&#x2F;targets</li>
+<li>原文链接：<a href="https://github.com/coolsnowwolf/lede">https://github.com/coolsnowwolf/lede</a></li>
+</ul>
+<h4 id="openwrt编译步骤与命令详解"><a href="#openwrt编译步骤与命令详解" class="headerlink" title="openwrt编译步骤与命令详解"></a>openwrt编译步骤与命令详解</h4><ul>
+<li><p>首次编译</p>
+<ul>
+<li>克隆 Open­Wrt 源码<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/coolsnowwolf/lede openwrt</span><br></pre></td></tr></table></figure></li>
+<li>进入源码目录 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd openwrt</span><br></pre></td></tr></table></figure></li>
+<li>下载 feeds 源中的软件包源码<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./scripts/feeds update -a</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>feeds 是扩展的软件包，独立于 Open­Wrt 源码之外，所以需要单独进行拉取和更新。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>安装 feeds 中的软件包</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./scripts/feeds install -a</span><br></pre></td></tr></table></figure></li>
+<li><p>调整 Open­Wrt 系统组件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make menuconfig</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>首次编译建议只选择架构，其它都不要动，这样编译成功率会更高。如果不打算调整组件则输入make defconfig，它会检测编译环境并生成默认的编译配置文件。</p>
+</blockquote>
+</li>
+<li><p>生成当前配置与默认配置的差异</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./scripts/diffconfig.sh &gt; diffconfig</span><br></pre></td></tr></table></figure></li>
+<li><p>预下载编译所需的软件包</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make download -j8 V=s</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>-j8是指使用8个线程下载，理论上是数字越大下载越快，但似乎有个上限，实测5线程以上其实速度相差不了多少，在网络好的情况下，基本在5分钟以内能下载完。</p>
+</blockquote>
+</li>
+<li><p>检查文件完整性</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">find dl -size -1024c -exec ls -l &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>此命令可以列出下载不完整的文件（根据我多次编译的经验得出小于1k的文件属于下载不完整），如果存在这样的文件可以使用find dl -size -1024c -exec rm -f {} ;命令将它们删除，然后重新执行make download下载并反复检查，确认所有文件完整可大大提高编译成功率，避免浪费时间。</p>
+</blockquote>
+</li>
+<li><p>开始编译</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make -j1 V=s</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>-j1：使用单线程编译。新手推荐单线程编译，一是因为玄学问题可能成功率高，二是方便查看错误日志。<br>V&#x3D;s：输出详细日志，用于编译失败时找出错误。而且满屏代码在跑能装逼，一跑就是几个小时，装逼更持久。</p>
+</blockquote>
+</li>
+<li><p>再次编译</p>
+</li>
+<li><p>进入源码目录（如果不在此目录）</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd openwrt</span><br></pre></td></tr></table></figure></li>
+<li><p>更新</p>
+<blockquote>
+<p>TIPS： 短期内再次编译可忽略更新这个步骤。</p>
+</blockquote>
+<ul>
+<li>更新系统软件包<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo sh -c &quot;apt update &amp;&amp; apt upgrade -y&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>主要作用是更新在编译环境搭建时所安装的编译组件</p>
+</blockquote>
+</li>
+<li>拉取 Open­Wrt 源码更新<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure></li>
+<li>更新 feeds 源中的软件包源码<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./scripts/feeds update -a</span><br></pre></td></tr></table></figure></li>
+<li>安装 feeds 中的软件包<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./scripts/feeds install -a</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>文件清理</p>
+<ul>
+<li>清除旧的编译产物（可选）<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make clean</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在源码有大规模更新或者内核更新后执行，以保证编译质量。此操作会删除&#x2F;bin和&#x2F;build_dir目录中的文件。</p>
+</blockquote>
+</li>
+<li>清除旧的编译产物、交叉编译工具及工具链等目录（可选）<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make dirclean</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>更换架构编译前必须执行。此操作会删除&#x2F;bin和&#x2F;build_dir目录的中的文件(make clean)以及&#x2F;staging_dir、&#x2F;toolchain、&#x2F;tmp和&#x2F;logs中的文件。</p>
+</blockquote>
+</li>
+<li>清除 Open­Wrt 源码以外的文件（可选）<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make distclean</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>除非是做开发，并打算 push 到 GitHub 这样的远程仓库，否则几乎用不到。此操作相当于make dirclean外加删除&#x2F;dl、&#x2F;feeds目录和.config文件。</p>
+</blockquote>
+</li>
+<li>还原 Open­Wrt 源码到初始状态（可选）<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clean -xdf</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果把源码改坏了，或者长时间没有进行编译时使用。</p>
+</blockquote>
+</li>
+<li>清除临时文件<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm -rf tmp</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>删除执行make menuconfig后产生的一些临时文件，包括一些软件包的检索信息，删除后会重新加载package目录下的软件包。若不删除会导致一些新加入的软件包不显示。</p>
+</blockquote>
+</li>
+<li>删除编译配置文件<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm -f .config</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在不删除的情况下如果取消选择某些组件它的依赖组件不会自动取消，所以对于需要调整组件的情况下建议删除。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>编译</p>
+<ul>
+<li>调整 Open­Wrt 系统组件<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make menuconfig</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果不打算调整组件则输入make defconfig，它会检测编译环境并根据更新自动调整编译配置文件。</p>
+</blockquote>
+</li>
+<li>预下载编译所需的软件包<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make download -j8 V=s</span><br></pre></td></tr></table></figure></li>
+<li>检查文件完整性<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">find dl -size -1024c -exec ls -l &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>此命令可以列出下载不完整的文件（根据我多次编译的经验得出小于1k的文件属于下载不完整），如果存在这样的文件可以使用find dl -size -1024c -exec rm -f {} ;命令将它们删除，然后重新执行make download下载并反复检查，确认所有文件完整可大大提高编译成功率，避免浪费时间。</p>
+</blockquote>
+</li>
+<li>开始编译<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make -j$(nproc) || make -j1 || make -j1 V=s</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>多线程编译失败后自动进入单线程编译，失败则输出详细日志。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>原文链接：<a href="https://p3terx.com/archives/openwrt-compilation-steps-and-commands.html">https://p3terx.com/archives/openwrt-compilation-steps-and-commands.html</a></p>
+</li>
+</ul>
+<h4 id="在线云编译"><a href="#在线云编译" class="headerlink" title="在线云编译"></a>在线云编译</h4><h5 id="P3TERX方案"><a href="#P3TERX方案" class="headerlink" title="P3TERX方案"></a>P3TERX方案</h5><ul>
+<li>前提<br>1、已经会本地编译<br>2、有GitHub账号</li>
+<li>第一步<br>打开自己本地编译目录，先和大屌源码同步一下<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull</span><br><span class="line">./scripts/feeds update -a</span><br><span class="line">./scripts/feeds install -a</span><br></pre></td></tr></table></figure>
+然后执行<code>make menuconfig</code> 选好后执行<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make defconfig</span><br><span class="line">./scripts/diffconfig.sh &gt; seed.config</span><br></pre></td></tr></table></figure>
+这样配置的差异部分就写入这个文件了</li>
+<li>第二步<br>1、打开 <code>https://github.com/P3TERX/Actions-OpenWrt</code> fork这个项目<br>2、之后在自己fork出来的项目里的网页里创建一个新文件（点击Create new file）<code>.conifg</code><br>3、然后把前面提到的seed.config文件的内容粘贴进来<br>4、其它修改化设置可以查看<code>https://p3terx.com/archives/build-openwrt-with-github-actions.html</code></li>
+<li>第三步<br>1、在<code>Actions</code>页面可以手动开始编译了<br>2、固件下载在<code>Actions--Build OpenWrt--Artifacts--OpenWrt firmware</code></li>
+<li>原文链接：<a href="https://github.com/coolsnowwolf/lede/issues/2288">https://github.com/coolsnowwolf/lede/issues/2288</a></li>
+</ul>
+<h5 id="KFERMercer方案"><a href="#KFERMercer方案" class="headerlink" title="KFERMercer方案"></a>KFERMercer方案</h5><ul>
+<li>fork <a href="https://github.com/coolsnowwolf/lede">https://github.com/coolsnowwolf/lede</a> 仓库</li>
+<li>在<code>.github/workflows/</code>下创建工作流文件<code>openwrt-CI.yml</code></li>
+<li>代码内容为：如需定制，代码内有详细说明</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">name: OpenWrt-CI</span><br><span class="line"></span><br><span class="line"># 触发方式：支持手动触发并要求用户输入版本号，默认为 &quot;v1.0.0&quot;</span><br><span class="line">on:</span><br><span class="line">  workflow_dispatch:</span><br><span class="line">    inputs:</span><br><span class="line">      tag:</span><br><span class="line">        description: &quot;Release tag for the firmware&quot;</span><br><span class="line">        required: true</span><br><span class="line">        default: &quot;v1.0.0&quot;</span><br><span class="line"></span><br><span class="line"># 设置权限：仅允许读取内容</span><br><span class="line">permissions:</span><br><span class="line">  contents: read</span><br><span class="line"></span><br><span class="line">jobs:</span><br><span class="line">  build_openwrt:</span><br><span class="line">    name: Build OpenWrt Firmware # 定义任务名称</span><br><span class="line">    runs-on: ubuntu-latest       # 运行环境，使用最新的 Ubuntu 系统</span><br><span class="line"></span><br><span class="line">    steps:</span><br><span class="line">      - name: Space cleanup and Initialization environment</span><br><span class="line">        env:</span><br><span class="line">          DEBIAN_FRONTEND: noninteractive # 避免交互式安装</span><br><span class="line">        run: |</span><br><span class="line">          # 清理环境以释放磁盘空间和提高构建效率</span><br><span class="line">          sudo -E rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android</span><br><span class="line">          sudo -E apt-mark hold grub-efi-amd64-signed</span><br><span class="line">          sudo -E apt update</span><br><span class="line">          sudo -E apt -y purge azure-cli* docker* ghc* zulu* llvm* firefox google* dotnet* powershell* openjdk* mysql* php* mongodb* dotnet* snap*</span><br><span class="line">          sudo -E apt -y full-upgrade</span><br><span class="line">          # 安装所需的软件包</span><br><span class="line">          sudo -E apt -y install ack antlr3 aria2 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libreadline-dev libssl-dev libtool lrzsz mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python3 python3-pip libpython3-dev qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev</span><br><span class="line">          # 清理不必要的文件和包</span><br><span class="line">          sudo -E systemctl daemon-reload</span><br><span class="line">          sudo -E apt -y autoremove --purge</span><br><span class="line">          sudo -E apt clean</span><br><span class="line">          # 设置时区为上海</span><br><span class="line">          sudo -E timedatectl set-timezone &quot;Asia/Shanghai&quot;</span><br><span class="line"></span><br><span class="line">      - name: Checkout OpenWrt</span><br><span class="line">        uses: actions/checkout@v4 # 从 Git 仓库拉取代码</span><br><span class="line"></span><br><span class="line">      - name: Update feeds</span><br><span class="line">        run: |</span><br><span class="line">          # 添加额外的软件源 OpenClash</span><br><span class="line">          echo &#x27;src-git OpenClash https://github.com/vernesong/OpenClash.git;master&#x27; &gt;&gt;feeds.conf.default</span><br><span class="line">          # 更新并安装所有的源</span><br><span class="line">          ./scripts/feeds update -a</span><br><span class="line">          ./scripts/feeds install -a</span><br><span class="line"></span><br><span class="line">      - name: Generate configuration file</span><br><span class="line">        run: |</span><br><span class="line">          # 删除之前的配置文件</span><br><span class="line">          rm -f ./.config*</span><br><span class="line">          touch ./.config</span><br><span class="line"></span><br><span class="line">          # 添加 OpenWrt 配置</span><br><span class="line">          cat &gt;&gt; .config &lt;&lt;EOF</span><br><span class="line">          CONFIG_TARGET_ipq806x=y</span><br><span class="line">          CONFIG_TARGET_ipq806x_generic=y</span><br><span class="line">          CONFIG_TARGET_ipq806x_generic_DEVICE_linksys_ea8500=y</span><br><span class="line">          # ... (省略部分具体配置内容)</span><br><span class="line">          EOF</span><br><span class="line"></span><br><span class="line">          # 去掉配置文件中的缩进以满足编译要求</span><br><span class="line">          sed -i &#x27;s/^[ \t]*//g&#x27; ./.config</span><br><span class="line">          # 生成默认配置</span><br><span class="line">          make defconfig</span><br><span class="line">          # 添加网络配置到默认设置文件</span><br><span class="line">          sed -i &quot;2i # network config&quot; ./package/lean/default-settings/files/zzz-default-settings</span><br><span class="line">          sed -i &quot;3i uci set network.lan.ipaddr=&#x27;192.168.50.1&#x27;&quot; ./package/lean/default-settings/files/zzz-default-settings # 设置 LAN IP 地址</span><br><span class="line">          sed -i &quot;4i uci set network.lan.proto=&#x27;static&#x27;&quot; ./package/lean/default-settings/files/zzz-default-settings # 设置 LAN 使用静态 IP</span><br><span class="line"></span><br><span class="line">      - name: Download packages</span><br><span class="line">        run: make download -j16 # 并行下载所需的编译包，加速构建过程</span><br><span class="line"></span><br><span class="line">      - name: Compile firmware</span><br><span class="line">        run: |</span><br><span class="line">          # 使用多核编译以加快构建速度，如果失败则显示详细错误日志</span><br><span class="line">          make -j$(nproc) || make -j1 V=s</span><br><span class="line"></span><br><span class="line">      - name: Prepare artifact</span><br><span class="line">        run: |</span><br><span class="line">          # 创建保存固件、包和编译信息的目录</span><br><span class="line">          mkdir -p ./artifact/firmware</span><br><span class="line">          mkdir -p ./artifact/package</span><br><span class="line">          mkdir -p ./artifact/buildinfo</span><br><span class="line">          # 删除无用的 package 文件夹</span><br><span class="line">          rm -rf $(find ./bin/targets/ -type d -name &quot;packages&quot;)</span><br><span class="line">          # 将固件、安装包和构建信息拷贝到相应目录</span><br><span class="line">          cp -rf $(find ./bin/targets/ -type f -name &quot;*.bin&quot;) ./artifact/firmware/</span><br><span class="line">          cp -rf $(find ./bin/packages/ -type f -name &quot;*.ipk&quot;) ./artifact/package/</span><br><span class="line">          cp -rf $(find ./bin/targets/ -type f -name &quot;*.buildinfo&quot; -o -name &quot;*.manifest&quot;) ./artifact/buildinfo/</span><br><span class="line"></span><br><span class="line">      - name: Upload buildinfo</span><br><span class="line">        uses: actions/upload-artifact@v4 # 上传构建信息到 GitHub</span><br><span class="line">        with:</span><br><span class="line">          name: OpenWrt_buildinfo</span><br><span class="line">          path: ./artifact/buildinfo/</span><br><span class="line"></span><br><span class="line">      - name: Upload firmware</span><br><span class="line">        uses: actions/upload-artifact@v4 # 上传固件到 GitHub</span><br><span class="line">        with:</span><br><span class="line">          name: OpenWrt_firmware</span><br><span class="line">          path: ./artifact/firmware/</span><br><span class="line">      </span><br><span class="line">      - name: Upload package</span><br><span class="line">        uses: actions/upload-artifact@v4 # 上传安装包到 GitHub</span><br><span class="line">        with:</span><br><span class="line">          name: OpenWrt_package</span><br><span class="line">          path: ./artifact/package/</span><br><span class="line">          </span><br><span class="line">      - name: Set Release Date</span><br><span class="line">        id: release_date</span><br><span class="line">        run: |</span><br><span class="line">          # 获取当前时间并格式化为 年.月.日-时分</span><br><span class="line">          release_date=$(date +&#x27;%Y.%m.%d-%H:%M&#x27;)</span><br><span class="line">          echo &quot;::set-output name=date::$release_date&quot;</span><br><span class="line"></span><br><span class="line">      - name: Upload release asset</span><br><span class="line">        if: github.event_name == &#x27;workflow_dispatch&#x27; # 确保只有在手动触发时上传 Release</span><br><span class="line">        uses: svenstaro/upload-release-action@v2</span><br><span class="line">        with:</span><br><span class="line">          repo_token: $&#123;&#123; secrets.YOURTOKEN &#125;&#125; # 使用 GitHub Token 进行授权</span><br><span class="line">          file: ./artifact/firmware/*.bin # 指定要上传的固件文件</span><br><span class="line">          tag: $&#123;&#123; github.event.inputs.tag &#125;&#125; # 使用用户输入的版本号作为 Tag</span><br><span class="line">          release_name: &quot;OpenWrt Release on $&#123;&#123; steps.release_date.outputs.date &#125;&#125;&quot; # 使用格式化的时间作为 Release 名称</span><br><span class="line">          file_glob: true # 支持通配符</span><br></pre></td></tr></table></figure>
 
-<h2 id="藏锋卷-第一"><a href="#藏锋卷-第一" class="headerlink" title="藏锋卷 第一"></a>藏锋卷 第一</h2><p>  厄者，人之本也。锋者，厄之厉也。厄欲减，才莫显。<br>  上求贤，毕其功而志易。下求荣，成其事而意满。不知戒惕，上下难容也。<br>  仁者不逐其名，仁贵焉。明者不恋其位，明弃焉。勇者不争其锋，勇敛焉。<br>  生之惟艰，何足道哉？</p>
-<span id="more"></span>
-<h2 id="隐智卷-第二"><a href="#隐智卷-第二" class="headerlink" title="隐智卷 第二"></a>隐智卷 第二</h2><p>  用智者利，弄智者弊。暗用无敌，彰显无功。<br>  不为已谋，君子之智也。莫使已亏，小人之奸也。不怨智寡，忠义换焉。<br>  上惟忠，能次之。下惟实，术次之。不明其心，厄之难止。<br>  愚者言智，愚也。智者言智，祸也。</p>
-<h2 id="戒欲卷-第三"><a href="#戒欲卷-第三" class="headerlink" title="戒欲卷 第三"></a>戒欲卷 第三</h2><p>  欲大无根，心宽无恨。好之莫极，强之有咎。<br>  君子修身，避祸也。小人无忌，授首也。一念之失，死生之别也。<br>  治贪以严，莫以宽。惩淫以辱，莫以隐。伐恶以尽，莫以慈。<br>  制欲求于德，勿求于诫。悟者畅达，迷者困矣。</p>
-<h2 id="省身卷-第四"><a href="#省身卷-第四" class="headerlink" title="省身卷 第四"></a>省身卷 第四</h2><p>  自知者弗窘也。识世者无求也。<br>  人有异，命不同焉。物有别，衰相近焉。待已如人，大计不失。<br>  智不及事，非察莫中。人心多易，非思难度。俗不堪亲，非礼无存。<br>  忧身者无邪，正而九焉。忧心者无疚，宁而吉焉。</p>
-<h2 id="求实卷-第五"><a href="#求实卷-第五" class="headerlink" title="求实卷 第五"></a>求实卷 第五</h2><p>  致远者实，近利者虚。众趋者慎，已悦者进。<br>  不拘于书，则不失于本。不求于全，则不损于实。人无贱者，惟自弃也。<br>  大智无诈，顺乎天也。小智无德，背乎情也。识察勿忧，忧弗学也。<br>  苦劳而少获，非实之过也。闲逸而多得，乃实之旨焉。</p>
-<h2 id="慎言卷-第六"><a href="#慎言卷-第六" class="headerlink" title="慎言卷 第六"></a>慎言卷 第六</h2><p>  言之祸，无论忧劣也。语之弊，由人取舍也。<br>  君子不道虚言，实则逆耳。小人不表真心，伪则障目。见言见志，其行亦断也。<br>  贵者宜谦不宜傲。卑者亦恭不宜放。人无信，则言勿听。<br>  不知机而无泄，大安也。不避亲而密疏，大患也。</p>
-<h2 id="节情卷-第七"><a href="#节情卷-第七" class="headerlink" title="节情卷 第七"></a>节情卷 第七</h2><p>  知书而后忘情焉。抑性而后正身焉。<br>  纵亲见私，不容也。纵友见拙，不智也。纵怜见稚，不厚也。<br>  天怒成灾，人怒成害。君子戒悲，小人戒忧。不舍之情，羁身也。<br>  幸不恃色，荣定其品也。义不恃媚，信定其谐也。</p>
-<h2 id="向善卷-第八"><a href="#向善卷-第八" class="headerlink" title="向善卷 第八"></a>向善卷 第八</h2><p>  吉有其因，福有其源。天佑善者，其心悟焉。<br>  言善未必善，观其行也。言恶未必恶，审其心也。名勿信，实勿怠。<br>  君子亦怨，不误其事。小人亦友，不辍其争。利可求，遵可守。<br>  恶惑愚不惑智也。善贵诚不贵法也。</p>
-]]></content>
-      <categories>
-        <category>阅读</category>
-      </categories>
-      <tags>
-        <tag>古文</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解脱的安宁</title>
-    <url>/%E8%A7%A3%E8%84%B1%E7%9A%84%E5%AE%89%E5%AE%81.html</url>
-    <content><![CDATA[<center>--献给父亲</center>
-父亲，您的身体曾被病痛紧紧缠绕，那漫长的岁月里，您用沉默承受了大多。 <br>
-每一次探望，您的眼神里藏着疲惫，却也透着对面我们的不舍。 <br>
-<span id="more"></span>
-如今，您终于卸下了那沉重的负担，走向了没有疼痛的远方。 <br>
-我多想再握着您的手，多听您说一句叮嘱，可我知道，您已不再受苦，那片安宁是您应得的归宿。 <br>
-病痛折磨的日子结束了，您解脱了，我们的思念却不会停。 <br>
-原您在另一个世界里，只有风轻云淡，只有岁月静好。<br> 
-父亲，永别了，也永在了我们心里。<br> 
-]]></content>
-  </entry>
-  <entry>
-    <title>chrome开启gemini</title>
-    <url>/chrome%E5%BC%80%E5%90%AFgemini.html</url>
-    <content><![CDATA[<h4 id="第一步：修改-Local-State-配置文件"><a href="#第一步：修改-Local-State-配置文件" class="headerlink" title="第一步：修改 Local State 配置文件"></a><strong>第一步：修改 Local State 配置文件</strong></h4><p>定位到 Chrome 的用户数据目录（如 Windows 的 <code>%LOCALAPPDATA%\Google\Chrome\User Data\Local State</code>），关闭浏览器后修改以下三项：</p>
 <ul>
-<li><p><code>variations_permanent_consistency_country</code>: 将 <code>&quot;cn&quot;</code> 改为 <code>&quot;us&quot;</code>。</p>
-</li>
-<li><p><code>variations_country</code>: 将 <code>&quot;cn&quot;</code> 改为 <code>&quot;us&quot;</code>。</p>
-</li>
-<li><p><code>is_glic_eligible</code>: 将 <code>false</code> 改为 <code>true</code>。</p>
-</li>
+<li>个人在原仓库代码的基础上做了少量修改及加入备注，以符合个人需求</li>
+<li>仓库地址：<a href="https://github.com/KFERMercer/OpenWrt-CI">https://github.com/KFERMercer/OpenWrt-CI</a></li>
 </ul>
-<span id="more"></span>
-<h4 id="第二步：修改-Chrome-Flags-标志位"><a href="#第二步：修改-Chrome-Flags-标志位" class="headerlink" title="第二步：修改 Chrome Flags 标志位"></a><strong>第二步：修改 Chrome Flags 标志位</strong></h4><p>在浏览器地址栏输入 <code>chrome://flags</code>，将以下两项设为 <strong>Enabled</strong>：</p>
-<ul>
-<li><p><code>#glic</code></p>
-</li>
-<li><p><code>#glic-side-panel</code></p>
-</li>
+<h4 id="在线自动生成固件"><a href="#在线自动生成固件" class="headerlink" title="在线自动生成固件"></a>在线自动生成固件</h4><ul>
+<li><a href="https://firmware-selector.openwrt.org/">https://firmware-selector.openwrt.org/</a></li>
+<li><a href="https://firmware-selector.immortalwrt.org/">https://firmware-selector.immortalwrt.org/</a></li>
+<li><a href="https://openwrt.ai/">https://openwrt.ai/</a></li>
 </ul>
-<h4 id="第三步：系统环境要求"><a href="#第三步：系统环境要求" class="headerlink" title="第三步：系统环境要求"></a><strong>第三步：系统环境要求</strong></h4><ul>
-<li><p><strong>语言设置：</strong> Chrome 的首选界面语言必须设置为 <strong>English</strong>（英语）。</p>
-</li>
-<li><p><strong>网络环境：</strong> 必须使用<strong>美国节点</strong>的网络环境。</p>
-</li>
-</ul>
+<h4 id="插件中英文对照"><a href="#插件中英文对照" class="headerlink" title="插件中英文对照"></a>插件中英文对照</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">luci-app-clash    # clash科学上网（基本上没用的了，已经给luci-app-openclash代替）</span><br><span class="line">luci-app-accesscontrol    # 访问时间控制</span><br><span class="line">luci-app-adblock    # ADB 广告过滤</span><br><span class="line">luci-app-adbyby-plus    # 广告屏蔽大师Plus +</span><br><span class="line">luci-app-adguardhome    # adguardhome广告过滤</span><br><span class="line">luci-app-advanced    # 高级设置（内置luci-app-fileassistant文件助手）</span><br><span class="line">luci-app-advanced-reboot    # 高级重启</span><br><span class="line">luci-app-aliyundrive-webdav    # 阿里云盘</span><br><span class="line">luci-app-ahcp    # 支持 AHCPd</span><br><span class="line">luci-app-airplay2    # Apple AirPlay2 无损音频接收服务器</span><br><span class="line">luci-app-aliddns    # 阿里 DDNS</span><br><span class="line">luci-app-amule    # aMule 下载工具</span><br><span class="line">luci-app-argon-config    # argon主题设置,要配合argon主题使用</span><br><span class="line">luci-app-aria2    # Aria2 下载工具</span><br><span class="line">luci-app-arpbind    # IP/MAC 绑定</span><br><span class="line">luci-app-asterisk    # 支持 Asterisk 电话服务器</span><br><span class="line">luci-app-attendedsysupgrade    # 固件更新升级相关</span><br><span class="line">luci-app-autoreboot    # 支持计划重启</span><br><span class="line">luci-app-autoupdate    # 定时更新固件插件</span><br><span class="line">luci-app-baidupcs-web    # 百度网盘管理</span><br><span class="line">luci-app-bcp38    # BCP38 网络入口过滤（不确定）</span><br><span class="line">luci-app-bird1-ipv4    # 对Bird1-ipv4的支持</span><br><span class="line">luci-app-bird1-ipv6    # 对Bird1-ipv6的支持</span><br><span class="line">luci-app-bmx6    # BMX6路由协议</span><br><span class="line">luci-app-cifs-mount    # CIFS/SMB挂载设置</span><br><span class="line">luci-app-cifsd    # CIFS/SMB网络共享</span><br><span class="line">luci-app-cjdns    # 加密IPV6网络相关</span><br><span class="line">luci-app-clamav    # ClamAV杀毒软件</span><br><span class="line">luci-app-commands    # Shell命令模块</span><br><span class="line">luci-app-control-timewol    # 定时网络设备唤醒</span><br><span class="line">luci-app-control-webrestriction    # 访问限制</span><br><span class="line">luci-app-control-weburl    # 网址过滤</span><br><span class="line">luci-app-cpulimit    # CPU性能调整</span><br><span class="line">luci-app-cshark    # CloudShark捕获工具</span><br><span class="line">luci-app-cupsd    # CUPS 打印服务器</span><br><span class="line">luci-app-ddns    # 动态域名 DNS（集成阿里DDNS客户端）</span><br><span class="line">luci-app-ddnsto    # 内网穿透</span><br><span class="line">luci-app-diag-core    # core诊断工具</span><br><span class="line">luci-app-diskman    # 磁盘管理工具</span><br><span class="line">luci-app-dnscrypt-proxy    # DNSCrypt解决DNS污染</span><br><span class="line">luci-app-dnsforwarder    # DNSForwarder防DNS污染</span><br><span class="line">luci-app-docker    # 不带控制面板的docker</span><br><span class="line">luci-app-dockerman    # 带控制面板的docker</span><br><span class="line">luci-app-dump1090    # 民航无线频率（不确定）</span><br><span class="line">luci-app-dynapoint    # DynaPoint（未知）</span><br><span class="line">luci-app-e2guardian    # Web内容过滤器</span><br><span class="line">luci-app-easymesh    # 简单MESH(可有线+无线回程)</span><br><span class="line">luci-app-eqos    # 内网IP地址限速</span><br><span class="line">luci-app-familycloud    # 家庭云盘</span><br><span class="line">luci-app-fileassistant    # 文件助手</span><br><span class="line">luci-app-filebrowser    # 文件管理器</span><br><span class="line">luci-app-filetransfer    # 文件传输（可web安装ipk包）</span><br><span class="line">luci-app-firewall    # 添加防火墙</span><br><span class="line">luci-app-frpc    # 内网穿透Frp客户端</span><br><span class="line">luci-app-frps    # 内网穿透Frp服务端</span><br><span class="line">luci-app-fwknopd    # Firewall Knock Operator服务器</span><br><span class="line">luci-app-godproxy    # 广告拦截</span><br><span class="line">luci-app-gost    # GO语言实现的安全隧道（隐蔽的https代理）</span><br><span class="line">luci-app-gowebdav    # GoWebDav 是一个轻巧、简单、快速的 WebDav 服务端程序</span><br><span class="line">luci-app-guest-wifi    # WiFi访客网络</span><br><span class="line">luci-app-haproxy-tcp    # HAProxy负载均衡-TCP</span><br><span class="line">luci-app-hd-idle    # 硬盘休眠</span><br><span class="line">luci-app-hnet    # Homenet Status家庭网络控制协议</span><br><span class="line">luci-app-https-dns-proxy    # 通过HTTPS代理为DNS提供Web UI</span><br><span class="line">luci-app-ipsec-vpnserver-manyusers    # ipsec-vpn（VPN服务器）</span><br><span class="line">luci-app-iptvhelper    # iptvhelper,帮助你轻松配置IPTV</span><br><span class="line">luci-app-jd-dailybonus    # 京东签到服务</span><br><span class="line">luci-app-kodexplorer    # KOD可道云私人网盘</span><br><span class="line">luci-app-koolddns    # 支持阿里DDNS、DnsPod动态域名解析</span><br><span class="line">luci-app-linkease    # 易有云文件管理器</span><br><span class="line">luci-app-lxc    # LXC容器管理</span><br><span class="line">luci-app-mentohust    # 锐捷验证</span><br><span class="line">luci-app-minidlna    # 完全兼容DLNA / UPnP-AV客户端的服务器软件</span><br><span class="line">luci-app-mjpg-streamer    # 兼容Linux-UVC的摄像头程序</span><br><span class="line">luci-app-music-remote-center    #PCHiFi 数字转盘遥控</span><br><span class="line">luci-app-mwan3    # MWAN3负载均衡</span><br><span class="line">luci-app-mwan3helper    # MWAN3分流助手</span><br><span class="line">luci-app-n2n_v2    # N2N内网穿透 N2N v2 VPN服务</span><br><span class="line">luci-app-netdata    # 实时监控中文版</span><br><span class="line">luci-app-nfs    # NFS网络共享</span><br><span class="line">luci-app-nft-qos    # QOS流量控制 Nftables版</span><br><span class="line">luci-app-nlbwmon    # 网络带宽监视器</span><br><span class="line">luci-app-noddos    # NodDOS Clients 阻止DDoS攻击（丢弃）</span><br><span class="line">luci-app-nps    # 内网穿透nps</span><br><span class="line">luci-app-ntpc    # NTP时间同步服务器</span><br><span class="line">luci-app-oaf    # 应用过滤</span><br><span class="line">luci-app-ocserv    # OpenConnect VPN服务</span><br><span class="line">luci-app-olsr    # OLSR配置和状态模块</span><br><span class="line">luci-app-olsr-services    # OLSR服务器</span><br><span class="line">luci-app-olsr-viz    # OLSR可视化</span><br><span class="line">luci-app-oled    # 为1306 0.91 oled专用，如果oled不显示，请看这里</span><br><span class="line">luci-app-onliner    # 流量监控</span><br><span class="line">luci-app-openclash    # openclash</span><br><span class="line">luci-app-openvpn    # OpenVPN客户端</span><br><span class="line">luci-app-openvpn-server    # 易于使用的OpenVPN服务器 Web-UI</span><br><span class="line">luci-app-oscam    # OSCAM服务器</span><br><span class="line">luci-app-p910nd    #打印服务</span><br><span class="line">luci-app-pagekitec    # Pagekitec内网穿透客户端</span><br><span class="line">luci-app-passwall    # 科学上网</span><br><span class="line">luci-app-polipo    # Polipo代理(是一个小型且快速的网页缓存代理)</span><br><span class="line">luci-app-poweroff    # 关机</span><br><span class="line">luci-app-pppoe-relay    # PPPoE NAT穿透 点对点协议（PPP）</span><br><span class="line">luci-app-pppoe-server    # 宽带接入认证服务器</span><br><span class="line">luci-app-pptp-server    # VPN服务器 PPTP</span><br><span class="line">luci-app-privoxy    # Privoxy网络代理(带过滤无缓存)</span><br><span class="line">luci-app-ps3netsrv    # PS3 NET服务器（用于加载蓝光/游戏ISO/PKG）</span><br><span class="line">luci-app-pushbot    # 钉钉推送（微信推送修改版）</span><br><span class="line">luci-app-qbittorrent    # BT下载工具（完整版）</span><br><span class="line">luci-app-qbittorrent_static    # BT下载工具</span><br><span class="line">luci-app-qos    # 流量服务质量(QoS)流控</span><br><span class="line">luci-app-radicale    # CalDAV/CardDAV同步工具</span><br><span class="line">luci-app-ramfree    # 释放内存</span><br><span class="line">luci-app-rclone    # 命令行云端同步工具</span><br><span class="line">luci-app-rebootschedule    # 多功能定时任务（重启网络、重启系统、重启WIFI、重新拨号...）</span><br><span class="line">luci-app-rp-pppoe-server    # Roaring Penguin PPPoE Server 服务器</span><br><span class="line">luci-app-samba    # 网络共享</span><br><span class="line">luci-app-samba4    # 网络共享（Samba4）</span><br><span class="line">luci-app-serverchan    # 微信推送</span><br><span class="line">luci-app-shadowsocks-libev    # SS-libev服务端</span><br><span class="line">luci-app-shairplay    # 支持AirPlay功能</span><br><span class="line">luci-app-siitwizard    # SIIT配置向导 SIIT-Wizzard</span><br><span class="line">luci-app-simple-adblock    # 简单的广告拦截</span><br><span class="line">luci-app-smartdns    # SmartDNS</span><br><span class="line">luci-app-smartinfo    # 穿越蓝天磁盘监控</span><br><span class="line">luci-app-socat    # 多功能的网络工具</span><br><span class="line">luci-app-softethervpn    # SoftEther VPN服务器 NAT穿透</span><br><span class="line">luci-app-splash    # Client-Splash是无线MESH网络的一个热点认证系统</span><br><span class="line">luci-app-store    # 在线商店</span><br><span class="line">luci-app-supervisord    # 一款golang开发的进程管理</span><br><span class="line">luci-app-sqm    # 流量智能队列管理（QOS）</span><br><span class="line">luci-app-squid    # Squid代理服务器</span><br><span class="line">luci-app-ssr-plus    #SSR Plus+ 科学上网</span><br><span class="line">luci-app-ssrserver-python    #ShadowsocksR Python服务器</span><br><span class="line">luci-app-statistics    # 流量监控工具</span><br><span class="line">luci-app-switch-lan-play    # 虚拟局域网联机工具</span><br><span class="line">luci-app-syncdial    # 多拨虚拟网卡（原macvlan）</span><br><span class="line">luci-app-syncthing    # syncthing同步工具</span><br><span class="line">luci-app-tencentddns    # 腾讯DDNS</span><br><span class="line">luci-app-timecontrol    # 时间控制跟（luci-app-accesscontrol）差不多，不同的是这个可以配合高级设置一起使用</span><br><span class="line">luci-app-tinyproxy    # Tinyproxy是 HTTP(S)代理服务器</span><br><span class="line">luci-app-transmission    # BT下载工具</span><br><span class="line">luci-app-travelmate    # 旅行路由器</span><br><span class="line">luci-app-ttnode    # 甜糖星愿自动采集插件</span><br><span class="line">luci-app-ttyd    # 网页终端命令窗</span><br><span class="line">luci-app-turboacc    # Turbo ACC 网络加速</span><br><span class="line">luci-app-udpxy    # udpxy做组播服务器</span><br><span class="line">luci-app-udp2raw    # udp2raw-tunnel管理界面-隧道服务器管理</span><br><span class="line">luci-app-uhttpd    # uHTTPd Web服务器</span><br><span class="line">luci-app-unblockmusic    #解锁网易云灰色歌曲</span><br><span class="line">luci-app-unblockneteasemusic    #新版本解除网易云音乐播放限制</span><br><span class="line">luci-app-unbound    # Unbound DNS解析器</span><br><span class="line">luci-app-upnp    # 通用即插即用UPnP（端口自动转发）</span><br><span class="line">luci-app-usb-printer    # USB 打印服务器</span><br><span class="line">luci-app-uugamebooster    # UU网游加速器</span><br><span class="line">luci-app-v2ray-server    # V2Ray 服务器</span><br><span class="line">luci-app-verysync    # 微力同步</span><br><span class="line">luci-app-vlmcsd    # KMS激活服务器</span><br><span class="line">luci-app-vnstat    # vnStat网络监控（图表）</span><br><span class="line">luci-app-vpnbypass    # VPN BypassWebUI 绕过VPN设置</span><br><span class="line">luci-app-vsftpd    # FTP服务器</span><br><span class="line">luci-app-vssr    # VSSR科学上网</span><br><span class="line">luci-app-watchcat    # 断网检测功能与定时重启</span><br><span class="line">luci-app-webadmin    # Web管理页面设置</span><br><span class="line">luci-app-wifischedule    # WiFi 计划</span><br><span class="line">luci-app-wireguard    # VPN服务器 WireGuard状态</span><br><span class="line">wifidog-wiwiz    # 拼拼WiFi(luci-app-eqos必选，然后在Network ---&gt; Captive Portals ---&gt; wifidog-wiwiz 勾选上)</span><br><span class="line">luci-app-wolplus    # 新版网络唤醒，替换luci-app-wol</span><br><span class="line">luci-app-wrtbwmon    # 实时流量监测</span><br><span class="line">luci-app-webd    # Webd 是一款轻量级的 (self-hosted) 自建网盘</span><br><span class="line">luci-app-xlnetacc    # 迅雷快鸟</span><br><span class="line">luci-app-zerotier    # ZeroTier内网穿透</span><br><span class="line">luci-theme-Light    # Light 主题</span><br><span class="line">luci-theme-argon    # argon 主题</span><br><span class="line">luci-theme-atmaterial    # atmaterial 主题</span><br><span class="line">luci-theme-bootstrap    # bootstrap 主题</span><br><span class="line">luci-theme-darkmatter    # 黑色 主题</span><br><span class="line">luci-theme-infinityfreedom    # 透明效果 主题</span><br><span class="line">luci-theme-material    # material 主题</span><br><span class="line">luci-theme-netgear    # 网件 主题</span><br><span class="line">luci-theme-neobird    # neobird 主题</span><br><span class="line">luci-theme-opentomcat    # opentomcat 主题</span><br><span class="line">luci-theme-rosy    # rosy 主题</span><br><span class="line">luci-app-dockerman 和 luci-app-docker 只能二选一</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>技术分享</category>
       </categories>
       <tags>
-        <tag>windows</tag>
+        <tag>linux</tag>
+        <tag>openwrt</tag>
       </tags>
   </entry>
   <entry>
@@ -2049,97 +2129,17 @@
       </tags>
   </entry>
   <entry>
-    <title>OpenClaw 在 Android Termux 上的全流程教程</title>
-    <url>/OpenClaw-%E5%9C%A8-Android-Termux-%E4%B8%8A%E7%9A%84%E5%85%A8%E6%B5%81%E7%A8%8B%E6%95%99%E7%A8%8B.html</url>
-    <content><![CDATA[<p>这份教程结合了 Sagar 的“内核绕过”技术与 PM2 的进程管理，确保你的 AI 机器人在安卓端 24&#x2F;7 稳定运行。</p>
-<h3 id="🛠️-前置准备"><a href="#🛠️-前置准备" class="headerlink" title="🛠️ 前置准备"></a>🛠️ 前置准备</h3><ol>
-<li><p><strong>设备</strong>：Android 10 或更高。</p>
-</li>
-<li><p><strong>Termux</strong>：请务必使用 <strong>F-Droid</strong> 版本。</p>
-</li>
-<li><p><strong>API Key</strong>：准备好 Gemini API Key。</p>
-</li>
-</ol>
+    <title>解脱的安宁</title>
+    <url>/%E8%A7%A3%E8%84%B1%E7%9A%84%E5%AE%89%E5%AE%81.html</url>
+    <content><![CDATA[<center>--献给父亲</center>
+父亲，您的身体曾被病痛紧紧缠绕，那漫长的岁月里，您用沉默承受了大多。 <br>
+每一次探望，您的眼神里藏着疲惫，却也透着对面我们的不舍。 <br>
 <span id="more"></span>
-
-
-<h3 id="1-环境搭建-Ubuntu-proot"><a href="#1-环境搭建-Ubuntu-proot" class="headerlink" title="1. 环境搭建 (Ubuntu proot)"></a>1. 环境搭建 (Ubuntu proot)</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pkg update &amp;&amp; pkg upgrade -y</span><br><span class="line">pkg install proot-distro -y</span><br><span class="line">proot-distro install ubuntu</span><br><span class="line">proot-distro login ubuntu</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-安装-Node-js-与-OpenClaw"><a href="#2-安装-Node-js-与-OpenClaw" class="headerlink" title="2. 安装 Node.js 与 OpenClaw"></a>2. 安装 Node.js 与 OpenClaw</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt update &amp;&amp; apt upgrade -y</span><br><span class="line">apt install curl git build-essential -y</span><br><span class="line">curl -fsSL https://deb.nodesource.com/setup_22.x | bash -</span><br><span class="line">apt install -y nodejs</span><br><span class="line">npm install -g openclaw@latest</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h3 id="3-核心补丁：Bionic-Bypass-解决-Error-13"><a href="#3-核心补丁：Bionic-Bypass-解决-Error-13" class="headerlink" title="3. 核心补丁：Bionic Bypass (解决 Error 13)"></a>3. 核心补丁：Bionic Bypass (解决 Error 13)</h3><p>这是防止 OpenClaw 闪退的关键。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 创建劫持脚本</span><br><span class="line">cat &lt;&lt;EOF &gt; /root/hijack.js</span><br><span class="line">const os = require(&#x27;os&#x27;);</span><br><span class="line">os.networkInterfaces = () =&gt; (&#123;&#125;);</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"># 写入环境变量，确保全局生效</span><br><span class="line">echo &#x27;export NODE_OPTIONS=&quot;-r /root/hijack.js&quot;&#x27; &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="4-初始化配置"><a href="#4-初始化配置" class="headerlink" title="4. 初始化配置"></a>4. 初始化配置</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openclaw onboard</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>注意</strong>：在网关绑定（Gateway Bind）时，务必选择 <code>127.0.0.1</code>。</li>
-</ul>
-<h3 id="5-调试运行-测试用"><a href="#5-调试运行-测试用" class="headerlink" title="5. 调试运行 (测试用)"></a>5. 调试运行 (测试用)</h3><p>在正式进入后台运行前，先手动测试是否能跑通：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openclaw gateway --verbose</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>确认 Telegram 机器人有响应后，按 <code>Ctrl+C</code> 退出，进入下一步。</p>
-<h3 id="6-使用TMUX-持久化后台运行-新增"><a href="#6-使用TMUX-持久化后台运行-新增" class="headerlink" title="6. 使用TMUX 持久化后台运行 (新增)"></a>6. 使用TMUX 持久化后台运行 (新增)</h3><p>使用tmux可以让机器人即使在关闭终端窗口后依然运行。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 在termux下创建tmux的实例</span><br><span class="line">tmux new -s openclaw</span><br><span class="line"># 进入实例后启动openclaw</span><br><span class="line">openclaw gateway --verbose</span><br><span class="line"></span><br><span class="line"># 退出当前实例</span><br><span class="line">ctrl + b  然后  d</span><br><span class="line"># 查看当前在后台运行的实例</span><br><span class="line">tmux ls</span><br><span class="line"># 进入实例</span><br><span class="line">tmux a -t openclaw</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="7-手机端保活建议"><a href="#7-手机端保活建议" class="headerlink" title="7. 手机端保活建议"></a>7. 手机端保活建议</h3><ul>
-<li><p><strong>唤醒锁</strong>：在 Termux 菜单中点击 “Acquire wakelock”，或运行 <code>termux-wake-lock</code>。</p>
-</li>
-<li><p><strong>电池优化</strong>：在安卓设置中，将 Termux 设为“不优化电池使用”。</p>
-</li>
-<li><p><strong>控制台访问</strong>：手机浏览器访问 <code>http://127.0.0.1:18789</code> 管理面板。</p>
-</li>
-</ul>
-<h3 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h3><ul>
-<li><a href="https://sagartamang.com/blog/openclaw-on-android-termux#2-install-dependencies">https://sagartamang.com/blog/openclaw-on-android-termux#2-install-dependencies</a></li>
-</ul>
+如今，您终于卸下了那沉重的负担，走向了没有疼痛的远方。 <br>
+我多想再握着您的手，多听您说一句叮嘱，可我知道，您已不再受苦，那片安宁是您应得的归宿。 <br>
+病痛折磨的日子结束了，您解脱了，我们的思念却不会停。 <br>
+原您在另一个世界里，只有风轻云淡，只有岁月静好。<br> 
+父亲，永别了，也永在了我们心里。<br> 
 ]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>外网 IPv4 访问家用纯 IPv6 服务（免端口+全 HTTPS 方案）</title>
-    <url>/%E5%A4%96%E7%BD%91-IPv4-%E8%AE%BF%E9%97%AE%E5%AE%B6%E7%94%A8%E7%BA%AF-IPv6-%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%85%8D%E7%AB%AF%E5%8F%A3-%E5%85%A8-HTTPS-%E6%96%B9%E6%A1%88%EF%BC%89.html</url>
-    <content><![CDATA[<h3 id="1-核心需求与背景"><a href="#1-核心需求与背景" class="headerlink" title="1. 核心需求与背景"></a>1. 核心需求与背景</h3><ul>
-<li><strong>环境</strong>：家庭宽带拥有公网 IPv6 地址，但外部网络（如公司、某些移动网络）仅支持 IPv4。</li>
-<li><strong>目标</strong>：通过自定义域名，不带端口号（如 <code>:8443</code>），且全过程 HTTPS 加密访问家中的 OpenWrt 或其他服务。</li>
-<li><strong>工具链</strong>：Cloudflare (CDN&#x2F;回源规则) + Lucky (反向代理&#x2F;动态域名) + IPv6 宽带。</li>
-</ul>
-<span id="more"></span>
-<h3 id="2-核心架构图"><a href="#2-核心架构图" class="headerlink" title="2. 核心架构图"></a>2. 核心架构图</h3><ol>
-<li><strong>客户端</strong>：发起 <code>https://abc.yourdomain_b.com</code> 请求（默认 443 端口）。</li>
-<li><strong>Cloudflare</strong>：接收 IPv4 请求，将其转换为 IPv6，并将 443 端口重写为 8443。</li>
-<li>**Lucky (源站)**：接收 8443 端口流量，添加反代记录并转发给局域网服务。</li>
-</ol>
-<h3 id="3-分步操作指南"><a href="#3-分步操作指南" class="headerlink" title="3. 分步操作指南"></a>3. 分步操作指南</h3><h4 id="第一步：Cloudflare-基础配置（实现-IPv4-转-IPv6）"><a href="#第一步：Cloudflare-基础配置（实现-IPv4-转-IPv6）" class="headerlink" title="第一步：Cloudflare 基础配置（实现 IPv4 转 IPv6）"></a>第一步：Cloudflare 基础配置（实现 IPv4 转 IPv6）</h4><ul>
-<li><strong>添加记录</strong>：新建一条 <strong>CNAME</strong> 记录，指向你家里的公网 IPv6子域名<code>https://abc.yourdomain_a.com</code>。</li>
-<li><strong>开启代理</strong>：务必开启 **“橙色小云朵” (Proxy)**，这是实现协议转换和隐藏 IP 的前提。</li>
-<li><strong>SSL 模式</strong>：在 <code>SSL/TLS</code> -&gt; <code>概述</code> 中，选择 <strong>“完全 (Full)”</strong>。</li>
-</ul>
-<h4 id="第二步：配置-Origin-Rules（实现“免端口”访问）"><a href="#第二步：配置-Origin-Rules（实现“免端口”访问）" class="headerlink" title="第二步：配置 Origin Rules（实现“免端口”访问）"></a>第二步：配置 Origin Rules（实现“免端口”访问）</h4><p>为了不输入 <code>:8443</code>，让 Cloudflare 在后台完成端口映射：</p>
-<ol>
-<li>进入 <code>规则 (Rules)</code> -&gt;<code>概述</code>-&gt; <code>Origin Rules</code>。</li>
-<li><strong>匹配条件</strong>：主机名 (Hostname) <strong>等于</strong> <code>abc.yourdomain.com</code>。</li>
-<li><strong>多条子域名</strong>：用<code>or</code>连接于后面。   </li>
-<li><strong>操作</strong>：目的端口 (Destination Port) <strong>重写到</strong> <code>8443</code>。</li>
-</ol>
-<h4 id="第三步：Lucky-大吉-关键设置"><a href="#第三步：Lucky-大吉-关键设置" class="headerlink" title="第三步：Lucky (大吉) 关键设置"></a>第三步：Lucky (大吉) 关键设置</h4><p>在 Lucky 的 <code>Web服务</code> 规则中进行如下设置，确保能顺利进入服务界面：</p>
-<ol>
-<li><strong>监听端口</strong>：设置为 <code>8443</code>（并确保证书已配置）。</li>
-<li><strong>域名列表</strong>：添加子域名 <code>abc.yourdomain_b.com</code>并指向内网地址。</li>
-<li><strong>忽略后端TLS证书验证</strong>：勾选为 <strong>“是”</strong>。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>技术分享</category>
-      </categories>
-      <tags>
-        <tag>web</tag>
-      </tags>
   </entry>
 </search>
